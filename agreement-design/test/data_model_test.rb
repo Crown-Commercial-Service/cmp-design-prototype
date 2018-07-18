@@ -16,20 +16,28 @@ class DataModelTest < Test::Unit::TestCase
     # Do nothing
   end
 
-  class TypeOne < DataModel::DataType
-    attribute :id, String
-  end
-  class TypeTwo < DataModel::DataType
-    attribute :id, String
-    attribute :mate, TypeOne
+  DataModel::domain :TestModel do
+
+    datatype :TypeOne do
+      attribute :id, String
+    end
+
+    datatype :TypeTwo do
+      attribute :id, String
+      attribute :mate, DataModel::TestModel::TypeOne
+    end
+
   end
 
   def test_model
+    assert(DataModel::TestModel::TypeTwo.attributes.keys.one? {|k| k == :id}, 'has id attribute')
+    id_t = DataModel::TestModel::TypeTwo.attributes[:id]
+    assert(id_t[:type] == String)
+    mate_t = DataModel::TestModel::TypeTwo.attributes[:mate]
+    assert(mate_t[:type] == DataModel::TestModel::TypeOne)
+    pp DataModel::Records.types
+    pp DataModel::Records::Catalogue.attributes
 
-    assert(TypeTwo.attributes.keys.one?{|k|k==:id}, 'has id attribute')
-    id_t= TypeTwo.attributes[:id]
-    assert( id_t[:type] == String)
-    mate_t= TypeTwo.attributes[:mate]
-    assert( mate_t[:type] == TypeOne)
   end
+
 end
