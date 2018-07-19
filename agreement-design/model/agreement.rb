@@ -1,11 +1,16 @@
+
 require_relative '../src/data_model'
 require 'pp'
 include DataModel
 
-d = domain :Records do
+domain :Records do
 
   datatype :Agreement do
     attribute :id, String
+  end
+
+  datatype :Framework, DataModel::Records::Agreement do
+    attribute :fwk_id, String
   end
 
   datatype :Catalogue do
@@ -14,7 +19,7 @@ d = domain :Records do
   end
 end
 
-pp DataModel::Records.types
 for type in DataModel::Records.types.values do
-      pp type.attributes
+  pp type.name
+  pp type.attributes
 end

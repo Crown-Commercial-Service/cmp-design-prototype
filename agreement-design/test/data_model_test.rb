@@ -18,26 +18,38 @@ class DataModelTest < Test::Unit::TestCase
 
   DataModel::domain :TestModel do
 
-    datatype :TypeOne do
+    datatype :BasicType do
       attribute :id, String
     end
 
-    datatype :TypeTwo do
+    datatype :ReferencingType do
       attribute :id, String
-      attribute :mate, DataModel::TestModel::TypeOne
+      attribute :mate, DataModel::TestModel::BasicType
+    end
+
+    datatype :DerivedType, :ReferencingType do
+      attribute :more, String
     end
 
   end
 
   def test_model
-    assert(DataModel::TestModel::TypeTwo.attributes.keys.one? {|k| k == :id}, 'has id attribute')
-    id_t = DataModel::TestModel::TypeTwo.attributes[:id]
+    assert(contains(DataModel::TestModel::BasicType, :id), 'has id attribute')
+    id_t = DataModel::TestModel::BasicType.attributes[:id]
     assert(id_t[:type] == String)
-    mate_t = DataModel::TestModel::TypeTwo.attributes[:mate]
-    assert(mate_t[:type] == DataModel::TestModel::TypeOne)
-    pp DataModel::Records.types
-    pp DataModel::Records::Catalogue.attributes
 
+    mate_t = DataModel::TestModel::ReferencingType.attributes[:mate]
+    assert(mate_t[:type] == DataModel::TestModel::BasicType)
+
+    assert(contains( DataModel::TestModel::DerivedType, :more), "has derived attribute")
+    assert(contains( DataModel::TestModel::DerivedType, :mate), "has derived attribute")
+    assert(contains( DataModel::TestModel::DerivedType, :id), "has derived attribute")
+  end
+
+  private
+
+  def contains(type, attr)
+    type.attributes.keys.one? {|k| k == attr }
   end
 
 end
