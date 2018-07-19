@@ -31,6 +31,10 @@ class DataModelTest < Test::Unit::TestCase
       attribute :more, String
     end
 
+    datatype :DerivedTypeNamingClass, DataModel::TestModel::ReferencingType do
+      attribute :othermore, String
+    end
+
   end
 
   def test_model
@@ -44,6 +48,8 @@ class DataModelTest < Test::Unit::TestCase
     assert(contains( DataModel::TestModel::DerivedType, :more), "has derived attribute")
     assert(contains( DataModel::TestModel::DerivedType, :mate), "has derived attribute")
     assert(contains( DataModel::TestModel::DerivedType, :id), "has derived attribute")
+    assert(contains( DataModel::TestModel::DerivedTypeNamingClass, :othermore), "has derived attribute")
+    assert(contains( DataModel::TestModel::DerivedTypeNamingClass, :id), "has derived attribute")
   end
 
   private
