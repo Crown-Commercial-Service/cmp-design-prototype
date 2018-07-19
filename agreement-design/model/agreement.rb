@@ -10,12 +10,12 @@ domain :Records do
   end
 
   datatype :Framework, DataModel::Records::Agreement do
-    attribute :fwk_id, String
+    attribute :fwk_id, String, "RM number"
   end
 
   datatype :Catalogue do
     attribute :id, String
-    attribute :items, String, [0..50]
+    attribute :items, String, 0..50
   end
 end
 

@@ -2,10 +2,31 @@ module DataModel
 
 
   class DataType
+    SINGLE = 1..1
+    ONE_TO_MANY = 1..-1
+    ZERO_TO_MANY = 0..-1
+
     class << self
-      def attribute(name, type, multiplicity = [1..1])
+
+      def attribute(name, type, *args)
+        options = {:multiplicity => SINGLE, :description => "", :name => name, :type => type}
+
+        for opt in args
+          if opt.is_a? Range
+            options[:multiplicity]= opt
+          elsif opt.is_a? String
+            options[:description]= opt
+          elsif opt.is_a? Hash
+            options.merge! opt
+          else
+            raise "last arguments should be string (description), range, or options map, such as :multiplicity => [0..2]:\n " << opt.to_s
+          end
+        end
+
+        # multiplicity = 1..1])
         @attributes = {} unless instance_variable_defined? :@attributes
-        @attributes[name] = {:name => name, :type => type, :multiplicity => multiplicity}
+        @attributes[name] = options
+
         # add a class level accessor to get the attributes
         self.define_singleton_method(:attributes) do
           if self.superclass.respond_to? :attributes
@@ -15,6 +36,7 @@ module DataModel
           end
         end
       end
+
     end
   end
 
