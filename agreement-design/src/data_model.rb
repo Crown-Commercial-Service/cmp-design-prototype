@@ -1,12 +1,16 @@
 module DataModel
 
+  SINGLE = 1..1
+  ONE_TO_MANY = 1..-1
+  ZERO_TO_MANY = 0..-1
 
   class DataType
-    SINGLE = 1..1
-    ONE_TO_MANY = 1..-1
-    ZERO_TO_MANY = 0..-1
 
     class << self
+
+      def typename
+         self.name
+      end
 
       def attribute(name, type, *args)
         options = {:multiplicity => SINGLE, :description => "", :name => name, :type => type}
@@ -41,14 +45,11 @@ module DataModel
   end
 
   class Domain
-    def initialize(name)
-      @types = {}
-    end
 
     class << self
       def datatype name, extends = DataType, &block
         @types = {} unless instance_variable_defined? :@types
-        if (nil != extends && extends.class != Class) then
+        if (extends.class != Class) then
           extends = @types.fetch(extends, DataType)
         end
         type = self.const_set name, Class.new(extends)

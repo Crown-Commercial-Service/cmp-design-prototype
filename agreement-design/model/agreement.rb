@@ -3,23 +3,28 @@ require_relative '../src/data_model'
 require 'pp'
 include DataModel
 
-domain :Records do
+domain :Agreements do
 
   datatype :Agreement do
     attribute :id, String
   end
 
-  datatype :Framework, DataModel::Records::Agreement do
+  datatype :Framework, Agreements::Agreement do
     attribute :fwk_id, String, "RM number"
+  end
+
+  datatype :Lot, Agreements::Agreement do
+    attribute :fwk_id, String, "Part of framework", :links => :Framework
+  end
+
+  datatype :Item do
+    attribute :id, String
+    attribute :detail, String
   end
 
   datatype :Catalogue do
     attribute :id, String
-    attribute :items, String, 0..50
+    attribute :items, Agreements::Item, ONE_TO_MANY
   end
 end
 
-for type in DataModel::Records.types.values do
-  pp type.name
-  pp type.attributes
-end
