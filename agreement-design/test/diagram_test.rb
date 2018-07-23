@@ -11,9 +11,6 @@ class DiagramTest < Test::Unit::TestCase
   PATH = "out/test/"
   NAME = "d"
 
-  puts __FILE__
-  puts
-
   def setup
     @d = Diagram.new(PATH, NAME)
     if File.file?(@d.dotfile)

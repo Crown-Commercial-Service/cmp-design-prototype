@@ -3,7 +3,6 @@ require 'fileutils'
 class Element
   def initialize file
     @file = file
-
   end
 
   def finish
@@ -22,7 +21,7 @@ class TableElement < Element
     super(file)
     @node = node
     pput %Q("#{@node}" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>#{@node}</TD></TH><HR/>)
-    @items= []
+    @items = []
   end
 
   def item i
@@ -69,19 +68,16 @@ class Diagram
   attr_accessor :path, :name
 
   def initialize path, name
-    if not path.to_s.end_with? '/'
-      raise "path must end with /"
-    end
     self.path = path
     self.name = name
   end
 
   def dotfile
-    "#{self.path}#{self.name}.dot"
+    File.join( self.path, "#{self.name}.dot")
   end
 
   def jpgfile
-    "#{self.path}#{self.name}.jpg"
+    File.join( self.path, "#{self.name}.jpg")
   end
 
   def describe model
@@ -89,7 +85,7 @@ class Diagram
     FileUtils.mkpath self.path
     File.open(self.dotfile, "w") do |file|
       graph = Graph.new(file)
-      subgraph= SubGraph.new( file, modelname(model))
+      subgraph = SubGraph.new(file, modelname(model))
       for t in model.types.values
         table = TableElement.new(file, typename(model, t))
         for i in t.attributes.keys
