@@ -81,16 +81,17 @@ class Diagram
   end
 
   def dotfile
-    File.join(self.path, "#{self.name}.dot")
+    File.join(self.path, "diagrams", "#{self.name}.dot")
   end
 
   def jpgfile
-    File.join(self.path, "#{self.name}.jpg")
+    File.join(self.path, "images","#{self.name}.jpg")
   end
 
   def describe model
 
-    FileUtils.mkpath self.path
+    FileUtils.mkpath File.join( self.path, "diagrams")
+    FileUtils.mkpath File.join( self.path, "images")
     File.open(self.dotfile, "w") do |file|
       graph = Graph.new(file)
       subgraph = SubGraph.new(file, modelname(model))
