@@ -27,7 +27,6 @@ module DataModel
           end
         end
 
-        # multiplicity = 1..1])
         @attributes = {} unless instance_variable_defined? :@attributes
         @attributes[name] = options
 

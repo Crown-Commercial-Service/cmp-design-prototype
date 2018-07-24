@@ -64,6 +64,14 @@ class SubGraph < Element
 
 end
 
+class Links < Element
+
+  def link el1, el2
+    pput %Q!"#{el1}" -> "#{el2}";\n!
+  end
+
+end
+
 class Diagram
   attr_accessor :path, :name
 
@@ -73,11 +81,11 @@ class Diagram
   end
 
   def dotfile
-    File.join( self.path, "#{self.name}.dot")
+    File.join(self.path, "#{self.name}.dot")
   end
 
   def jpgfile
-    File.join( self.path, "#{self.name}.jpg")
+    File.join(self.path, "#{self.name}.jpg")
   end
 
   def describe model
@@ -86,12 +94,18 @@ class Diagram
     File.open(self.dotfile, "w") do |file|
       graph = Graph.new(file)
       subgraph = SubGraph.new(file, modelname(model))
-      for t in model.types.values
-        table = TableElement.new(file, typename(model, t))
-        for i in t.attributes.keys
-          table.item i
+      for type in model.types.values
+        table = TableElement.new(file, typename(model, type))
+        for att in type.attributes.keys
+          table.item att
         end
         table.finish
+        links = Links.new(file)
+        for att in type.attributes.keys
+          if type.attributes[att][:links]
+            links.link typename(model, type), typename( model, type.attributes[att][:links])
+          end
+        end
       end
       subgraph.finish
       graph.finish

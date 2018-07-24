@@ -5,7 +5,11 @@ label=Agreements;
 "Agreement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Agreement</TD></TH><HR/><TR><TD ALIGN="LEFT">-id</TD></TR></table>>];
 "Framework" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Framework</TD></TH><HR/><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-fwk_id</TD></TR></table>>];
 "Lot" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Lot</TD></TH><HR/><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-fwk_id</TD></TR></table>>];
-"Item" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Item</TD></TH><HR/><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-detail</TD></TR></table>>];
-"Catalogue" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Catalogue</TD></TH><HR/><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-items</TD></TR></table>>];
+"Lot" -> "Framework";
+"ItemParameter" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ItemParameter</TD></TH><HR/><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-detail</TD></TR><TR><TD ALIGN="LEFT">-valueMin</TD></TR><TR><TD ALIGN="LEFT">-valueMax</TD></TR><TR><TD ALIGN="LEFT">-type</TD></TR></table>>];
+"Item" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Item</TD></TH><HR/><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-params</TD></TR><TR><TD ALIGN="LEFT">-detail</TD></TR><TR><TD ALIGN="LEFT">-value</TD></TR></table>>];
+"Item" -> "ItemParameter";
+"Catalogue" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Catalogue</TD></TH><HR/><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-items</TD></TR><TR><TD ALIGN="LEFT">-agreement</TD></TR></table>>];
+"Catalogue" -> "Agreement";
 }
 }

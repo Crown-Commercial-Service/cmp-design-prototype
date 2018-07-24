@@ -33,6 +33,6 @@ class DiagramTest < Test::Unit::TestCase
     @d.describe( DataModel::Agreements)
     assert(File.file?(@d.dotfile), "file created")
     assert(File.file?(@d.jpgfile), "file created")
-
+    # TODO test the features in the diagram
   end
 end
