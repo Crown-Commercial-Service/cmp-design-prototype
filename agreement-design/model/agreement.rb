@@ -10,12 +10,13 @@ domain :Agreements do
     attribute :detail, String
     attribute :valueMin, String
     attribute :valueMax, String
-    attribute :type, String
+    attribute :type, String, "One of String, Currency, location, size"
+    attribute :standard, String, "which standard defines the item type"
   end
 
   datatype :Agreement do
     attribute :id, String
-    attribute :item_params, Agreements::ItemParameter, ONE_TO_MANY
+    attribute :item_params, Agreements::ItemParameter, ZERO_TO_MANY
   end
 
   datatype :Framework, Agreements::Agreement do
@@ -36,7 +37,7 @@ domain :Agreements do
 
   datatype :Catalogue do
     attribute :id, String
-    attribute :items, Agreements::Item, ONE_TO_MANY
+    attribute :items, Agreements::Item, ZERO_TO_MANY
     attribute :agreement, String, :links => Agreements::Agreement
   end
 

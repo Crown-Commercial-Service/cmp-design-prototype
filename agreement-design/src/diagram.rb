@@ -98,8 +98,8 @@ class Diagram
         subgraph = SubGraph.new(file, modelname(model))
         for type in model.types.values
           table = TableElement.new(file, typename(type))
-          for att in type.attributes.keys
-            table.item att
+          for att in type.attributes.values
+            table.item att_detail( att)
           end
           table.finish
         end
@@ -125,6 +125,12 @@ class Diagram
       puts "Error: couldn't create jpeg: #{self.jpgfile}"
     end
 
+  end
+
+  def att_detail(att)
+    mult= att[:multiplicity]
+    mstring= (mult == ZERO_TO_MANY ? "[*]" : mult == ONE_TO_MANY ? "[1..*]" : mult == SINGLE ? "": "[#{mult.to_s}]")
+    "#{att[:name]} #{mstring}"
   end
 
   def modelname m
