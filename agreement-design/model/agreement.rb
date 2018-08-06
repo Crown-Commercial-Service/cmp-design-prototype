@@ -3,6 +3,16 @@ require_relative '../src/data_model'
 require 'pp'
 include DataModel
 
+domain :Parties do
+  datatype :Party do
+
+  end
+
+  datatype :Supplier, Parties::Party do
+
+  end
+end
+
 domain :Agreements do
 
   datatype :Agreement do
@@ -37,5 +47,9 @@ domain :Agreements do
     attribute :items, Agreements::Item, ONE_TO_MANY
     attribute :agreement, String, :links => Agreements::Agreement
   end
+
+  datatype :Offer, Agreements::Agreement do
+  end
+
 end
 

@@ -8,8 +8,21 @@ module DataModel
 
     class << self
 
+      def init
+        @attributes = {}
+
+        self.define_singleton_method(:attributes) do
+          if self.superclass.respond_to? :attributes
+            self.superclass.attributes.merge @attributes
+          else
+            @attributes
+          end
+        end
+
+      end
+
       def typename
-         self.name
+        self.name
       end
 
       def attribute(name, type, *args)
@@ -17,9 +30,9 @@ module DataModel
 
         for opt in args
           if opt.is_a? Range
-            options[:multiplicity]= opt
+            options[:multiplicity] = opt
           elsif opt.is_a? String
-            options[:description]= opt
+            options[:description] = opt
           elsif opt.is_a? Hash
             options.merge! opt
           else
@@ -30,14 +43,6 @@ module DataModel
         @attributes = {} unless instance_variable_defined? :@attributes
         @attributes[name] = options
 
-        # add a class level accessor to get the attributes
-        self.define_singleton_method(:attributes) do
-          if self.superclass.respond_to? :attributes
-            self.superclass.attributes.merge @attributes
-          else
-            @attributes
-          end
-        end
       end
 
     end
@@ -54,6 +59,9 @@ module DataModel
         type = self.const_set name, Class.new(extends)
         @types[name] = type
         self.define_singleton_method(:types) {@types}
+        type.instance_exec do
+          init
+        end
         type.instance_exec &block
         type
       end

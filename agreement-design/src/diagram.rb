@@ -20,7 +20,7 @@ class TableElement < Element
   def initialize file, node
     super(file)
     @node = node
-    pput %Q("#{@node}" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>#{@node}</TD></TH><HR/>)
+    pput %Q("#{@node}" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>#{@node}</TD></TH>)
     @items = []
   end
 
@@ -66,8 +66,8 @@ end
 
 class Links < Element
 
-  def link el1, el2
-    pput %Q!"#{el1}" -> "#{el2}";\n!
+  def link el1, el2, label = ""
+    pput %Q!"#{el1}" -> "#{el2}" [label=#{label}];\n!
   end
 
 end
@@ -85,30 +85,32 @@ class Diagram
   end
 
   def jpgfile
-    File.join(self.path, "images","#{self.name}.jpg")
+    File.join(self.path, "images", "#{self.name}.jpg")
   end
 
-  def describe model
+  def describe *models
 
-    FileUtils.mkpath File.join( self.path, "diagrams")
-    FileUtils.mkpath File.join( self.path, "images")
+    FileUtils.mkpath File.join(self.path, "diagrams")
+    FileUtils.mkpath File.join(self.path, "images")
     File.open(self.dotfile, "w") do |file|
       graph = Graph.new(file)
-      subgraph = SubGraph.new(file, modelname(model))
-      for type in model.types.values
-        table = TableElement.new(file, typename(model, type))
-        for att in type.attributes.keys
-          table.item att
-        end
-        table.finish
-        links = Links.new(file)
-        for att in type.attributes.keys
-          if type.attributes[att][:links]
-            links.link typename(model, type), typename( model, type.attributes[att][:links])
+      for model in models
+        subgraph = SubGraph.new(file, modelname(model))
+        for type in model.types.values
+          table = TableElement.new(file, typename(model, type))
+          for att in type.attributes.keys
+            table.item att
+          end
+          table.finish
+          links = Links.new(file)
+          for att in type.attributes.keys
+            if type.attributes[att][:links]
+              links.link typename(model, type), typename(model, type.attributes[att][:links]), type.attributes[att][:name]
+            end
           end
         end
+        subgraph.finish
       end
-      subgraph.finish
       graph.finish
     end
 

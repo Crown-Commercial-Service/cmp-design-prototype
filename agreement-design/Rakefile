@@ -7,3 +7,7 @@ end
 task :diagram do
   ruby "build/build_models.rb"
 end
+
+require 'rake/clean'
+
+CLEAN.include FileList['out', 'diagrams/**', 'images/**']
