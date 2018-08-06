@@ -97,19 +97,26 @@ class Diagram
       for model in models
         subgraph = SubGraph.new(file, modelname(model))
         for type in model.types.values
-          table = TableElement.new(file, typename(model, type))
+          table = TableElement.new(file, typename(type))
           for att in type.attributes.keys
             table.item att
           end
           table.finish
-          links = Links.new(file)
+        end
+        subgraph.finish
+      end
+      for model in models
+        links = Links.new(file)
+        for type in model.types.values
           for att in type.attributes.keys
             if type.attributes[att][:links]
-              links.link typename(model, type), typename(model, type.attributes[att][:links]), type.attributes[att][:name]
+              links.link typename(type),
+                         typename(type.attributes[att][:links]),
+                         type.attributes[att][:name]
             end
           end
         end
-        subgraph.finish
+        links.finish
       end
       graph.finish
     end
@@ -124,8 +131,8 @@ class Diagram
     m.name.gsub(/^#{DataModel.name}::/, "").gsub /::/, "-"
   end
 
-  def typename m, t
-    t.name.gsub(/^#{m.name}::/, "").gsub /::/, "-"
+  def typename t
+    t.name.gsub(/^#{t.domain}::/, "").gsub /::/, "-"
   end
 
 end

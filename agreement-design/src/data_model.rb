@@ -8,8 +8,13 @@ module DataModel
 
     class << self
 
-      def init
+      def init domain
         @attributes = {}
+        @domain = domain
+
+        self.define_singleton_method :domain do
+          @domain
+        end
 
         self.define_singleton_method(:attributes) do
           if self.superclass.respond_to? :attributes
@@ -59,8 +64,9 @@ module DataModel
         type = self.const_set name, Class.new(extends)
         @types[name] = type
         self.define_singleton_method(:types) {@types}
+        dom= self
         type.instance_exec do
-          init
+          init dom
         end
         type.instance_exec &block
         type

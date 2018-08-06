@@ -31,6 +31,10 @@ class DataModelTest < Test::Unit::TestCase
       attribute :othermore, String
     end
 
+    datatype :Empty do
+
+    end
+
   end
 
   def test_model

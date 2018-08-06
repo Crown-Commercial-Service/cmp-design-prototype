@@ -1,22 +1,21 @@
-
 require_relative '../src/data_model'
-require 'pp'
 include DataModel
+require_relative 'party'
 
-domain :Parties do
-  datatype :Party do
-
-  end
-
-  datatype :Supplier, Parties::Party do
-
-  end
-end
 
 domain :Agreements do
 
+  datatype :ItemParameter do
+    attribute :id, String
+    attribute :detail, String
+    attribute :valueMin, String
+    attribute :valueMax, String
+    attribute :type, String
+  end
+
   datatype :Agreement do
     attribute :id, String
+    attribute :item_params, Agreements::ItemParameter, ONE_TO_MANY
   end
 
   datatype :Framework, Agreements::Agreement do
@@ -27,13 +26,6 @@ domain :Agreements do
     attribute :fwk_id, String, "Part of framework", :links => Agreements::Framework
   end
 
-  datatype :ItemParameter do
-    attribute :id, String
-    attribute :detail, String
-    attribute :valueMin, String
-    attribute :valueMax, String
-    attribute :type, String
-  end
 
   datatype :Item do
     attribute :id, String
@@ -49,6 +41,7 @@ domain :Agreements do
   end
 
   datatype :Offer, Agreements::Agreement do
+    attribute :supplier_id, String, :links => Parties::Supplier
   end
 
 end
