@@ -81,17 +81,17 @@ class Diagram
   end
 
   def dotfile
-    File.join(self.path, "diagrams", "#{self.name}.dot")
+    File.join(diagram_path, "#{self.name}.dot")
   end
 
   def jpgfile
-    File.join(self.path, "images", "#{self.name}.jpg")
+    File.join(image_path, "#{self.name}.jpg")
   end
 
   def describe *models
 
-    FileUtils.mkpath File.join(self.path, "diagrams")
-    FileUtils.mkpath File.join(self.path, "images")
+    FileUtils.mkpath diagram_path
+    FileUtils.mkpath image_path
     File.open(self.dotfile, "w") do |file|
       graph = Graph.new(file)
       for model in models
@@ -99,7 +99,7 @@ class Diagram
         for type in model.types.values
           table = TableElement.new(file, typename(type))
           for att in type.attributes.values
-            table.item att_detail( att)
+            table.item att_detail(att)
           end
           table.finish
         end
@@ -128,8 +128,8 @@ class Diagram
   end
 
   def att_detail(att)
-    mult= att[:multiplicity]
-    mstring= (mult == ZERO_TO_MANY ? "[*]" : mult == ONE_TO_MANY ? "[1..*]" : mult == SINGLE ? "": "[#{mult.to_s}]")
+    mult = att[:multiplicity]
+    mstring = (mult == ZERO_TO_MANY ? "[*]" : mult == ONE_TO_MANY ? "[1..*]" : mult == SINGLE ? "" : "[#{mult.to_s}]")
     "#{att[:name]} #{mstring}"
   end
 
@@ -139,6 +139,16 @@ class Diagram
 
   def typename t
     t.name.gsub(/^#{t.domain}::/, "").gsub /::/, "-"
+  end
+
+  private
+
+  def image_path
+    File.join(self.path, "images")
+  end
+
+  def diagram_path
+    File.join(self.path, "diagrams")
   end
 
 end

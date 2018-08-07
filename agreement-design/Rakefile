@@ -10,4 +10,4 @@ end
 
 require 'rake/clean'
 
-CLEAN.include FileList['out', 'diagrams/**', 'images/**']
+CLEAN.include FileList['out', 'gen']

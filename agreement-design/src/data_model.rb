@@ -8,7 +8,7 @@ module DataModel
 
     class << self
 
-      def init domain
+      def init(domain)
         @attributes = {}
         @domain = domain
 
@@ -56,15 +56,15 @@ module DataModel
   class Domain
 
     class << self
-      def datatype name, extends = DataType, &block
+      def datatype(name, extends = DataType, &block)
         @types = {} unless instance_variable_defined? :@types
-        if (extends.class != Class) then
+        if extends.class != Class
           extends = @types.fetch(extends, DataType)
         end
         type = self.const_set name, Class.new(extends)
         @types[name] = type
         self.define_singleton_method(:types) {@types}
-        dom= self
+        dom = self
         type.instance_exec do
           init dom
         end
@@ -77,7 +77,7 @@ module DataModel
 
   module_function
 
-  def domain name, &block
+  def domain(name, &block)
     dom = DataModel.const_set name, Class.new(Domain)
     dom.instance_exec &block
     dom
