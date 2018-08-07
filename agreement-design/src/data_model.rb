@@ -51,23 +51,42 @@ module DataModel
 
     end
 
-    def initialize( name)
-      @name= name
+    attr_reader :name, :attributes
+
+    def initialize(name)
+      @name = name
       @attributes = {}
     end
 
-    attr_reader :name, :attributes
 
-    def method_missing(sym, *args)
+    def method_missing(sym, *args, &block)
       if self.class.attributes[sym]
-        @attributes[sym] = args[0]
-        return args[0]
+        if self.class.attributes[sym][:multiplicity] != SINGLE
+          @attributes[sym] = [] unless @attributes[sym]
+          @attributes[sym] << valueof(sym, *args, &block)
+        else
+          @attributes[sym] = valueof(sym, *args, &block)
+        end
+        return @attributes[sym]
       end
-      raise "unknown attribute #{sym}"
     end
 
     def to_s
       "#{self.class.typename} #{self.name} #{@attributes}"
+    end
+
+    private
+
+    def valueof(sym, *args, &block)
+      if self.class.attributes[sym][:type] < DataType
+        at= self.class.attributes[sym][:type].new( self.class.attributes[sym][:name])
+        puts sym
+        puts block
+        at.instance_exec &block
+        at
+      else
+        args[0]
+      end
     end
 
   end
@@ -106,12 +125,12 @@ module DataModel
       for t in self.class.types.values
         if t.typename.downcase == sym
           decl = t.new(sym)
-          @contents[sym] = decl
+          @contents[sym] = [] unless @contents[sym]
+          @contents[sym] << decl
           decl.instance_exec &block
           return decl
         end
       end
-      raise "unknown datatype #{sym}"
     end
 
   end

@@ -2,61 +2,74 @@ require 'test/unit'
 require_relative '../src/data_model'
 include DataModel
 
-class DataModelTest < Test::Unit::TestCase
+DataModel::domain :TestMetamodel do
 
-  DataModel::domain :TestModel do
+  datatype :BasicType do
+    attribute :id, String
+  end
 
-    datatype :BasicType do
-      attribute :id, String
-    end
-    datatype :Table do
-      MULT = [0..10]
-      DESC = "table of values"
-      attribute :vals, Integer,
-                :multiplicity => MULT,
-                :description => DESC
-      attribute :morevals, String, 2..5, "array of strings"
-    end
+  datatype :Table do
+    MULT = [0..10]
+    DESC = "table of values"
+    attribute :vals, Integer,
+              :multiplicity => MULT,
+              :description => DESC
+    attribute :morevals, String, 2..5, "array of strings"
+  end
 
-    datatype :ReferencingType do
-      attribute :id, String
-      attribute :mate, DataModel::TestModel::BasicType
-    end
+  datatype :ReferencingType do
+    attribute :id, String
+    attribute :mate, TestMetamodel::BasicType
+  end
 
-    datatype :DerivedType, :ReferencingType do
-      attribute :more, String
-    end
+  datatype :DerivedType, :ReferencingType do
+    attribute :more, String
+  end
 
-    datatype :DerivedTypeNamingClass, DataModel::TestModel::ReferencingType do
-      attribute :othermore, String
-    end
+  datatype :DerivedTypeNamingClass, TestMetamodel::ReferencingType do
+    attribute :othermore, String
+  end
 
-    datatype :Empty do
-
-    end
+  datatype :Empty do
 
   end
 
-  def test_model
-    assert(contains(DataModel::TestModel::BasicType, :id), 'has id attribute')
-    id_t = DataModel::TestModel::BasicType.attributes[:id]
-    assert_equal(1..1, DataModel::TestModel::BasicType.attributes[:id][:multiplicity], "has default multiplicity")
+end
+
+class DataModelTest < Test::Unit::TestCase
+
+
+  def test_metamodel
+    assert(contains(TestMetamodel::BasicType, :id), 'has id attribute')
+    id_t = TestMetamodel::BasicType.attributes[:id]
+    assert_equal(1..1, TestMetamodel::BasicType.attributes[:id][:multiplicity], "has default multiplicity")
     assert(id_t[:type] == String)
 
-    assert_equal(MULT, DataModel::TestModel::Table.attributes[:vals][:multiplicity]);
-    assert_equal(2..5, DataModel::TestModel::Table.attributes[:morevals][:multiplicity]);
+    assert_equal(MULT, TestMetamodel::Table.attributes[:vals][:multiplicity]);
+    assert_equal(2..5, TestMetamodel::Table.attributes[:morevals][:multiplicity]);
 
-    assert_equal(MULT, DataModel::TestModel::Table.attributes[:vals][:multiplicity], "has multiplicity")
-    assert_equal(DESC, DataModel::TestModel::Table.attributes[:vals][:description], "has description")
+    assert_equal(MULT, TestMetamodel::Table.attributes[:vals][:multiplicity], "has multiplicity")
+    assert_equal(DESC, TestMetamodel::Table.attributes[:vals][:description], "has description")
 
-    mate_t = DataModel::TestModel::ReferencingType.attributes[:mate]
-    assert(mate_t[:type] == DataModel::TestModel::BasicType)
+    mate_t = TestMetamodel::ReferencingType.attributes[:mate]
+    assert(mate_t[:type] == TestMetamodel::BasicType)
 
-    assert(contains(DataModel::TestModel::DerivedType, :more), "has derived attribute")
-    assert(contains(DataModel::TestModel::DerivedType, :mate), "has derived attribute")
-    assert(contains(DataModel::TestModel::DerivedType, :id), "has derived attribute")
-    assert(contains(DataModel::TestModel::DerivedTypeNamingClass, :othermore), "has derived attribute")
-    assert(contains(DataModel::TestModel::DerivedTypeNamingClass, :id), "has derived attribute")
+    assert(contains(TestMetamodel::DerivedType, :more), "has derived attribute")
+    assert(contains(TestMetamodel::DerivedType, :mate), "has derived attribute")
+    assert(contains(TestMetamodel::DerivedType, :id), "has derived attribute")
+    assert(contains(TestMetamodel::DerivedTypeNamingClass, :othermore), "has derived attribute")
+    assert(contains(TestMetamodel::DerivedTypeNamingClass, :id), "has derived attribute")
+  end
+
+  TestMetamodel.new :Test_Model do
+    table do
+      vals 1
+      vals 2
+    end
+  end
+
+  def test_model
+    assert( TestMetamodel::Test_Model.contents[:table][0].attributes[:vals][0] == 1, "has vals" )
   end
 
   private
