@@ -8,9 +8,11 @@ module DataModel
 
     class << self
 
-      def init(domain)
+      def init(name, domain, extends)
         @attributes = {}
+        @typename = name
         @domain = domain
+        @extends = extends
 
         self.define_singleton_method :domain do
           @domain
@@ -27,7 +29,7 @@ module DataModel
       end
 
       def typename
-        self.name
+        @typename
       end
 
       def attribute(name, type, *args)
@@ -44,13 +46,30 @@ module DataModel
             raise "last arguments should be string (description), range, or options map, such as :multiplicity => [0..2]:\n " << opt.to_s
           end
         end
-
-        @attributes = {} unless instance_variable_defined? :@attributes
         @attributes[name] = options
-
       end
 
     end
+
+    def initialize( name)
+      @name= name
+      @attributes = {}
+    end
+
+    attr_reader :name, :attributes
+
+    def method_missing(sym, *args)
+      if self.class.attributes[sym]
+        @attributes[sym] = args[0]
+        return args[0]
+      end
+      raise "unknown attribute #{sym}"
+    end
+
+    def to_s
+      "#{self.class.typename} #{self.name} #{@attributes}"
+    end
+
   end
 
   class Domain
@@ -66,11 +85,33 @@ module DataModel
         self.define_singleton_method(:types) {@types}
         dom = self
         type.instance_exec do
-          init dom
+          init name, dom, extends
         end
         type.instance_exec &block
         type
       end
+
+    end
+
+    attr_reader :contents
+
+    def initialize name, &block
+      @contents = {}
+      self.class.const_set name, self
+      self.instance_exec &block
+    end
+
+    def method_missing(sym, &block)
+      # create a new datatype for each matching type name, and run its block
+      for t in self.class.types.values
+        if t.typename.downcase == sym
+          decl = t.new(sym)
+          @contents[sym] = decl
+          decl.instance_exec &block
+          return decl
+        end
+      end
+      raise "unknown datatype #{sym}"
     end
 
   end
@@ -80,7 +121,8 @@ module DataModel
   def domain(name, &block)
     dom = DataModel.const_set name, Class.new(Domain)
     dom.instance_exec &block
-    dom
+    return dom
   end
+
 
 end # Model

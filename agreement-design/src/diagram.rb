@@ -66,7 +66,7 @@ end
 
 class Links < Element
 
-  def link el1, el2, label = ""
+  def link el1, el2, label = el1
     pput %Q!"#{el1}" -> "#{el2}" [label=#{label}];\n!
   end
 
@@ -99,7 +99,7 @@ class Diagram
         for type in model.types.values
           table = TableElement.new(file, typename(type))
           for att in type.attributes.values
-            table.item att_detail(att)
+            table.item att_detail( att)
           end
           table.finish
         end
@@ -128,8 +128,8 @@ class Diagram
   end
 
   def att_detail(att)
-    mult = att[:multiplicity]
-    mstring = (mult == ZERO_TO_MANY ? "[*]" : mult == ONE_TO_MANY ? "[1..*]" : mult == SINGLE ? "" : "[#{mult.to_s}]")
+    mult= att[:multiplicity]
+    mstring= (mult == ZERO_TO_MANY ? "[*]" : mult == ONE_TO_MANY ? "[1..*]" : mult == SINGLE ? "": "[#{mult.to_s}]")
     "#{att[:name]} #{mstring}"
   end
 
@@ -144,11 +144,11 @@ class Diagram
   private
 
   def image_path
-    File.join(self.path, "images")
+    File.join(self.path,  "images")
   end
 
   def diagram_path
-    File.join(self.path, "diagrams")
+    File.join(self.path,  "diagrams")
   end
 
 end
