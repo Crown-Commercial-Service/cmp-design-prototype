@@ -1,0 +1,25 @@
+strict digraph {
+subgraph cluster_Category {
+node [shape=plaintext margin=0];
+label=Category;
+"ItemParameter" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ItemParameter</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-detail </TD></TR><TR><TD ALIGN="LEFT">-valueMin </TD></TR><TR><TD ALIGN="LEFT">-valueMax </TD></TR><TR><TD ALIGN="LEFT">-type </TD></TR><TR><TD ALIGN="LEFT">-standard </TD></TR><TR><TD ALIGN="LEFT">-reference </TD></TR></table>>];
+"Agreement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Agreement</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-item_params [*]</TD></TR><TR><TD ALIGN="LEFT">-version </TD></TR><TR><TD ALIGN="LEFT">-start_date </TD></TR><TR><TD ALIGN="LEFT">-end_date </TD></TR></table>>];
+"Framework" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Framework</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-item_params [*]</TD></TR><TR><TD ALIGN="LEFT">-version </TD></TR><TR><TD ALIGN="LEFT">-start_date </TD></TR><TR><TD ALIGN="LEFT">-end_date </TD></TR><TR><TD ALIGN="LEFT">-fwk_id </TD></TR></table>>];
+"Lot" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Lot</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-item_params [*]</TD></TR><TR><TD ALIGN="LEFT">-version </TD></TR><TR><TD ALIGN="LEFT">-start_date </TD></TR><TR><TD ALIGN="LEFT">-end_date </TD></TR><TR><TD ALIGN="LEFT">-fwk_id </TD></TR></table>>];
+"Item" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Item</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-params </TD></TR><TR><TD ALIGN="LEFT">-description </TD></TR><TR><TD ALIGN="LEFT">-value </TD></TR></table>>];
+"Catalogue" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Catalogue</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-items [*]</TD></TR><TR><TD ALIGN="LEFT">-agreement </TD></TR></table>>];
+"Offer" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Offer</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-items [*]</TD></TR><TR><TD ALIGN="LEFT">-agreement </TD></TR><TR><TD ALIGN="LEFT">-supplier_id </TD></TR><TR><TD ALIGN="LEFT">-description </TD></TR></table>>];
+}
+subgraph cluster_Parties {
+node [shape=plaintext margin=0];
+label=Parties;
+"Party" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Party</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR></table>>];
+"Supplier" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Supplier</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR></table>>];
+"Buyer" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Buyer</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR></table>>];
+}
+"Lot" -> "Framework" [label=fwk_id];
+"Item" -> "ItemParameter" [label=params];
+"Catalogue" -> "Agreement" [label=agreement];
+"Offer" -> "Agreement" [label=agreement];
+"Offer" -> "Supplier" [label=supplier_id];
+}
