@@ -1,10 +1,14 @@
-task default: %w[test diagram]
+task default: %w[test build]
 
-task :test do
-  ruby "test/*.rb"
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.libs << "test"
+  t.test_files = FileList['test/*.rb']
+  t.verbose = true
 end
 
-task :diagram do
+task :build do
   ruby "build/build_models.rb"
 end
 

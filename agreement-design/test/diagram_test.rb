@@ -25,10 +25,10 @@ class DiagramTest < Test::Unit::TestCase
     assert_equal("out/test/diagrams/d.dot", @d.dotfile, "file format")
     assert_equal("out/test/images/d.jpg", @d.jpgfile, "file format")
     assert(!File.file?(@d.dotfile), "no dotfile")
-    @d.describe( DataModel::Category)
+    @d.describe( Category)
     assert(File.file?(@d.dotfile), "file created")
     assert(File.file?(@d.jpgfile), "file created")
     # TODO test the features in the diagram
-    @d.describe( DataModel::Category, DataModel::Parties)
+    @d.describe( Category, Parties)
   end
 end

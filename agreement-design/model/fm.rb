@@ -15,7 +15,7 @@ Category.new :FM do
       id 1; valueMin 0; valueMax 100
     end
     item_params do
-      id 2; valueMin 0; valueMax 100
+      id 2; valueMin 22; valueMax 33
     end
   end
 

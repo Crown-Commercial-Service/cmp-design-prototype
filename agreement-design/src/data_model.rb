@@ -60,7 +60,7 @@ module DataModel
 
 
     def method_missing(sym, *args, &block)
-      if args.length==0 && @attributes[sym]
+      if !block_given? && @attributes[sym]
         return @attributes[sym]
       end
       if self.class.attributes[sym]
@@ -105,7 +105,7 @@ module DataModel
           extends = @types.fetch(extends, DataType)
         end
         type = self.const_set name, Class.new(extends)
-        puts "defined #{type} from #{name} on #{self }"
+        # puts "defined #{type} from #{name} on #{self }"
         @types[name] = type
         self.define_singleton_method(:types) {@types}
         dom = self
@@ -118,10 +118,11 @@ module DataModel
 
     end
 
-    attr_reader :contents
+    attr_reader :contents, :name
 
     def initialize name, &block
       @contents = {}
+      @name = name
       self.class.const_set name, self
       self.instance_exec &block
     end
@@ -142,6 +143,7 @@ module DataModel
 
   end
 
+
   module_function
 
   def domain(name, &block)
@@ -151,4 +153,4 @@ module DataModel
   end
 
 
-end # Model
+end # DataModel
