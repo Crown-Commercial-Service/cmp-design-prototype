@@ -78,7 +78,7 @@ class Diagram < Doc
         subgraph = SubGraph.new(file, modelname(model))
         for type in model.types.values
           table = TableElement.new(file, typename(type))
-          for att in type.attributes.values
+          for att in type.attributes(false).values
             table.item att_detail( att)
           end
           table.finish
@@ -88,12 +88,17 @@ class Diagram < Doc
       for model in models
         links = Links.new(file)
         for type in model.types.values
-          for att in type.attributes.keys
+          for att in type.attributes(false).keys
             if type.attributes[att][:links]
               links.link typename(type),
                          typename(type.attributes[att][:links]),
                          type.attributes[att][:name]
             end
+          end
+          if type.superclass < DataType
+            links.link typename(type),
+                       typename(type.superclass),
+                       "extends"
           end
         end
         links.finish

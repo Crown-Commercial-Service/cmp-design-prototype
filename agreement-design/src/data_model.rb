@@ -18,8 +18,8 @@ module DataModel
           @domain
         end
 
-        self.define_singleton_method(:attributes) do
-          if self.superclass.respond_to? :attributes
+        self.define_singleton_method(:attributes) do |inherited=true|
+          if inherited && self.superclass.respond_to?(:attributes)
             self.superclass.attributes.merge @attributes
           else
             @attributes

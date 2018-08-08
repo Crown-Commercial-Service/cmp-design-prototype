@@ -17,7 +17,7 @@ domain :Category do
 
   datatype :Agreement do
     attribute :id, String
-    attribute :item_params, Category::ItemParameter, ZERO_TO_MANY
+    attribute :item_params, Category::ItemParameter, ZERO_TO_MANY, :links => Category::ItemParameter
     attribute :version, String, "semantic version id of the form X.Y.Z"
     attribute :start_date, Date
     attribute :end_date, Date
@@ -32,7 +32,7 @@ domain :Category do
   end
 
   datatype :Item do
-    attribute :id, String
+    attribute :id, String, "Item id, possibly a concatentation of the standard (in params) and the catalogue and an incrementatl id?"
     attribute :params, String, :links => Category::ItemParameter
     attribute :description, String
     attribute :value, String
@@ -40,13 +40,19 @@ domain :Category do
 
   datatype :Catalogue do
     attribute :id, String
-    attribute :items, Category::Item, ZERO_TO_MANY
-    attribute :agreement, String, :links => Category::Agreement
+    attribute :items, Category::Item, ZERO_TO_MANY, :links => Category::Item
+    attribute :agreement_id, String, :links => Category::Agreement
   end
 
-  datatype :Offer, Category::Catalogue do
+  datatype :Offer do
+    attribute :id, String, "Offer id, probably a UUID"
+    attribute :item_ids, String, ZERO_TO_MANY, :links => Category::Item
     attribute :supplier_id, String, :links => Parties::Supplier
     attribute :description, String, "Description of the offer"
+  end
+
+  datatype :Award do
+    attribute :buyer_id, String, :links => Parties::Buyer
   end
 
 end
