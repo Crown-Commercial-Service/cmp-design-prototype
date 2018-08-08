@@ -9,6 +9,7 @@ domain :Category do
            description: "Defines the meaning of Items in Catalogues") {
     attribute :id, String
     attribute :detail, String
+    attribute :keyword, String, ZERO_TO_MANY
     attribute :valueMin, String
     attribute :valueMax, String
     attribute :type, String, "One of: String, Currency, Location, Amount"

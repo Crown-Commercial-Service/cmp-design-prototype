@@ -69,7 +69,7 @@ module DataModel
 
 
     def method_missing(sym, *args, &block)
-      if !block_given? && @attributes[sym]
+      if (args.length==0) && @attributes[sym]
         return @attributes[sym]
       end
       if self.class.attributes[sym]

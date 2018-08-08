@@ -42,7 +42,7 @@ def transform_type depth, id, decl, lambdas
     cond_call(depth, id, decl, :before_array_lambda, lambdas)
     j = 1
     for aa in decl
-      transform_type(depth + 1, "#{id}.#{j}", aa, lambdas)
+      transform_type(depth , "#{id}.#{j}", aa, lambdas)
       j = j + 1
     end
     cond_call(depth, id, decl, :after_array_lambda, lambdas)
@@ -64,7 +64,7 @@ class ClassNameElement < Element
   def write cat
     pput %Q!\# #{cat.class}: #{cat.name}\n!
     if (cat.respond_to?(:description))
-      pput %Q!\ #{cat.description}\n!
+      pput %Q! #{cat.description}\n!
     end
   end
 
@@ -73,7 +73,7 @@ end
 class GroupElement < Element
 
   def write grpname, level: 2
-    pput %Q!\ #{'#' * level} #{grpname}\n!
+    pput %Q! #{'#' * level} #{grpname}\n!
   end
 
 end
@@ -106,11 +106,25 @@ class MetaTypeElement < Element
     pput "|attribute|type|multiplicity|description|\n"
     pput "|---------|----|------------|-----------|\n"
     for a in type.attributes.values
-      pput "|#{a[:name]}|#{a[:type]}|#{a[:multiplicity]}|#{a[:description]}|\n"
+      pput "|#{a[:name]}|#{a[:type]}|#{self.multiplicity(a)}|#{a[:description]}|\n"
     end
     self
   end
 
+  def multiplicity m
+    m = m[:multiplicity]
+    if m.end == -1
+      if m.begin == 0
+        return "*"
+      else
+        return "#{m.begin}..*"
+      end
+    end
+    if m.end == m.begin
+      return m.end.to_s
+    end
+    return m.to_s
+  end
 end
 
 class Doc

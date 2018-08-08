@@ -13,6 +13,8 @@ Category.new :FM do
     id "1"; fwk_id FM_ID
     item_params do
       id 1; valueMin 0; valueMax 100
+      keyword :thing
+      keyword :thing2
     end
     item_params do
       id 2; valueMin 22; valueMax 33

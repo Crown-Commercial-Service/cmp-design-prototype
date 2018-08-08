@@ -76,9 +76,10 @@ class DataModelTest < Test::Unit::TestCase
   end
 
   def test_model
-    assert( TestMetamodel::Test_Model.contents[:table][0].attributes[:vals][0] == 1, "has vals" )
-    assert( TestMetamodel::Test_Model.contents[:referencingtype][0].attributes[:mate].attributes[:id] == :content, "has vals" )
-    assert( TestMetamodel::Test_Model.contents[:referencingtype][0].mate.id == :content, "has vals" )
+    assert_equal(1, TestMetamodel::Test_Model.contents[:table][0].attributes[:vals][0], "has vals")
+    assert_equal(2, TestMetamodel::Test_Model.contents[:table][0].attributes[:vals][1], "has vals")
+    assert_equal(:content, TestMetamodel::Test_Model.contents[:referencingtype][0].attributes[:mate].attributes[:id], "has vals")
+    assert_equal(:content, TestMetamodel::Test_Model.contents[:referencingtype][0].mate.id, "has vals")
   end
 
   private
