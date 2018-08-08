@@ -8,7 +8,7 @@ label=Category;
 "Lot" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Lot</TD></TH><TR><TD ALIGN="LEFT">-fwk_id </TD></TR></table>>];
 "Item" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Item</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-params </TD></TR><TR><TD ALIGN="LEFT">-description </TD></TR><TR><TD ALIGN="LEFT">-value </TD></TR></table>>];
 "Catalogue" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Catalogue</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-items [*]</TD></TR><TR><TD ALIGN="LEFT">-agreement_id </TD></TR></table>>];
-"Offer" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Offer</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-item_ids [*]</TD></TR><TR><TD ALIGN="LEFT">-supplier_id </TD></TR><TR><TD ALIGN="LEFT">-description </TD></TR></table>>];
+"Offer" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Offer</TD></TH><TR><TD ALIGN="LEFT">-id </TD></TR><TR><TD ALIGN="LEFT">-item_id </TD></TR><TR><TD ALIGN="LEFT">-catalogue_id </TD></TR><TR><TD ALIGN="LEFT">-supplier_id </TD></TR><TR><TD ALIGN="LEFT">-description </TD></TR></table>>];
 "Award" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Award</TD></TH><TR><TD ALIGN="LEFT">-buyer_id </TD></TR></table>>];
 }
 subgraph cluster_Parties {
@@ -18,16 +18,17 @@ label=Parties;
 "Supplier" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Supplier</TD></TH></table>>];
 "Buyer" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Buyer</TD></TH></table>>];
 }
-"Agreement" -> "ItemParameter" [label=item_params];
-"Framework" -> "Agreement" [label=extends];
-"Lot" -> "Framework" [label=fwk_id];
-"Lot" -> "Agreement" [label=extends];
-"Item" -> "ItemParameter" [label=params];
-"Catalogue" -> "Item" [label=items];
-"Catalogue" -> "Agreement" [label=agreement_id];
-"Offer" -> "Item" [label=item_ids];
-"Offer" -> "Supplier" [label=supplier_id];
-"Award" -> "Buyer" [label=buyer_id];
-"Supplier" -> "Party" [label=extends];
-"Buyer" -> "Party" [label=extends];
+"Agreement" -> "ItemParameter" [label="{contains} item_params" arrowhead = "none" arrowtail = "diamond" ];
+"Framework" -> "Agreement" [label="extends" arrowhead = "none" arrowtail = "normal" ];
+"Lot" -> "Framework" [label="fwk_id" arrowhead = "open" arrowtail = "none" ];
+"Lot" -> "Agreement" [label="extends" arrowhead = "none" arrowtail = "normal" ];
+"Item" -> "ItemParameter" [label="params" arrowhead = "open" arrowtail = "none" ];
+"Catalogue" -> "Item" [label="{contains} items" arrowhead = "none" arrowtail = "diamond" ];
+"Catalogue" -> "Agreement" [label="agreement_id" arrowhead = "open" arrowtail = "none" ];
+"Offer" -> "Item" [label="item_id" arrowhead = "open" arrowtail = "none" ];
+"Offer" -> "Catalogue" [label="catalogue_id" arrowhead = "open" arrowtail = "none" ];
+"Offer" -> "Supplier" [label="supplier_id" arrowhead = "open" arrowtail = "none" ];
+"Award" -> "Buyer" [label="buyer_id" arrowhead = "open" arrowtail = "none" ];
+"Supplier" -> "Party" [label="extends" arrowhead = "none" arrowtail = "normal" ];
+"Buyer" -> "Party" [label="extends" arrowhead = "none" arrowtail = "normal" ];
 }

@@ -1,10 +1,10 @@
 # Category: FM
-## frameworks
+ ## framework
 ### framework RM123 
    - id RM123
    - fwk_id RM123
    - version 1.0.0
-## lots
+ ## lot
 ### lot 1 
    - id 1
    - fwk_id RM123

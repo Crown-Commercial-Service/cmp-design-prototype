@@ -5,7 +5,8 @@ include DataModel
 
 domain :Category do
 
-  datatype :ItemParameter do
+  datatype(:ItemParameter,
+           description: "Defines the meaning of Items in Catalogues") {
     attribute :id, String
     attribute :detail, String
     attribute :valueMin, String
@@ -13,47 +14,55 @@ domain :Category do
     attribute :type, String, "One of: String, Currency, Location, Amount"
     attribute :standard, String, "which standard defines the item type, such as UBL2.1"
     attribute :reference, String, "reference within standard, such as UBL2.1"
-  end
+  }
 
-  datatype :Agreement do
+  datatype(:Agreement,
+           description: "General definition of Commercial Agreements") {
     attribute :id, String
-    attribute :item_params, Category::ItemParameter, ZERO_TO_MANY, :links => Category::ItemParameter
+    attribute :item_params, Category::ItemParameter, ZERO_TO_MANY, links: Category::ItemParameter
     attribute :version, String, "semantic version id of the form X.Y.Z"
     attribute :start_date, Date
     attribute :end_date, Date
-  end
+  }
 
-  datatype :Framework, Category::Agreement do
+  datatype(:Framework, extends: Category::Agreement,
+           description: "A kind of Framework used for calloffs, composed of Lots") {
     attribute :fwk_id, String, "Such as the RM number"
-  end
+  }
 
-  datatype :Lot, Category::Agreement do
-    attribute :fwk_id, String, "Part of framework", :links => Category::Framework
-  end
+  datatype(:Lot, extends: Category::Agreement) {
+    attribute :fwk_id, String, "Part of framework", links: Category::Framework
+  }
 
-  datatype :Item do
+  datatype(:Item,
+           description: "Something offered to a buyer as part of a contract."\
+                        "Items are defined in Catalogues.") {
     attribute :id, String, "Item id, possibly a concatentation of the standard (in params) and the catalogue and an incrementatl id?"
-    attribute :params, String, :links => Category::ItemParameter
+    attribute :params, String, links: Category::ItemParameter
     attribute :description, String
     attribute :value, String
-  end
+  }
 
-  datatype :Catalogue do
+  datatype(:Catalogue,
+           description: "A collection of items that can be bought via an Agreement.") {
     attribute :id, String
-    attribute :items, Category::Item, ZERO_TO_MANY, :links => Category::Item
-    attribute :agreement_id, String, :links => Category::Agreement
-  end
+    attribute :items, Category::Item, ZERO_TO_MANY, links: Category::Item
+    attribute :agreement_id, String, links: Category::Agreement
+  }
 
-  datatype :Offer do
+  datatype(:Offer,
+      description: "")  {
     attribute :id, String, "Offer id, probably a UUID"
-    attribute :item_ids, String, ZERO_TO_MANY, :links => Category::Item
-    attribute :supplier_id, String, :links => Parties::Supplier
+    attribute :item_id, String, links: Category::Item
+    attribute :catalogue_id, String, links: Category::Catalogue
+    attribute :supplier_id, String, links: Parties::Supplier
     attribute :description, String, "Description of the offer"
-  end
+  }
 
-  datatype :Award do
-    attribute :buyer_id, String, :links => Parties::Buyer
-  end
+  datatype(:Award,
+           description: "") {
+    attribute :buyer_id, String, links: Parties::Buyer
+  }
 
 end
 

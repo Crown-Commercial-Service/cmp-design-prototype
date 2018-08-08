@@ -8,14 +8,18 @@ module DataModel
 
     class << self
 
-      def init(name, domain, extends)
+      def init(name, domain, extends, description)
         @attributes = {}
         @typename = name
         @domain = domain
         @extends = extends
+        @description = description
 
         self.define_singleton_method :domain do
           @domain
+        end
+        self.define_singleton_method :description do
+          @description
         end
 
         self.define_singleton_method(:attributes) do |inherited=true|
@@ -32,18 +36,23 @@ module DataModel
         @typename
       end
 
-      def attribute(name, type, *args)
-        options = {:multiplicity => SINGLE, :description => "", :name => name, :type => type}
+      def extends
+        @extends < DataType ? @extends.name : nil
+      end
+
+      def attribute(name, type, *args, multiplicity: SINGLE, description: "", links: nil)
+        options = {:multiplicity => multiplicity, :description => description, :name => name, :type => type}
+        if links
+          options[:links]= links
+        end
 
         for opt in args
           if opt.is_a? Range
             options[:multiplicity] = opt
           elsif opt.is_a? String
             options[:description] = opt
-          elsif opt.is_a? Hash
-            options.merge! opt
           else
-            raise "last arguments should be string (description), range, or options map, such as :multiplicity => [0..2]:\n " << opt.to_s
+            raise "optional arguments should be string (description), or range\n " << opt.to_s
           end
         end
         @attributes[name] = options
@@ -99,7 +108,7 @@ module DataModel
   class Domain
 
     class << self
-      def datatype(name, extends = DataType, &block)
+      def datatype(name, extends: DataType, description: "", &block)
         @types = {} unless instance_variable_defined? :@types
         if extends.class != Class
           extends = @types.fetch(extends, DataType)
@@ -110,7 +119,7 @@ module DataModel
         self.define_singleton_method(:types) {@types}
         dom = self
         type.instance_exec do
-          init name, dom, extends
+          init name, dom, extends, description
         end
         type.instance_exec &block
         type

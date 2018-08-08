@@ -7,11 +7,11 @@ domain :Parties do
     attribute :id, String, "UUID or Salesforce ID?"
   end
 
-  datatype :Supplier, Parties::Party do
+  datatype :Supplier, extends: Parties::Party do
 
   end
 
-  datatype :Buyer, Parties::Party do
+  datatype :Buyer, extends: Parties::Party do
 
   end
 end

@@ -8,11 +8,11 @@ DataModel::domain :TestMetamodel do
     attribute :id, String
   end
 
-  datatype :Table do
+  datatype :Table, description: "Test type" do
     MULT = [0..10]
     DESC = "table of values"
     attribute :vals, Integer,
-              :multiplicity => MULT,
+              multiplicity: MULT,
               :description => DESC
     attribute :morevals, String, 2..5, "array of strings"
   end
@@ -22,11 +22,11 @@ DataModel::domain :TestMetamodel do
     attribute :mate, TestMetamodel::BasicType
   end
 
-  datatype :DerivedType, :ReferencingType do
+  datatype :DerivedType, extends: TestMetamodel::ReferencingType do
     attribute :more, String
   end
 
-  datatype :DerivedTypeNamingClass, TestMetamodel::ReferencingType do
+  datatype :DerivedTypeNamingClass, extends: TestMetamodel::ReferencingType do
     attribute :othermore, String
   end
 
@@ -47,6 +47,7 @@ class DataModelTest < Test::Unit::TestCase
 
     assert_equal(MULT, TestMetamodel::Table.attributes[:vals][:multiplicity]);
     assert_equal(2..5, TestMetamodel::Table.attributes[:morevals][:multiplicity]);
+    assert_equal("Test type", TestMetamodel::Table.description);
 
     assert_equal(MULT, TestMetamodel::Table.attributes[:vals][:multiplicity], "has multiplicity")
     assert_equal(DESC, TestMetamodel::Table.attributes[:vals][:description], "has description")

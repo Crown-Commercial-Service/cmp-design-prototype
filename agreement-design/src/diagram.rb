@@ -52,8 +52,10 @@ end
 
 class Links < Element
 
-  def link el1, el2, label = el1
-    pput %Q!"#{el1}" -> "#{el2}" [label=#{label}];\n!
+  def link el1, el2, label: el, arrowhead: nil, arrowtail: nil
+    ah = arrowhead ? %Q!arrowhead = "#{arrowhead}"! : ""
+    at = arrowtail ? %Q!arrowtail = "#{arrowtail}"! : ""
+    pput %Q!"#{el1}" -> "#{el2}" [label="#{label}" #{ah} #{at} ];\n!
   end
 
 end
@@ -79,7 +81,7 @@ class Diagram < Doc
         for type in model.types.values
           table = TableElement.new(file, typename(type))
           for att in type.attributes(false).values
-            table.item att_detail( att)
+            table.item att_detail(att)
           end
           table.finish
         end
@@ -90,15 +92,20 @@ class Diagram < Doc
         for type in model.types.values
           for att in type.attributes(false).keys
             if type.attributes[att][:links]
+              contains = (type.attributes[att][:type] < DataType)
               links.link typename(type),
                          typename(type.attributes[att][:links]),
-                         type.attributes[att][:name]
+                         label: %Q!#{contains ? "{contains} " : ""}#{type.attributes[att][:name]}!,
+                         arrowhead: contains ? "none": "open",
+                         arrowtail: contains ? "diamond": "none"
             end
           end
           if type.superclass < DataType
             links.link typename(type),
                        typename(type.superclass),
-                       "extends"
+                       label: "extends",
+                       arrowhead: "none",
+                       arrowtail:  "normal"
           end
         end
         links.finish
@@ -113,8 +120,8 @@ class Diagram < Doc
   end
 
   def att_detail(att)
-    mult= att[:multiplicity]
-    mstring= (mult == ZERO_TO_MANY ? "[*]" : mult == ONE_TO_MANY ? "[1..*]" : mult == SINGLE ? "": "[#{mult.to_s}]")
+    mult = att[:multiplicity]
+    mstring = (mult == ZERO_TO_MANY ? "[*]" : mult == ONE_TO_MANY ? "[1..*]" : mult == SINGLE ? "" : "[#{mult.to_s}]")
     "#{att[:name]} #{mstring}"
   end
 
@@ -129,11 +136,11 @@ class Diagram < Doc
   private
 
   def image_path
-    File.join(self.path,  "images")
+    File.join(self.path, "images")
   end
 
   def diagram_path
-    File.join(self.path,  "diagrams")
+    File.join(self.path, "diagrams")
   end
 
 end

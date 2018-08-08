@@ -59,18 +59,21 @@ def transform_type depth, id, decl, lambdas
   self
 end
 
-class DomainElement < Element
+class ClassNameElement < Element
 
   def write cat
     pput %Q!\# #{cat.class}: #{cat.name}\n!
+    if (cat.respond_to?(:description))
+      pput %Q!\ #{cat.description}\n!
+    end
   end
 
 end
 
 class GroupElement < Element
 
-  def write grpname
-    pput %Q!\## #{grpname}s\n!
+  def write grpname, level: 2
+    pput %Q!\ #{'#' * level} #{grpname}\n!
   end
 
 end
@@ -80,13 +83,31 @@ class TypeDeclElement < Element
   def write indent, id, decl
     transform_type(indent, id, decl,
                    {
-                  :before_type_lambda => lambda do |indent, id, decl|
-                    pput %Q!####{'#' * indent} #{decl.name} #{decl.attributes[:id] || id} \n!
-                  end,
-                  :attribute_lambda => lambda do |indent, id, decl|
-                    pput %Q!#{"  " * indent} - #{id} #{decl}\n!
-                  end
-              })
+                       :before_type_lambda => lambda do |indent, id, decl|
+                         pput %Q!####{'#' * indent} #{decl.name} #{decl.attributes[:id] || id} \n!
+                       end,
+                       :attribute_lambda => lambda do |indent, id, decl|
+                         pput %Q!#{"  " * indent} - #{id} #{decl}\n!
+                       end
+                   })
+    self
+  end
+
+end
+
+class MetaTypeElement < Element
+
+  def write type
+    pput "## #{type.typename}"
+    if type.extends
+      pput " extends #{type.extends}"
+    end
+    pput "\n  #{type.description}\n\n"
+    pput "|attribute|type|multiplicity|description|\n"
+    pput "|---------|----|------------|-----------|\n"
+    for a in type.attributes.values
+      pput "|#{a[:name]}|#{a[:type]}|#{a[:multiplicity]}|#{a[:description]}|\n"
+    end
     self
   end
 
@@ -104,8 +125,8 @@ class Doc
     FileUtils.mkpath doc_path
     File.open(self.docfile, "w") do |file|
       for model in models
-        cat = DomainElement.new(file)
-        cat.write model
+        dom = ClassNameElement.new(file)
+        dom.write model
         for typename in model.contents.keys
           grp = GroupElement.new(file)
           grp.write typename
@@ -116,7 +137,21 @@ class Doc
           end
           grp.finish
         end
-        cat.finish
+        dom.finish
+      end
+    end
+  end
+
+  def document_metamodel *models
+    FileUtils.mkpath doc_path
+    File.open(self.docfile, "w") do |file|
+      for model in models
+        dom = GroupElement.new(file)
+        dom.write model.name, level: 1
+        for type in model.types.values
+          MetaTypeElement.new(file).write(type).finish
+        end
+        dom.finish
       end
     end
   end
