@@ -1,20 +1,6 @@
 require 'fileutils'
+require_relative 'doc'
 
-class Element
-  def initialize file
-    @file = file
-  end
-
-  def finish
-  end
-
-  protected
-
-  def pput(string)
-    @file.print string
-  end
-
-end
 
 class TableElement < Element
   def initialize file, node
@@ -72,13 +58,7 @@ class Links < Element
 
 end
 
-class Diagram
-  attr_accessor :path, :name
-
-  def initialize path, name
-    self.path = path
-    self.name = name
-  end
+class Diagram < Doc
 
   def dotfile
     File.join(diagram_path, "#{self.name}.dot")

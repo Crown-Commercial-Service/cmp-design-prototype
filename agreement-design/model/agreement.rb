@@ -1,7 +1,7 @@
 require_relative '../src/data_model'
-include DataModel
 require_relative 'party'
 require 'date'
+include DataModel
 
 domain :Category do
 

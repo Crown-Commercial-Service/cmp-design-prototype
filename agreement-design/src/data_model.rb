@@ -60,6 +60,9 @@ module DataModel
 
 
     def method_missing(sym, *args, &block)
+      if args.length==0 && @attributes[sym]
+        return @attributes[sym]
+      end
       if self.class.attributes[sym]
         if self.class.attributes[sym][:multiplicity] != SINGLE
           @attributes[sym] = [] unless @attributes[sym]
@@ -69,6 +72,7 @@ module DataModel
         end
         return @attributes[sym]
       end
+      puts "Warning: unknown attribute #{sym}?"
     end
 
     def to_s
@@ -79,11 +83,12 @@ module DataModel
 
     def valueof(sym, *args, &block)
       if self.class.attributes[sym][:type] < DataType
-        at= self.class.attributes[sym][:type].new( self.class.attributes[sym][:name])
-        puts sym
-        puts block
+        at = self.class.attributes[sym][:type].new(self.class.attributes[sym][:name])
+        if nil == block
+          raise "Need a block for a nested type #{sym}"
+        end
         at.instance_exec &block
-        at
+        return at
       else
         args[0]
       end
@@ -100,6 +105,7 @@ module DataModel
           extends = @types.fetch(extends, DataType)
         end
         type = self.const_set name, Class.new(extends)
+        puts "defined #{type} from #{name} on #{self }"
         @types[name] = type
         self.define_singleton_method(:types) {@types}
         dom = self
@@ -131,6 +137,7 @@ module DataModel
           return decl
         end
       end
+      puts "Warning unknown type #{sym} ignored"
     end
 
   end
@@ -138,7 +145,7 @@ module DataModel
   module_function
 
   def domain(name, &block)
-    dom = DataModel.const_set name, Class.new(Domain)
+    dom = Object.const_set name, Class.new(Domain)
     dom.instance_exec &block
     return dom
   end
