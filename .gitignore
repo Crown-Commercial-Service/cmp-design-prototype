@@ -51,4 +51,4 @@ build-iPhoneSimulator/
 
 #exclude dev tooling.idea
 .idea
-
+.DS_Store
