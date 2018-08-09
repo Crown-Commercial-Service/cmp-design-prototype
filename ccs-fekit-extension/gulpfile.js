@@ -16,7 +16,6 @@ gulp.task('dev', cb => {
         'clean-gov',
         'compile-sass',
         'lint-sass',
-        'clean-package',
         'package-assets',
         cb
     )
@@ -51,10 +50,6 @@ gulp.task('package-assets', function () {
         .pipe(gulp.dest('./package'));
 });
 
-gulp.task('clean-package', function () {
-    return gulp.src('./package/**')
-        .pipe(clean());
-});
 
 gulp.task('lint-sass', function () {
     return gulp.src('temp/ccs*/*.s+(a|c)ss')
@@ -63,9 +58,8 @@ gulp.task('lint-sass', function () {
         .pipe(sassLint.failOnError())
 });
 
-
 gulp.task('clean', function () {
-    return gulp.src('temp', {read: false})
+    return gulp.src(['temp', 'package'], {read: false})
         .pipe(clean());
 });
 
