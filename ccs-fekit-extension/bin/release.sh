@@ -7,10 +7,11 @@ set -e
 # ! npm team ls developers | grep -q $NPM_USER
 
 NPM_USER=$(npm whoami)
-if ! [ "ccs-npm-admin" == "$NPM_USER" ]; then
-  echo "⚠️ FAILURE: You are not logged in with the correct user."
-  exit 1
-fi
+# This feature copied from gov.uk not relevant for prototype
+#if ! [ "ccs-npm-admin" == "$NPM_USER" ]; then
+#  echo "⚠️ FAILURE: You are not logged in with the correct user."
+#  exit 1
+#fi
 
 echo "📦  Publishing package..."
 
