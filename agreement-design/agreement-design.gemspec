@@ -1,9 +1,9 @@
 # agreement-design.gemspec
 Gem::Specification.new do |spec|
-  spec.name          = "agreement-design"
+  spec.name          = "agreement-design-prototype"
   spec.version       = "0.0.3"
   spec.authors       = ["CCS"]
-  spec.homepage      = 'https://github.com/Crown-Commercial-Service/cmp-design-prototype'
+  spec.homepage      = 'https://github.com/Crown-Commercial-Service/cmp-design-prototype/agreement-design'
   spec.email         = ["rubygems@humphries.tech"]
   spec.description   = %q{A prototype of techniques to manage agreement specifications.}
   spec.summary       = %q{Agreement prototype .}
