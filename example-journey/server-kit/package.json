@@ -1,0 +1,62 @@
+{
+  "_from": "ccs-frontend-prototype@0.0.4",
+  "_id": "ccs-frontend-prototype@0.0.4",
+  "_inBundle": false,
+  "_integrity": "sha512-hTQ1Q4Eok1RI9BeCsT8Aum7dA0fo0ZG4RMMinW5dI3+6aOB95dyR0ShEYl9wMqTkYApkA0ApryxLNfU1HdfTGg==",
+  "_location": "/ccs-frontend-prototype",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "ccs-frontend-prototype@0.0.4",
+    "name": "ccs-frontend-prototype",
+    "escapedName": "ccs-frontend-prototype",
+    "rawSpec": "0.0.4",
+    "saveSpec": null,
+    "fetchSpec": "0.0.4"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ccs-frontend-prototype/-/ccs-frontend-prototype-0.0.4.tgz",
+  "_shasum": "20b8645c1f064879d782ac76b7f7e9a344781b44",
+  "_spec": "ccs-frontend-prototype@0.0.4",
+  "_where": "/Users/kevinh/gitprojects/cmp-design-prototype/example-journey",
+  "author": {
+    "name": "CCS design prototype",
+    "email": "npm@humphries.tech"
+  },
+  "bugs": {
+    "url": "https://github.com/Crown-Commercial-Service/cmp-design-prototype/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Prototype for CCS styles and scripts, extending GOV,UK front end toolkit",
+  "engines": {
+    "node": ">10.8.0"
+  },
+  "homepage": "https://github.com/Crown-Commercial-Service/cmp-design-prototype/tree/master/ccs-fekit-extension",
+  "keywords": [
+    "ccs",
+    "frontend",
+    "prototype"
+  ],
+  "license": "MIT",
+  "main": "../package/all.js",
+  "name": "ccs-frontend-prototype",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crown-Commercial-Service/cmp-design-prototype.git"
+  },
+  "sass": "all.scss",
+  "version": "0.0.4",
+  "warnings": [
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "node": ">10.8.0"
+      },
+      "pkgid": "ccs-frontend-prototype@0.0.4"
+    }
+  ]
+}

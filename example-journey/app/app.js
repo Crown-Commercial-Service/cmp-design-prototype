@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express')
 const app = express()
 const nunjucks = require('nunjucks')
@@ -8,10 +10,10 @@ const nunjucks = require('nunjucks')
 
 // Set up views
 const appViews = [
-    "app/views",
-    "public/",
-    "public/components/"
-]
+    "views",
+    "server-kit/",
+    "server-kit/componente"
+];
 
 module.exports = (options) => {
     const nunjucksOptions = options ? options.nunjucks : {}

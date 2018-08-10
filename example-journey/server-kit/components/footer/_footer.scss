@@ -13,7 +13,7 @@
   $govuk-footer-link: $govuk-footer-text;
   $govuk-footer-link-hover: #171819;
 
-  // Based on the govuk-crest-2x.png image dimensions.
+  // Based on the CCS_WHITE_SML_AW.png image dimensions.
   $govuk-footer-crest-image-width-2x: 250px;
   $govuk-footer-crest-image-height-2x: 204px;
   // Half the 2x image so that it fits the regular 1x size.
@@ -114,9 +114,9 @@
     display: inline-block;
     min-width: $govuk-footer-crest-image-width;
     padding-top: ($govuk-footer-crest-image-height + govuk-spacing(2));
-    background-image: govuk-image-url("govuk-crest.png");
+    background-image: govuk-image-url("CCS_WHITE_SML_AW.png");
     @include govuk-device-pixel-ratio {
-      background-image: govuk-image-url("govuk-crest-2x.png");
+      background-image: govuk-image-url("CCS_WHITE_SML_AW.png");
     }
     background-repeat: no-repeat;
     background-position: 50% 0%;
