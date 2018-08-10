@@ -10,31 +10,37 @@ gulp.task('default', [ 'dev' ]);
 
 gulp.task('dev', cb => {
     runsequence(
-        'lint-sass',
-        'sass',
-        'js',
+        // 'ccs-ccskit-js',
+        'ccs-ccskit-js',
+        'ccs-govkit-scss',
+        'ccs-ccskit-scss',
+        'ccs-deploy',
         cb
     )
 });
 
-gulp.task('sass', function () {
-    return gulp.src('./src/scss/*.scss')
-        .pipe(sass({
-            includePaths: './node_modules'
-        }))
+gulp.task('ccs-ccskit-js', function () {
+    return gulp.src('node_modules/ccs-frontend-prototype/*.js')
+        .pipe(gulp.dest('./public/'));
+});
+
+gulp.task('ccs-govkit-js', function () {
+    return gulp.src('node_modules/ccs-frontend-prototype/*.js')
+        .pipe(gulp.dest('./public/'));
+});
+
+gulp.task('ccs-ccskit-scss', function () {
+    return gulp.src('node_modules/ccs-frontend-prototype/*.css')
+        .pipe(gulp.dest('./public/'));
+});
+
+gulp.task('ccs-ccskit-assets', function () {
+    return gulp.src('node_modules/ccs-frontend-prototype/assets/**')
+        .pipe(gulp.dest('./public/assets'));
+});
+
+gulp.task('compile-sass', function () {
+    return gulp.src('./src/**/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./package'));
+        .pipe(gulp.dest('./temp'));
 });
-
-gulp.task('js', function () {
-    return gulp.src('./node_modules/govuk-frontend/all.js')
-        .pipe(gulp.dest('./package'));
-});
-
-gulp.task('lint-sass', function () {
-    return gulp.src('src/scss/**/*.s+(a|c)ss')
-        .pipe(sassLint())
-        .pipe(sassLint.format())
-        .pipe(sassLint.failOnError())
-});
-

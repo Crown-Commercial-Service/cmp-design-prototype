@@ -2,8 +2,10 @@
   "name": "ccs-fekit-extension",
   "version": "0.0.2",
   "engines": {
-    "node": ">10.8.0"
+    "node": ">10.8.0",
+    "npm": ">6.3.0"
   },
+  "repository": "https://github.com/Crown-Commercial-Service/cmp-design-prototype.git",
   "license": "MIT",
   "scripts": {
     "build": "gulp dev",
@@ -13,10 +15,8 @@
     "govuk-frontend": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.4.0",
-    "gulp-nunjucks": "^4.0.0",
-    "gulp-sass": "^4.0.1",
+    "gulp-replace": "^1.0.0",
     "gulp-sass-lint": "^1.4.0",
-    "nunjucks": "^3.1.3",
     "run-sequence": "^2.2.1"
   }
 }

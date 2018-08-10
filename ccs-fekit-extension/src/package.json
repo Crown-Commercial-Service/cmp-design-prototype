@@ -2,7 +2,7 @@
   "name": "ccs-frontend-prototype",
   "description": "Prototype for CCS styles and scripts, extending GOV,UK front end toolkit",
 
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "../package/all.js",
   "sass": "all.scss",
   "engines": {
