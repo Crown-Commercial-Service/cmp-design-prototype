@@ -53,7 +53,7 @@ gulp.task('package', function () {
 
 
 gulp.task('lint-sass', function () {
-    return gulp.src('package/ccs*/*.s+(a|c)ss')
+    return gulp.src('temp/ccs*/*.s+(a|c)ss')
         .pipe(sassLint())
         .pipe(sassLint.format())
         .pipe(sassLint.failOnError())
