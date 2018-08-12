@@ -3,16 +3,14 @@
 const express = require('express')
 const app = express()
 const nunjucks = require('nunjucks')
-// const util = require('util')
-// const fs = require('fs')
-// const path = require('path')
 
 
 // Set up views
 const appViews = [
     "views",
-    "server-kit/",
-    "server-kit/componente"
+    "../ccs-fekit-extension/src/", // this hack allows us to prototype changes in fekit without having to redeploy via npm
+    "server-kit",
+    "server-kit/components",
 ];
 
 module.exports = (options) => {
@@ -26,7 +24,8 @@ module.exports = (options) => {
         trimBlocks: true, // automatically remove trailing newlines from a block/tag
         lstripBlocks: true, // automatically remove leading whitespace from a block/tag
         watch: true, // reload templates when they are changed. needs chokidar dependency to be installed
-        ...nunjucksOptions // merge any additional options and overwrite defaults above.
+        serviceName: "Example Framework",
+        ...nunjucksOptions, // merge any additional options and overwrite defaults above.
     })
 
 
@@ -35,13 +34,18 @@ module.exports = (options) => {
 
     // Set up middleware to serve static assets
     app.use('/govuk-frontend', express.static('public'))
-    app.use('/public', express.static('public'))
-    app.use('/assets', express.static('public/assets'))
+    app.use('/', express.static('public'))
+
+    app.use(function (req, res, next) {
+        res.locals = {
+            serviceName: "Example Framework",
+        };
+        next();
+    });
 
     // Index page - render the component list template
     app.get('/', async function (req, res) {
-
-        res.render('index', {})
+        res.render('index', {backlink: false})
     })
 
     return app

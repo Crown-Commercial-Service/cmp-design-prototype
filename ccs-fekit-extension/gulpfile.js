@@ -13,7 +13,8 @@ gulp.task('dev', cb => {
     runsequence(
         'copy-govkit',
         'copy-ccs',
-        'transform-to-ccs',
+        'transform-scss-to-ccs',
+        'transform-njk-to-ccs',
         'lint-sass',
         'package',
         cb
@@ -32,7 +33,7 @@ gulp.task('copy-ccs', function () {
         .pipe(gulp.dest('./temp'));
 });
 
-gulp.task('transform-to-ccs', function () {
+gulp.task('transform-scss-to-ccs', function () {
     return gulp.src('./temp/**/*.scss')
         .pipe(replace(
             '$govuk-brand-colour: govuk-colour("blue")',
@@ -43,6 +44,18 @@ gulp.task('transform-to-ccs', function () {
         .pipe(replace(
             'govuk-crest-2x.png',
             'CCS_WHITE_SML_AW.png'))
+        .pipe(gulp.dest('./temp'));
+});
+gulp.task('transform-njk-to-ccs', function () {
+    return gulp.src('./temp/**/*.njk')
+        .pipe(replace(
+            // page title in main template
+            'GOV.UK - The best place to find government services and information',
+            'CCS - CMP prototype'))
+        .pipe(replace(
+            // should just catch the text in header templates
+            'GOV.UK',
+            'Crown Commercial Service'))
         .pipe(gulp.dest('./temp'));
 });
 

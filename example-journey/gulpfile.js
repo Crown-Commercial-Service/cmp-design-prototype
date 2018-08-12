@@ -11,6 +11,7 @@ gulp.task('default', [ 'dev' ]);
 gulp.task('dev', cb => {
     runsequence(
         'ccs-ccskit-scss',
+        'ccs-ccskit-js',
         'ccs-ccskit-assets',
         'ccs-ccskit-server-kit-side',
         cb
@@ -21,6 +22,11 @@ gulp.task('dev', cb => {
 gulp.task('ccs-ccskit-scss', function () {
     return gulp.src('node_modules/ccs-frontend-prototype/*.scss')
         .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/'));
+});
+
+gulp.task('ccs-ccskit-js', function () {
+    return gulp.src('node_modules/ccs-frontend-prototype/*.js')
         .pipe(gulp.dest('./public/'));
 });
 
