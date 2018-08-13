@@ -81,7 +81,9 @@ module DataModel
         end
         return @attributes[sym]
       end
-      puts "Warning: unknown attribute #{sym}?"
+      if sym != :to_ary
+        puts "Warning: unknown attribute #{sym}?"
+      end
     end
 
     def to_s
@@ -147,7 +149,9 @@ module DataModel
           return decl
         end
       end
-      puts "Warning unknown type #{sym} ignored"
+      if sym != :to_ary
+        puts "Warning: unknown attribute #{sym}?"
+      end
     end
 
   end

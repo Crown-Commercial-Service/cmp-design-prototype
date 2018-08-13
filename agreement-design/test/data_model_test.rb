@@ -2,7 +2,7 @@ require 'test/unit'
 require_relative '../src/data_model'
 include DataModel
 
-DataModel::domain :TestMetamodel do
+domain :TestMetamodel do
 
   datatype :BasicType do
     attribute :id, String

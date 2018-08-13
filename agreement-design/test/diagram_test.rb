@@ -1,8 +1,7 @@
 require 'test/unit'
 require_relative '../src/diagram'
-require_relative '../model/agreement'
+require_relative 'test_model'
 include DataModel
-
 
 class DiagramTest < Test::Unit::TestCase
 
@@ -25,10 +24,8 @@ class DiagramTest < Test::Unit::TestCase
     assert_equal("out/test/diagrams/d.dot", @d.dotfile, "file format")
     assert_equal("out/test/images/d.jpg", @d.jpgfile, "file format")
     assert(!File.file?(@d.dotfile), "no dotfile")
-    @d.describe( Category)
+    @d.describe( TestModel)
     assert(File.file?(@d.dotfile), "file created")
     assert(File.file?(@d.jpgfile), "file created")
-    # TODO test the features in the diagram
-    @d.describe( Category, Parties)
   end
 end
