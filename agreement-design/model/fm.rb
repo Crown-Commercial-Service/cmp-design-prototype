@@ -11,14 +11,16 @@ Category.new :FM do
 
   lot do
     id "1"; fwk_id FM_ID
+
+
+    ip= Category::ItemParameter.new :item_params, { id: 2}
+
     item_params do
-      id 1; valueMin 0; valueMax 100
-      keyword :thing
-      keyword :thing2
+      id 2;
     end
-    item_params do
-      id 2; valueMin 22; valueMax 33
-    end
+
+    item_params= ip
+    item_params= ip
   end
 
   lot do

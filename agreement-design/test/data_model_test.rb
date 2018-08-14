@@ -80,6 +80,17 @@ class DataModelTest < Test::Unit::TestCase
     assert_equal(2, TestMetamodel::Test_Model.contents[:table][0].attributes[:vals][1], "has vals")
     assert_equal(:content, TestMetamodel::Test_Model.contents[:referencingtype][0].attributes[:mate].attributes[:id], "has vals")
     assert_equal(:content, TestMetamodel::Test_Model.contents[:referencingtype][0].mate.id, "has vals")
+
+    TestMetamodel.new :T2 do
+      table do
+        for i in 7..9
+          vals i
+        end
+      end
+    end
+
+    assert_equal(7, TestMetamodel::T2.table[0].vals[0], "block iterate")
+
   end
 
   private

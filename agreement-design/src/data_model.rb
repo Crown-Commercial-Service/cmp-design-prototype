@@ -22,7 +22,7 @@ module DataModel
           @description
         end
 
-        self.define_singleton_method(:attributes) do |inherited=true|
+        self.define_singleton_method(:attributes) do |inherited = true|
           if inherited && self.superclass.respond_to?(:attributes)
             self.superclass.attributes.merge @attributes
           else
@@ -43,7 +43,7 @@ module DataModel
       def attribute(name, type, *args, multiplicity: SINGLE, description: "", links: nil)
         options = {:multiplicity => multiplicity, :description => description, :name => name, :type => type}
         if links
-          options[:links]= links
+          options[:links] = links
         end
 
         for opt in args
@@ -55,6 +55,7 @@ module DataModel
             raise "optional arguments should be string (description), or range\n " << opt.to_s
           end
         end
+
         @attributes[name] = options
       end
 
@@ -62,27 +63,31 @@ module DataModel
 
     attr_reader :name, :attributes
 
-    def initialize(name)
+    def initialize(name, attributes = {}, &block)
       @name = name
-      @attributes = {}
-    end
+      @attributes = attributes
 
-
-    def method_missing(sym, *args, &block)
-      if (args.length==0) && @attributes[sym]
-        return @attributes[sym]
-      end
-      if self.class.attributes[sym]
-        if self.class.attributes[sym][:multiplicity] != SINGLE
-          @attributes[sym] = [] unless @attributes[sym]
-          @attributes[sym] << valueof(sym, *args, &block)
-        else
-          @attributes[sym] = valueof(sym, *args, &block)
+      self.class.attributes.keys.each do |k|
+        # add a definition / accessor for each attribute
+        self.define_singleton_method(k) do |*args, &block|
+          if args.length == 0 && !block
+            unless @attributes[k]
+              raise("reading unset attribute #{k} on #{self}")
+            end
+            return @attributes[k]
+          end
+          if self.class.attributes[k][:multiplicity] != SINGLE
+            @attributes[k] = [] unless @attributes[k]
+            @attributes[k] << valueof(k, *args, &block)
+          else
+            @attributes[k] = valueof(k, *args, &block)
+          end
+          return @attributes[k]
         end
-        return @attributes[sym]
       end
-      if sym != :to_ary
-        puts "Warning: unknown attribute #{sym}?"
+
+      if block_given?
+        self.instance_exec &block
       end
     end
 
@@ -96,7 +101,7 @@ module DataModel
       if self.class.attributes[sym][:type] < DataType
         at = self.class.attributes[sym][:type].new(self.class.attributes[sym][:name])
         if nil == block
-          raise "Need a block for a nested type #{sym}"
+          raise "Need a block for a nested type #{sym} in #{self}"
         end
         at.instance_exec &block
         return at
@@ -135,23 +140,31 @@ module DataModel
       @contents = {}
       @name = name
       self.class.const_set name, self
-      self.instance_exec &block
-    end
 
-    def method_missing(sym, &block)
-      # create a new datatype for each matching type name, and run its block
-      for t in self.class.types.values
-        if t.typename.downcase == sym
-          decl = t.new(sym)
-          @contents[sym] = [] unless @contents[sym]
-          @contents[sym] << decl
-          decl.instance_exec &block
+      self.class.types.values.each do |t|
+        # add a definition / accessor for each type
+        k = t.typename.downcase
+        self.define_singleton_method(k.to_sym) do |*args, &block|
+          if args.length == 0 && !block
+            unless @contents[k]
+              raise("reading unset type decl #{k} on #{self}")
+            end
+            return @contents[k]
+          end
+          decl = t.new(k)
+          @contents[k] = [] unless @contents[k]
+          @contents[k] << decl
+          if block_given?
+            decl.instance_exec &block
+          else
+            puts "warning: no block given for type #{k} in #{self}"
+          end
           return decl
         end
+
       end
-      if sym != :to_ary
-        puts "Warning: unknown attribute #{sym}?"
-      end
+
+      self.instance_exec &block
     end
 
   end
