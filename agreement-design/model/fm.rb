@@ -5,7 +5,7 @@ Category.new :FM do
   FM_ID = "RM123"
   framework do
     id FM_ID
-    fwk_id FM_ID
+    fwk_number FM_ID
     version "1.0.0"
   end
 

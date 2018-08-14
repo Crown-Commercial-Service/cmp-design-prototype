@@ -28,11 +28,11 @@ domain :Category do
 
   datatype(:Framework, extends: Category::Agreement,
            description: "A kind of Framework used for calloffs, composed of Lots") {
-    attribute :fwk_id, String, "Such as the RM number"
+    attribute :fwk_number, String, "Such as the RM number"
   }
 
   datatype(:Lot, extends: Category::Agreement) {
-    attribute :fwk_id, String, "Part of framework", links: Category::Framework
+    attribute :fwk_id, String, "Part of framework with this id (not fwk_no)", links: Category::Framework
   }
 
   datatype(:Item,

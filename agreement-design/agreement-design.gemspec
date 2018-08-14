@@ -1,4 +1,5 @@
 # agreement-design.gemspec
+# TODO - split the gem for schema design from the one containing agreement models
 Gem::Specification.new do |spec|
   spec.name          = "agreement-design-prototype"
   spec.version       = "0.0.3"
