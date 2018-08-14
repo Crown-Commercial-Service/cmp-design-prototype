@@ -5,22 +5,33 @@ include DataModel
 
 domain :Category do
 
+  datatype(:VariableParameter,
+           description: "Defines the meaning of Items in Catalogues") {
+    attribute :id, String
+    attribute :detail, String
+    attribute :valueMin, String
+    attribute :valueMax, String
+    attribute :type, String, "One of: String, Currency, Location, Amount, Document"
+    attribute :default, String
+    attribute :standard, String, "which standard defines the item type, such as UBL2.1"
+    attribute :reference, String, "reference within standard, such as UBL2.1/"
+  }
+
   datatype(:ItemParameter,
            description: "Defines the meaning of Items in Catalogues") {
     attribute :id, String
     attribute :detail, String
     attribute :keyword, String, ZERO_TO_MANY
-    attribute :valueMin, String
-    attribute :valueMax, String
-    attribute :type, String, "One of: String, Currency, Location, Amount"
     attribute :standard, String, "which standard defines the item type, such as UBL2.1"
     attribute :reference, String, "reference within standard, such as UBL2.1"
+    attribute :variables, Category::VariableParameter, ZERO_TO_MANY, "define the variables for the item"
   }
 
   datatype(:Agreement,
            description: "General definition of Commercial Agreements") {
     attribute :id, String
-    attribute :item_params, Category::ItemParameter, ZERO_TO_MANY, links: Category::ItemParameter
+    attribute :item_params, Category::ItemParameter, ZERO_TO_MANY,
+              "item params describe the composition of the agreement", links: Category::ItemParameter
     attribute :version, String, "semantic version id of the form X.Y.Z"
     attribute :start_date, Date
     attribute :end_date, Date
@@ -35,11 +46,17 @@ domain :Category do
     attribute :fwk_id, String, "Part of framework with this id (not fwk_no)", links: Category::Framework
   }
 
+  datatype(:Variable ,
+           description: "detail for an item or need") {
+    attribute :index, String, "optional index where many variable exist for the same parameter"
+    attribute :params, Category::VariableParameter, ZERO_TO_MANY, links: Category::VariableParameter
+    attribute :variables, Category::Variable, ZERO_TO_MANY, links: Category::Variable
+  }
   datatype(:Item,
            description: "Something offered to a buyer as part of a contract."\
                         "Items are defined in Catalogues.") {
     attribute :id, String, "Item id, possibly a concatentation of the standard (in params) and the catalogue and an incrementatl id?"
-    attribute :params, String, links: Category::ItemParameter
+    attribute :param, String, links: Category::ItemParameter
     attribute :description, String
     attribute :value, String
   }
@@ -52,7 +69,7 @@ domain :Category do
   }
 
   datatype(:Offer,
-      description: "")  {
+           description: "") {
     attribute :id, String, "Offer id, probably a UUID"
     attribute :item_id, String, links: Category::Item
     attribute :catalogue_id, String, links: Category::Catalogue
