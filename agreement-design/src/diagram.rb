@@ -55,9 +55,9 @@ class Diagram < Output
                 end
               end,
               :attribute => lambda do |id:, val: , depth: 0, type:|
-                if val[:links]
+                if val[:links] || val[:type] < DataType
                   contains = (val[:type] < DataType)
-                  link(file, type.typename, val[:links].typename,
+                  link(file, type.typename, val[:links]? val[:links].typename : val[:type].typename,
                        label: %Q!#{contains ? "{contains} " : ""}#{val[:name]}!,
                        arrowhead: contains ? "none" : "open",
                        arrowtail: contains ? "diamond" : "none")

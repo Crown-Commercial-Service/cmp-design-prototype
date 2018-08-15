@@ -90,6 +90,7 @@ class DataModelTest < Test::Unit::TestCase
     end
 
     assert_equal(7, TestMetamodel::T2.table[0].vals[0], "block iterate")
+    assert_equal(8, TestMetamodel::T2.table[0].vals[1], "block iterate")
 
   end
 

@@ -1,12 +1,1 @@
-### framework RM123 
-   - id RM123
-   - fwk_number RM123
-   - version 1.0.0
-### lot 1 
-   - id 1
-   - fwk_id RM123
-#### item_params 2 
-     - id 2
-### lot 2 
-   - id 2
-   - fwk_id RM123
+### framework  

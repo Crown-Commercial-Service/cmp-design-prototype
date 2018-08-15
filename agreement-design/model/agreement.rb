@@ -23,15 +23,18 @@ domain :Category do
     attribute :detail, String
     attribute :keyword, String, ZERO_TO_MANY
     attribute :standard, String, "which standard defines the item type, such as UBL2.1"
-    attribute :reference, String, "reference within standard, such as UBL2.1"
-    attribute :variables, Category::VariableParameter, ZERO_TO_MANY, "define the variables for the item"
+    attribute :code, String, ZERO_TO_MANY, "codes within standard, such as UBL2.1"
+    attribute :requied_details, Category::VariableParameter, ZERO_TO_MANY,
+              "define the fixed variables for the item"
+    attribute :offer_options, Category::VariableParameter, ZERO_TO_MANY,
+              "define the optional offer variables for offers on the item"
   }
 
   datatype(:Agreement,
            description: "General definition of Commercial Agreements") {
     attribute :id, String
-    attribute :item_params, Category::ItemParameter, ZERO_TO_MANY,
-              "item params describe the composition of the agreement", links: Category::ItemParameter
+    attribute :item, Category::ItemParameter, ZERO_TO_MANY,
+              "item params describe the composition of the agreement"
     attribute :version, String, "semantic version id of the form X.Y.Z"
     attribute :start_date, Date
     attribute :end_date, Date
@@ -46,12 +49,13 @@ domain :Category do
     attribute :fwk_id, String, "Part of framework with this id (not fwk_no)", links: Category::Framework
   }
 
-  datatype(:Variable ,
+  datatype(:Variable,
            description: "detail for an item or need") {
     attribute :index, String, "optional index where many variable exist for the same parameter"
-    attribute :params, Category::VariableParameter, ZERO_TO_MANY, links: Category::VariableParameter
-    attribute :variables, Category::Variable, ZERO_TO_MANY, links: Category::Variable
+    attribute :param, Category::VariableParameter, ZERO_TO_MANY
+    attribute :variable, Category::Variable, ZERO_TO_MANY
   }
+
   datatype(:Item,
            description: "Something offered to a buyer as part of a contract."\
                         "Items are defined in Catalogues.") {
@@ -64,7 +68,7 @@ domain :Category do
   datatype(:Catalogue,
            description: "A collection of items that can be bought via an Agreement.") {
     attribute :id, String
-    attribute :items, Category::Item, ZERO_TO_MANY, links: Category::Item
+    attribute :item, Category::Item, ZERO_TO_MANY
     attribute :agreement_id, String, links: Category::Agreement
   }
 

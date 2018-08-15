@@ -21,14 +21,14 @@
 |keyword|String|*||
 |standard|String|1|which standard defines the item type, such as UBL2.1|
 |reference|String|1|reference within standard, such as UBL2.1|
-|variables|Category::VariableParameter|*|define the variables for the item|
+|variable|Category::VariableParameter|*|define the variables for the item|
 ## Agreement
   General definition of Commercial Agreements
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |id|String|1||
-|item_params|Category::ItemParameter|*|item params describe the composition of the agreement|
+|item|Category::ItemParameter|*|item params describe the composition of the agreement|
 |version|String|1|semantic version id of the form X.Y.Z|
 |start_date|Date|1||
 |end_date|Date|1||
@@ -38,7 +38,7 @@
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |id|String|1||
-|item_params|Category::ItemParameter|*|item params describe the composition of the agreement|
+|item|Category::ItemParameter|*|item params describe the composition of the agreement|
 |version|String|1|semantic version id of the form X.Y.Z|
 |start_date|Date|1||
 |end_date|Date|1||
@@ -49,7 +49,7 @@
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |id|String|1||
-|item_params|Category::ItemParameter|*|item params describe the composition of the agreement|
+|item|Category::ItemParameter|*|item params describe the composition of the agreement|
 |version|String|1|semantic version id of the form X.Y.Z|
 |start_date|Date|1||
 |end_date|Date|1||
@@ -60,8 +60,8 @@
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |index|String|1|optional index where many variable exist for the same parameter|
-|params|Category::VariableParameter|*||
-|variables|Category::Variable|*||
+|param|Category::VariableParameter|*||
+|variable|Category::Variable|*||
 ## Item
   Something offered to a buyer as part of a contract.Items are defined in Catalogues.
 
@@ -77,7 +77,7 @@
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |id|String|1||
-|items|Category::Item|*||
+|item|Category::Item|*||
 |agreement_id|String|1||
 ## Offer
   

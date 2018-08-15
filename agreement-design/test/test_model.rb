@@ -11,7 +11,8 @@ domain :TestModel do
   datatype(:ComplexType,
            description: "Thing with things") {
     attribute :string, String
-    attribute :things, TestModel::ArrayParam, ZERO_TO_MANY, links: TestModel::ArrayParam
+    attribute :things, TestModel::ArrayParam, ZERO_TO_MANY
+    attribute :thing_id, String, ZERO_TO_MANY, links: TestModel::ArrayParam
     attribute :strings, String, ZERO_TO_MANY
   }
 

@@ -116,14 +116,15 @@ module DataModel
 
     class << self
       def datatype(name, extends: DataType, description: "", &block)
-        @types = {} unless instance_variable_defined? :@types
+        unless instance_variable_defined? :@types
+          @types = {}
+          self.define_singleton_method(:types) {@types}
+        end
         if extends.class != Class
           extends = @types.fetch(extends, DataType)
         end
         type = self.const_set name, Class.new(extends)
-        # puts "defined #{type} from #{name} on #{self }"
         @types[name] = type
-        self.define_singleton_method(:types) {@types}
         dom = self
         type.instance_exec do
           init name, dom, extends, description
