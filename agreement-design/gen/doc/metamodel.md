@@ -20,8 +20,9 @@
 |detail|String|1||
 |keyword|String|*||
 |standard|String|1|which standard defines the item type, such as UBL2.1|
-|reference|String|1|reference within standard, such as UBL2.1|
-|variable|Category::VariableParameter|*|define the variables for the item|
+|code|String|*|codes within standard, such as UBL2.1|
+|requied_details|Category::VariableParameter|*|define the fixed variables for the item|
+|offer_options|Category::VariableParameter|*|define the optional offer variables for offers on the item|
 ## Agreement
   General definition of Commercial Agreements
 

@@ -3,7 +3,7 @@ subgraph cluster_Category {
 node [shape=plaintext margin=0];
 label=Category;
 "VariableParameter" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>VariableParameter</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-detail</TD></TR><TR><TD ALIGN="LEFT">-valueMin</TD></TR><TR><TD ALIGN="LEFT">-valueMax</TD></TR><TR><TD ALIGN="LEFT">-type</TD></TR><TR><TD ALIGN="LEFT">-default</TD></TR><TR><TD ALIGN="LEFT">-standard</TD></TR><TR><TD ALIGN="LEFT">-reference</TD></TR></table>>];
-"ItemParameter" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ItemParameter</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-detail</TD></TR><TR><TD ALIGN="LEFT">-keyword</TD></TR><TR><TD ALIGN="LEFT">-standard</TD></TR><TR><TD ALIGN="LEFT">-reference</TD></TR><TR><TD ALIGN="LEFT">-variable</TD></TR></table>>];
+"ItemParameter" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ItemParameter</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-detail</TD></TR><TR><TD ALIGN="LEFT">-keyword</TD></TR><TR><TD ALIGN="LEFT">-standard</TD></TR><TR><TD ALIGN="LEFT">-code</TD></TR><TR><TD ALIGN="LEFT">-requied_details</TD></TR><TR><TD ALIGN="LEFT">-offer_options</TD></TR></table>>];
 "Agreement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Agreement</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-version</TD></TR><TR><TD ALIGN="LEFT">-start_date</TD></TR><TR><TD ALIGN="LEFT">-end_date</TD></TR></table>>];
 "Framework" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Framework</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-version</TD></TR><TR><TD ALIGN="LEFT">-start_date</TD></TR><TR><TD ALIGN="LEFT">-end_date</TD></TR><TR><TD ALIGN="LEFT">-fwk_number</TD></TR></table>>];
 "Lot" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Lot</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-version</TD></TR><TR><TD ALIGN="LEFT">-start_date</TD></TR><TR><TD ALIGN="LEFT">-end_date</TD></TR><TR><TD ALIGN="LEFT">-fwk_id</TD></TR></table>>];
@@ -20,7 +20,8 @@ label=Parties;
 "Supplier" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Supplier</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR></table>>];
 "Buyer" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Buyer</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR></table>>];
 }
-"ItemParameter" -> "VariableParameter" [label="{contains} variable" arrowhead = "none" arrowtail = "diamond" ];
+"ItemParameter" -> "VariableParameter" [label="{contains} requied_details" arrowhead = "none" arrowtail = "diamond" ];
+"ItemParameter" -> "VariableParameter" [label="{contains} offer_options" arrowhead = "none" arrowtail = "diamond" ];
 "Agreement" -> "ItemParameter" [label="{contains} item" arrowhead = "none" arrowtail = "diamond" ];
 "Framework" -> "Agreement" [label="extends" arrowhead = "none" arrowtail = "normal" ];
 "Framework" -> "ItemParameter" [label="{contains} item" arrowhead = "none" arrowtail = "diamond" ];
