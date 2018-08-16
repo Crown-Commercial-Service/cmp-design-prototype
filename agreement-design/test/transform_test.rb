@@ -6,7 +6,7 @@ include DataModel
 class DocTest < Test::Unit::TestCase
 
   def test_model
-    the_model = TestModel::TEST
+    the_model = TestModel::TESTMODEL
     transform_datamodel(
         {
             before_model: lambda do |model:|

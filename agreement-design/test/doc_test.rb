@@ -1,6 +1,6 @@
 require 'test/unit'
 require_relative '../src/doc'
-require_relative '../model/fm'
+require_relative '../model/abstract_fm'
 include DataModel
 
 class DocTest < Test::Unit::TestCase

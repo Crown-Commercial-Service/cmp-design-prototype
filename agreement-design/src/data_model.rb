@@ -1,3 +1,5 @@
+require 'date'
+
 module DataModel
 
   SINGLE = 1..1
@@ -41,10 +43,9 @@ module DataModel
       end
 
       def attribute(name, type, *args, multiplicity: SINGLE, description: "", links: nil)
+        type = getType(type)
         options = {:multiplicity => multiplicity, :description => description, :name => name, :type => type}
-        if links
-          options[:links] = links
-        end
+        options[:links] = getType(links)
 
         for opt in args
           if opt.is_a? Range
@@ -57,6 +58,12 @@ module DataModel
         end
 
         @attributes[name] = options
+      end
+
+      private
+
+      def getType(typeref)
+        domain.getType typeref
       end
 
     end
@@ -72,7 +79,7 @@ module DataModel
         self.define_singleton_method(k) do |*args, &block|
           if args.length == 0 && !block
             unless @attributes[k]
-              raise("reading unset attribute #{k} on #{self}")
+              puts ("Warning - reading unset attribute '#{k}' on #{self.class}")
             end
             return @attributes[k]
           end
@@ -133,6 +140,23 @@ module DataModel
         type
       end
 
+      def getType(typeref)
+        if !typeref
+          return nil
+        end
+        if typeref.class == Symbol
+          if !types[typeref]
+            raise "Can't find type #{typeref} in #{typename}"
+          end
+          return types[typeref]
+        elsif typeref.class == Class
+          return typeref
+        else
+          raise "type refs must be symbol or DataType class"
+        end
+      end
+
+
     end
 
     attr_reader :contents, :name
@@ -179,5 +203,18 @@ module DataModel
     return dom
   end
 
+  module_function
+
+  def date(day, month, year)
+    Date.new(day, month, year)
+  end
+
+  def Selection(*args)
+    typename = "Selection_#{args.join '_'}"
+    selclass = Object.const_set typename, Class.new(Symbol)
+    selclass.define_singleton_method(:selection) {args}
+    selclass.define_singleton_method(:validate) {|s| selection.member? s.to_sym}
+    return selclass
+  end
 
 end # DataModel
