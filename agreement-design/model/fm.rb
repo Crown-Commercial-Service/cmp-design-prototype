@@ -1,6 +1,13 @@
 require_relative 'agreement'
 
-Category.new :FM do
+domain :FM do
+  datatype(:FM_Offering, extends: Category::Offering,
+           description: " An offer for FM elements ") do
+    attribute :sc_cleared, String
+  end
+end
+
+Category.new :Frameworks do
 
   FM_ID = "FM"
   agreement do
@@ -8,71 +15,62 @@ Category.new :FM do
     id FM_ID
     fwk_number "RM8330"
     description "This agreement is for the provision of Facilities Management"
-    start_date date( 2018, 10, 01)
+    start_date date(2018, 10, 01)
   end
 
+  ENV_CLEANING = "#{FM_ID}.1a-C.3"
   agreement do
     kind :Lot
-    id "#{FM_ID}.1a-C.3"
-    name "environmental cleaning service"
+    id "FM lot 1"
+    name "low-to-mid value Facilities Management Lot"
+    part_of_id FM_ID
     min_value 0
     max_value 70000000
-
+    item_types do
+      id ENV_CLEANING
+      name "environmental cleaning service"
+      units :Currency
+      code "CCS-building-area-method"
+      keyword "cleaning"
+      keyword "washing"
+      keyword "janitor"
+    end
   end
-  # lot do
-  #   id "#{FM_ID}.1a"
-  #   fwk_id FM_ID
-  #   description "£0M-£7M" # TODO: need to put this constraint in the lot somehow
+  # # FM_Domain::FM_Offering.new("fm-offering") do
+  # offering do
+  #   supplier_id "XYZ corp"
+  #   name "XYZ's nifty school cleaning service"
+  #   agreement_id FM_ID
+  #   location_id UK.name
+  #   sector :Education
   #   item do
-  #     id "#{FM_ID}.1a-C.3"
-  #     name "environmental cleaning service"
-  #     detail do
-  #       id "price-per-area"
-  #       type :Currency
-  #       standard "CCS-building-area-method"
-  #       reference "per square metre"
-  #     end
-  #     detail do
-  #       id "sector"
-  #       type :Picklist
-  #       option "central"
-  #       option "school"
-  #       standard "CCS-FM-sectornames"
-  #     end
-  #   end
-  # end
-  #
-  # catalogue do
-  #   id "FM catalogue"
-  #   item do
-  #     param "#{FM_ID}.1a-C.3"
-  #     variable { param "price-per-area"; value "£50"}
-  #     variable { param "sector"; value "central"}
-  #   end
-  #   item do
-  #     param "#{FM_ID}.1a-C.3"
-  #     variable { param "price-per-area"; value "£45"}
-  #     variable { param "sector"; value "schools"}
-  #   end
-  #
-  #   offer do
-  #     supplier_id "XYZ corp"
-  #     # variable { param "location"; value "london"}
-  #
-  #     item_id "#{FM_ID}.1a-C.3"
-  #     variant do
-  #       variable { param "price-per-area"; value "£30"}
-  #       variable { param "sector"; value "central"}
-  #       variable { param "location"; value "london"}
-  #     end
-  #     variant do
-  #       variable { param "price-per-area"; value "£20"}
-  #       variable { param "sector"; value "schools"}
-  #     end
+  #     type ENV_CLEANING
+  #     value 3000
   #   end
   # end
 
 end
+
+FM.new :FM_catalogue do
+  fm_offering do
+    supplier_id "XYZ corp"
+    name "XYZ's nifty school cleaning service"
+    agreement_id FM_ID
+    location_id UK.name
+    sector :Education
+    sc_cleared "TRUE"
+    item do
+      type ENV_CLEANING
+      value 3000
+    end
+  end
+
+end
+
+
+
+
+
 
 
 

@@ -5,6 +5,8 @@ include DataModel
 
 domain :Category do
 
+  SECTOR = Selection(:ALL, :Education, :CentralGov, :WiderGov)
+
   datatype(:QualifiedElement,
            description: "Any datatype with standard qualifiers on it") {
     # constraints
@@ -12,13 +14,23 @@ domain :Category do
     attribute :end_date, Date
     attribute :min_value, Integer, "Minimum value of award, in pounds sterling"
     attribute :max_value, Integer, "Maximum value of award, in pounds sterling"
-    attribute :sectors, Selection(:ALL, :Education, :CentralGov, :WiderGov),
+    attribute :sector, SECTOR,
               "Pick list of applicable sectors. TO DO: is this a nested or more complex list?",
               ZERO_TO_MANY
-    attribute :regions, Geographic::AreaCode,
+    attribute :location_id, String, ZERO_TO_MANY,
               "Pick list of applicable regions. TO DO: is this a nested or more complex list?",
-              ZERO_TO_MANY
+              links: Geographic::AreaCode
+  }
 
+  datatype(:ItemType, extends: Category::QualifiedElement,
+           description: " Defines the items that can be offered in any given agreement ") {
+    attribute :id, String
+    attribute :name, String
+    attribute :description, String
+    attribute :keyword, String, ZERO_TO_MANY
+    attribute :standard, String, " which standard defines the item type, such as UBL2 .1 "
+    attribute :code, String, ZERO_TO_MANY, " codes within standard, such as UBL2 .1 "
+    attribute :units, Selection(:Area, :Currency), " define the units "
   }
 
   datatype(:Agreement, extends: Category::QualifiedElement,
@@ -39,36 +51,28 @@ domain :Category do
     # structure of agreement
     attribute :part_of_id, String, "Agreement this is part of, applicable only to Lots", links: :Agreement
     attribute :conforms_to_id, String, "Agreement this conforms to, such as a Contract conforming to a Framework", links: :Agreement
-
-  }
-
-  datatype(:ItemType, extends: Category::QualifiedElement,
-           description: " Defines the items valid in any given agreement ") {
-    attribute :id, String
-    attribute :name, String
-    attribute :description, String
-    attribute :keyword, String, ZERO_TO_MANY
-    attribute :standard, String, " which standard defines the item type, such as UBL2 .1 "
-    attribute :code, String, ZERO_TO_MANY, " codes within standard, such as UBL2 .1 "
-    attribute :units, Selection(:Area, :Price), " define the units "
+    attribute :item_types, :ItemType, ZERO_TO_MANY,
+              "describe the items that can be offered under the agreement"
   }
 
   datatype(:Item,
-           description: " Defines the items valid in any given agreement ") {
+           description: "Specifices the items that are being offered for an agreement") {
     attribute :type, String, "description of the item", links: :ItemType
     attribute :value, Object, "an object of the type matching type->units"
   }
 
   datatype(:Offering, extends: Category::QualifiedElement,
            description: " Supplier offering against an item, given a number of constraints ") {
-    attribute :item, :Item, "description of the item"
     attribute :supplier_id, String, links: Parties::Supplier
+    attribute :offerType, String, "subclass of the Offering, based on the Agreement"
+    attribute :name, String, links: Parties::Supplier
+    attribute :agreement_id, String, "The agreement this offering relates to", links: :Agreement
+    attribute :item, :Item, "description of the item"
   }
 
   datatype(:Catalogue,
            description: " Supplier offering against an item, given a number of constraints ") {
-    attribute :offers, :Offering, "description of the item", ZERO_TO_MANY
+    attribute :offers, :Offering, ZERO_TO_MANY, "description of the item"
   }
-
 
 end
