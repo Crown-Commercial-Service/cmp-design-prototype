@@ -31,8 +31,8 @@ Category.new :FM_Agreements do
     item_types do
       id ENV_CLEANING
       name "environmental cleaning service"
-      units :Currency
-      code "CCS-building-area-method"
+      unit :Currency
+      classification "CCS-building-area-method"
       keyword "cleaning"
       keyword "washing"
       keyword "janitor"

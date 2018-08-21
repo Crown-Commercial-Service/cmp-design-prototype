@@ -128,9 +128,7 @@ module DataModel
           @types = {}
           self.define_singleton_method(:types) {@types}
         end
-        if extends.class != Class
-          extends = @types.fetch(extends, DataType)
-        end
+        extends= getType(extends)
         type = self.const_set name, Class.new(extends)
         @types[name] = type
         dom = self
@@ -147,7 +145,7 @@ module DataModel
         end
         if typeref.class == Symbol
           if !types[typeref]
-            raise "Can't find type #{typeref} in #{typename}"
+            raise "Can't find type #{typeref} in #{typeref}"
           end
           return types[typeref]
         elsif typeref.class == Class
@@ -156,7 +154,6 @@ module DataModel
           raise "type refs must be symbol or DataType class"
         end
       end
-
 
     end
 

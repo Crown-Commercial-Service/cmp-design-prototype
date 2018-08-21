@@ -1,32 +1,44 @@
-## QualifiedElement
-  Any datatype with standard qualifiers on it
-
-|attribute|type|multiplicity|description|
-|---------|----|------------|-----------|
-|start_date|Date|0..1||
-|end_date|Date|0..1||
-|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
-|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
-|sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
-|location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
-## ItemType extends Category::QualifiedElement
+## ClassificationScheme
    Defines the items that can be offered in any given agreement 
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
+|id|(CPV,CPVS,UNSPSC,CPV,OKDP,OKPD,CCS)|1|The classiciation SCHEME id|
+|title|String|1||
+|description|String|1||
+|uri|String|1|URL of source. See http://standard.open-contracting.org/latest/en/schema/codelists/#item-classification-scheme|
+## ClassificationCode
+   Defines the items that can be offered in any given agreement 
+
+|attribute|type|multiplicity|description|
+|---------|----|------------|-----------|
+|id|String|1|The code id, which must be unique across all schemes|
+|scheme|(CPV,CPVS,UNSPSC,CPV,OKDP,OKPD,CCS)|1|The classiciation scheme id|
+|description|String|1||
+|uri|String|*| URI for the code |
+|units|(Area,Currency)|1| define the units, if one units matches |
+## QualifiedElement
+  common qualifiers for certain elements
+
+|attribute|type|multiplicity|description|
+|---------|----|------------|-----------|
 |start_date|Date|0..1||
 |end_date|Date|0..1||
 |min_value|Integer|0..1|Minimum value of award, in pounds sterling|
 |max_value|Integer|0..1|Maximum value of award, in pounds sterling|
 |sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
 |location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
+## ItemType
+   Defines the items that can be offered in any given agreement 
+
+|attribute|type|multiplicity|description|
+|---------|----|------------|-----------|
 |id|String|1||
 |name|String|1||
 |description|String|1||
 |keyword|String|*||
-|standard|String|1| which standard defines the item type, such as UBL2 .1 |
-|code|String|*| codes within standard, such as UBL2 .1 |
-|units|(Area,Currency)|1| define the units |
+|classification|String -> Category::ClassificationCode|*| The classification code drawn from the selected scheme |
+|unit|(Area,Currency)|1| define the units |
 ## Agreement extends Category::QualifiedElement
   General definition of Commercial Agreements
 
@@ -73,7 +85,7 @@
 |agreement_id|String -> Category::Agreement|1|The agreement this offering relates to|
 |item|Category::Item|1|description of the item|
 ## Catalogue
-   Supplier offering against an item, given a number of constraints 
+   A collection of supplier offerings against an item, for an agreement 
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|

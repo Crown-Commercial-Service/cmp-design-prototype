@@ -7,9 +7,26 @@ domain :Category do
 
   SECTOR = Selection(:ALL, :Education, :CentralGov, :WiderGov, :Etc)
 
-  datatype(:QualifiedElement,
-           description: "Any datatype with standard qualifiers on it") {
-    # constraints
+  CLASSIFICATION_SCHEMES = Selection(:CPV, :CPVS, :UNSPSC, :CPV, :OKDP, :OKPD, :CCS)
+  datatype(:ClassificationScheme,
+           description: " Defines the items that can be offered in any given agreement ") {
+    attribute :id, CLASSIFICATION_SCHEMES, "The classiciation SCHEME id"
+    attribute :title, String
+    attribute :description, String
+    attribute :uri, String, "URL of source. See http://standard.open-contracting.org/latest/en/schema/codelists/#item-classification-scheme"
+  }
+
+  datatype(:ClassificationCode,
+           description: " Defines the items that can be offered in any given agreement ") {
+    attribute :id, String, "The code id, which must be unique across all schemes"
+    attribute :scheme, CLASSIFICATION_SCHEMES, "The classiciation scheme id"
+    attribute :description, String
+    attribute :uri, String, ZERO_TO_MANY, " URI for the code "
+    attribute :units, Selection(:Area, :Currency), " define the units, if one units matches "
+  }
+
+  datatype( :QualifiedElement, description: "common qualifiers for certain elements") {
+    # Qualifications
     attribute :start_date, Date, ZERO_OR_ONE
     attribute :end_date, Date, ZERO_OR_ONE
     attribute :min_value, Integer, ZERO_OR_ONE, "Minimum value of award, in pounds sterling"
@@ -22,18 +39,17 @@ domain :Category do
               links: Geographic::AreaCode
   }
 
-  datatype(:ItemType, extends: Category::QualifiedElement,
+  datatype(:ItemType,
            description: " Defines the items that can be offered in any given agreement ") {
     attribute :id, String
     attribute :name, String
     attribute :description, String
     attribute :keyword, String, ZERO_TO_MANY
-    attribute :standard, String, " which standard defines the item type, such as UBL2 .1 "
-    attribute :code, String, ZERO_TO_MANY, " codes within standard, such as UBL2 .1 "
-    attribute :units, Selection(:Area, :Currency), " define the units "
+    attribute :classification, String, ZERO_TO_MANY, " The classification code drawn from the selected scheme ", links: :ClassificationCode
+    attribute :unit, Selection(:Area, :Currency), " define the units "
   }
 
-  datatype(:Agreement, extends: Category::QualifiedElement,
+  datatype(:Agreement, extends: :QualifiedElement,
            description: "General definition of Commercial Agreements") {
 
     # identify the agreement
@@ -53,6 +69,7 @@ domain :Category do
     attribute :conforms_to_id, String, "Agreement this conforms to, such as a Contract conforming to a Framework", links: :Agreement
     attribute :item_types, :ItemType, ZERO_TO_MANY,
               "describe the items that can be offered under the agreement"
+
   }
 
   datatype(:Item,
@@ -61,7 +78,7 @@ domain :Category do
     attribute :value, Object, "an object of the type matching type->units"
   }
 
-  datatype(:Offering, extends: Category::QualifiedElement,
+  datatype(:Offering, extends: :QualifiedElement,
            description: " Supplier offering against an item, given a number of constraints. This may be extended for different agreements ") {
     attribute :supplier_id, String, links: Parties::Supplier
     attribute :offerType, String, "subclass of the Offering, based on the Agreement"
@@ -71,7 +88,7 @@ domain :Category do
   }
 
   datatype(:Catalogue,
-           description: " Supplier offering against an item, given a number of constraints ") {
+           description: " A collection of supplier offerings against an item, for an agreement ") {
     attribute :offers, :Offering, ZERO_TO_MANY, "description of the item"
   }
 
