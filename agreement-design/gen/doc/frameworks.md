@@ -13,14 +13,19 @@
    - min_value.1 0
    - max_value.1 70000000
    - version 0.1.0
-#### environmental cleaning service FM.1a-C.3 
+#### item_type FM.1a-C.3 
      - id FM.1a-C.3
-     - name environmental cleaning service
+     - scheme_id CCS
      - unit Currency
-     - classification.1 CCS-building-area-method
+     - code CCS-building-area-method
      - keyword.1 cleaning
      - keyword.2 washing
      - keyword.3 janitor
+### classificationscheme CCS 
+   - id CCS
+   - title CCS invented schemes
+   - description 
+   - uri 
 ### XYZ's nifty school cleaning service  
    - supplier_id XYZ corp
    - name XYZ's nifty school cleaning service
@@ -29,5 +34,5 @@
    - sector.1 Education
    - sc_cleared TRUE
 #### item  
-     - type FM.1a-C.3
+     - type.1 FM.1a-C.3
      - value 3000

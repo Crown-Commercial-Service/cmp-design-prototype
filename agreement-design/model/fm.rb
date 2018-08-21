@@ -28,15 +28,22 @@ Category.new :FM_Agreements do
     min_value 0
     max_value 70000000
     version "0.1.0"
-    item_types do
+    item_type do
       id ENV_CLEANING
-      name "environmental cleaning service"
+      scheme_id :CCS
       unit :Currency
-      classification "CCS-building-area-method"
+      code "CCS-building-area-method"
       keyword "cleaning"
       keyword "washing"
       keyword "janitor"
     end
+  end
+
+  classificationscheme do
+    id :CCS
+    title "CCS invented schemes"
+    description ""
+    uri ""
   end
 
 end

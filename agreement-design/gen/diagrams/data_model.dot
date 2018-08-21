@@ -3,10 +3,9 @@ subgraph cluster_Category {
 node [shape=plaintext margin=0];
 label=Category;
 "ClassificationScheme" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ClassificationScheme</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-title</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-uri</TD></TR></table>>];
-"ClassificationCode" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ClassificationCode</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-scheme</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-uri</TD></TR><TR><TD ALIGN="LEFT">-units</TD></TR></table>>];
-"ItemType" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ItemType</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-keyword</TD></TR><TR><TD ALIGN="LEFT">-classification</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR></table>>];
-"Agreement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Agreement</TD></TH><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-version</TD></TR><TR><TD ALIGN="LEFT">-start_date</TD></TR><TR><TD ALIGN="LEFT">-end_date</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-fwk_number</TD></TR><TR><TD ALIGN="LEFT">-sf_typ</TD></TR><TR><TD ALIGN="LEFT">-sf_is</TD></TR><TR><TD ALIGN="LEFT">-part_of_id</TD></TR><TR><TD ALIGN="LEFT">-conforms_to_id</TD></TR><TR><TD ALIGN="LEFT">-item_types</TD></TR><TR><TD ALIGN="LEFT">-min_value</TD></TR><TR><TD ALIGN="LEFT">-max_value</TD></TR></table>>];
-"Item" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Item</TD></TH><TR><TD ALIGN="LEFT">-type</TD></TR><TR><TD ALIGN="LEFT">-value</TD></TR></table>>];
+"ItemType" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ItemType</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-scheme_id</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-keyword</TD></TR><TR><TD ALIGN="LEFT">-uri</TD></TR><TR><TD ALIGN="LEFT">-code</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR></table>>];
+"Agreement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Agreement</TD></TH><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-version</TD></TR><TR><TD ALIGN="LEFT">-start_date</TD></TR><TR><TD ALIGN="LEFT">-end_date</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-fwk_number</TD></TR><TR><TD ALIGN="LEFT">-sf_typ</TD></TR><TR><TD ALIGN="LEFT">-sf_is</TD></TR><TR><TD ALIGN="LEFT">-part_of_id</TD></TR><TR><TD ALIGN="LEFT">-conforms_to_id</TD></TR><TR><TD ALIGN="LEFT">-item_type</TD></TR><TR><TD ALIGN="LEFT">-min_value</TD></TR><TR><TD ALIGN="LEFT">-max_value</TD></TR></table>>];
+"Item" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Item</TD></TH><TR><TD ALIGN="LEFT">-type</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR><TR><TD ALIGN="LEFT">-value</TD></TR></table>>];
 "Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Offering</TD></TH><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-offerType</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector</TD></TR></table>>];
 "Catalogue" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Catalogue</TD></TH><TR><TD ALIGN="LEFT">-offers</TD></TR></table>>];
 }
@@ -22,10 +21,9 @@ node [shape=plaintext margin=0];
 label=Geographic;
 "AreaCode" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>AreaCode</TD></TH><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-subcode</TD></TR></table>>];
 }
-"ItemType" -> "ClassificationCode" [label="classification" arrowhead = "open" arrowtail = "none" ];
 "Agreement" -> "Agreement" [label="part_of_id" arrowhead = "open" arrowtail = "none" ];
 "Agreement" -> "Agreement" [label="conforms_to_id" arrowhead = "open" arrowtail = "none" ];
-"Agreement" -> "ItemType" [label="{contains} item_types" arrowhead = "none" arrowtail = "diamond" ];
+"Agreement" -> "ItemType" [label="{contains} item_type" arrowhead = "none" arrowtail = "diamond" ];
 "Item" -> "ItemType" [label="type" arrowhead = "open" arrowtail = "none" ];
 "Offering" -> "Supplier" [label="supplier_id" arrowhead = "open" arrowtail = "none" ];
 "Offering" -> "Supplier" [label="name" arrowhead = "open" arrowtail = "none" ];

@@ -1,5 +1,5 @@
 ## ClassificationScheme
-   Defines the items that can be offered in any given agreement 
+   Defines the standards schemes for items 
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
@@ -7,27 +7,18 @@
 |title|String|1||
 |description|String|1||
 |uri|String|1|URL of source. See http://standard.open-contracting.org/latest/en/schema/codelists/#item-classification-scheme|
-## ClassificationCode
-   Defines the items that can be offered in any given agreement 
+## ItemType
+   Defines the items that can be offered in any selected agreements 
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |id|String|1|The code id, which must be unique across all schemes|
-|scheme|(CPV,CPVS,UNSPSC,CPV,OKDP,OKPD,CCS)|1|The classiciation scheme id|
-|description|String|1||
-|uri|String|*| URI for the code |
-|units|(Area,Currency)|1| define the units, if one units matches |
-## ItemType
-   Defines the items that can be offered in any given agreement 
-
-|attribute|type|multiplicity|description|
-|---------|----|------------|-----------|
-|id|String|1||
-|name|String|1||
+|scheme_id|(CPV,CPVS,UNSPSC,CPV,OKDP,OKPD,CCS)|1|The classiciation scheme id|
 |description|String|1||
 |keyword|String|*||
-|classification|String -> Category::ClassificationCode|*| The classification code drawn from the selected scheme |
-|unit|(Area,Currency)|1| define the units |
+|uri|String|1| URI for the code within the scheme defining this type |
+|code|String|1| Code within the scheme defining this type |
+|unit|(Area,Currency)|1| define the units, if one units matches |
 ## Agreement
   General definition of Commercial Agreements
 
@@ -45,7 +36,7 @@
 |sf_is|String|1|SalesForce row id|
 |part_of_id|String -> Category::Agreement|1|Agreement this is part of, applicable only to Lots|
 |conforms_to_id|String -> Category::Agreement|1|Agreement this conforms to, such as a Contract conforming to a Framework|
-|item_types|Category::ItemType|*|describe the items that can be offered under the agreement|
+|item_type|Category::ItemType|*|describe the items that can be offered under the agreement|
 |min_value|Integer|0..1|Minimum value of award, in pounds sterling|
 |max_value|Integer|0..1|Maximum value of award, in pounds sterling|
 ## Item
@@ -53,7 +44,8 @@
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
-|type|String -> Category::ItemType|1|description of the item|
+|type|String -> Category::ItemType|*| type of the item |
+|unit|(Area,Currency)|1| define the units |
 |value|Object|1|an object of the type matching type->units|
 ## Offering
    Supplier offering against an item, given a number of constraints. This may be extended for different agreements 
