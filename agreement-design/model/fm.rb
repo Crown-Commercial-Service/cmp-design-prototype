@@ -7,13 +7,14 @@ domain :FM do
   end
 end
 
-Category.new :Frameworks do
+Category.new :FM_Agreements do
 
   FM_ID = "FM"
   agreement do
     kind :Framework
     id FM_ID
     fwk_number "RM8330"
+    version "0.1.0"
     description "This agreement is for the provision of Facilities Management"
     start_date date(2018, 10, 01)
   end
@@ -26,6 +27,7 @@ Category.new :Frameworks do
     part_of_id FM_ID
     min_value 0
     max_value 70000000
+    version "0.1.0"
     item_types do
       id ENV_CLEANING
       name "environmental cleaning service"
@@ -36,22 +38,10 @@ Category.new :Frameworks do
       keyword "janitor"
     end
   end
-  # # FM_Domain::FM_Offering.new("fm-offering") do
-  # offering do
-  #   supplier_id "XYZ corp"
-  #   name "XYZ's nifty school cleaning service"
-  #   agreement_id FM_ID
-  #   location_id UK.name
-  #   sector :Education
-  #   item do
-  #     type ENV_CLEANING
-  #     value 3000
-  #   end
-  # end
 
 end
 
-FM.new :FM_catalogue do
+FM.new :FM_Catalogue do
   fm_offering do
     supplier_id "XYZ corp"
     name "XYZ's nifty school cleaning service"

@@ -39,7 +39,7 @@ class Document < Output
                 file.print "|---------|----|------------|-----------|\n"
               end,
               attribute: lambda do |id: , val:, type: , depth:|
-                file.print "|#{val[:name]}|#{val[:type]}|#{multiplicity(val)}|#{val[:description]}|\n"
+                file.print "|#{val[:name]}|#{type_and_link(val)}|#{multiplicity(val)}|#{val[:description]}|\n"
               end
           }, *models)
     end
@@ -66,6 +66,15 @@ class Document < Output
       return m.end.to_s
     end
     return m.to_s
+  end
+
+  private
+
+  def type_and_link(val)
+    if val[:links]
+      return "#{val[:type]} -> #{val[:links]}"
+    end
+    val[:type]
   end
 
 end

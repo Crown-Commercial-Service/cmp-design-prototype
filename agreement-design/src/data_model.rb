@@ -5,6 +5,7 @@ module DataModel
   SINGLE = 1..1
   ONE_TO_MANY = 1..-1
   ZERO_TO_MANY = 0..-1
+  ZERO_OR_ONE = 0..1
 
   class DataType
 
@@ -214,6 +215,7 @@ module DataModel
     selclass = Object.const_set typename, Class.new(Symbol)
     selclass.define_singleton_method(:selection) {args}
     selclass.define_singleton_method(:validate) {|s| selection.member? s.to_sym}
+    selclass.define_singleton_method(:to_s) { "(#{self.selection.join(',')})"}
     return selclass
   end
 

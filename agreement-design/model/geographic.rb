@@ -11,7 +11,7 @@ domain :Geographic do
 
 end
 
-#TODO load these from NUTS config file
+#TODO load these from NUTS config file - the following is just an example
 Geographic.new :NUTS do
 
   # made up codes

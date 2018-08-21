@@ -5,15 +5,15 @@ include DataModel
 
 domain :Category do
 
-  SECTOR = Selection(:ALL, :Education, :CentralGov, :WiderGov)
+  SECTOR = Selection(:ALL, :Education, :CentralGov, :WiderGov, :Etc)
 
   datatype(:QualifiedElement,
            description: "Any datatype with standard qualifiers on it") {
     # constraints
-    attribute :start_date, Date
-    attribute :end_date, Date
-    attribute :min_value, Integer, "Minimum value of award, in pounds sterling"
-    attribute :max_value, Integer, "Maximum value of award, in pounds sterling"
+    attribute :start_date, Date, ZERO_OR_ONE
+    attribute :end_date, Date, ZERO_OR_ONE
+    attribute :min_value, Integer, ZERO_OR_ONE, "Minimum value of award, in pounds sterling"
+    attribute :max_value, Integer, ZERO_OR_ONE, "Maximum value of award, in pounds sterling"
     attribute :sector, SECTOR,
               "Pick list of applicable sectors. TO DO: is this a nested or more complex list?",
               ZERO_TO_MANY
@@ -62,7 +62,7 @@ domain :Category do
   }
 
   datatype(:Offering, extends: Category::QualifiedElement,
-           description: " Supplier offering against an item, given a number of constraints ") {
+           description: " Supplier offering against an item, given a number of constraints. This may be extended for different agreements ") {
     attribute :supplier_id, String, links: Parties::Supplier
     attribute :offerType, String, "subclass of the Offering, based on the Agreement"
     attribute :name, String, links: Parties::Supplier
