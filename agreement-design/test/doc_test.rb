@@ -1,6 +1,6 @@
 require 'test/unit'
 require_relative '../src/doc'
-require_relative '../model/abstract_fm'
+require_relative 'test_model'
 include DataModel
 
 class DocTest < Test::Unit::TestCase
@@ -25,9 +25,9 @@ class DocTest < Test::Unit::TestCase
   def test_dot
     assert_equal("#{PATH}doc/#{NAME}.md", @d.docfile, "file name")
     assert(!File.file?(@d.docfile), "no dotfile")
-    @d.document( Category::FM)
+    @d.document( TestModel::TESTMODEL)
     assert(File.file?(@d.docfile), "file created")
-    @m.document_metamodel( Category)
+    @m.document_metamodel( TestModel)
     assert(File.file?(@m.docfile), "file created")
   end
 end

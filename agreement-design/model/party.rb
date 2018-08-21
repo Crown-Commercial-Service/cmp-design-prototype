@@ -4,7 +4,7 @@ include DataModel
 domain :Parties do
 
   # TODO fill in these types - this is just a skeleton
-  datatype :Party, "Details still to be added" do
+  datatype :Party, description: "Details still to be added" do
     attribute :id, String, "UUID or Salesforce ID?"
   end
 

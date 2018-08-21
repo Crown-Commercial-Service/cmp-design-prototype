@@ -9,7 +9,7 @@ domain :TestModel do
   }
 
   datatype :Table, description: "Test type" do
-    MULT = [0..10]
+    MULT = 0..10
     DESC = "table of values"
     attribute :vals, Integer,
               multiplicity: MULT,

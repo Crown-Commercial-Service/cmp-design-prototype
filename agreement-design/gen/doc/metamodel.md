@@ -4,9 +4,9 @@
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |start_date|Date|0..1||
-|end_date|Date|1||
-|min_value|Integer|1|Minimum value of award, in pounds sterling|
-|max_value|Integer|1|Maximum value of award, in pounds sterling|
+|end_date|Date|0..1||
+|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
+|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
 |sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
 |location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
 ## ItemType extends Category::QualifiedElement
@@ -15,9 +15,9 @@
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |start_date|Date|0..1||
-|end_date|Date|1||
-|min_value|Integer|1|Minimum value of award, in pounds sterling|
-|max_value|Integer|1|Maximum value of award, in pounds sterling|
+|end_date|Date|0..1||
+|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
+|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
 |sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
 |location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
 |id|String|1||
@@ -33,9 +33,9 @@
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |start_date|Date|0..1||
-|end_date|Date|1||
-|min_value|Integer|1|Minimum value of award, in pounds sterling|
-|max_value|Integer|1|Maximum value of award, in pounds sterling|
+|end_date|Date|0..1||
+|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
+|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
 |sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
 |location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
 |kind|(Framework,Lot,Contract)|1|Kind of agreement, including :Framework, :Lot, :Contract|
@@ -57,14 +57,14 @@
 |type|String -> Category::ItemType|1|description of the item|
 |value|Object|1|an object of the type matching type->units|
 ## Offering extends Category::QualifiedElement
-   Supplier offering against an item, given a number of constraints 
+   Supplier offering against an item, given a number of constraints. This may be extended for different agreements 
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |start_date|Date|0..1||
-|end_date|Date|1||
-|min_value|Integer|1|Minimum value of award, in pounds sterling|
-|max_value|Integer|1|Maximum value of award, in pounds sterling|
+|end_date|Date|0..1||
+|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
+|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
 |sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
 |location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
 |supplier_id|String -> Parties::Supplier|1||
@@ -79,7 +79,7 @@
 |---------|----|------------|-----------|
 |offers|Category::Offering|*|description of the item|
 ## Party
-  
+  Details still to be added
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
@@ -110,9 +110,9 @@
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |start_date|Date|0..1||
-|end_date|Date|1||
-|min_value|Integer|1|Minimum value of award, in pounds sterling|
-|max_value|Integer|1|Maximum value of award, in pounds sterling|
+|end_date|Date|0..1||
+|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
+|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
 |sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
 |location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
 |supplier_id|String -> Parties::Supplier|1||
