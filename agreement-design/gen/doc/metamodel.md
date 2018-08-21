@@ -17,17 +17,6 @@
 |description|String|1||
 |uri|String|*| URI for the code |
 |units|(Area,Currency)|1| define the units, if one units matches |
-## QualifiedElement
-  common qualifiers for certain elements
-
-|attribute|type|multiplicity|description|
-|---------|----|------------|-----------|
-|start_date|Date|0..1||
-|end_date|Date|0..1||
-|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
-|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
-|sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
-|location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
 ## ItemType
    Defines the items that can be offered in any given agreement 
 
@@ -39,21 +28,17 @@
 |keyword|String|*||
 |classification|String -> Category::ClassificationCode|*| The classification code drawn from the selected scheme |
 |unit|(Area,Currency)|1| define the units |
-## Agreement extends Category::QualifiedElement
+## Agreement
   General definition of Commercial Agreements
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
-|start_date|Date|0..1||
-|end_date|Date|0..1||
-|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
-|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
-|sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
-|location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
 |kind|(Framework,Lot,Contract)|1|Kind of agreement, including :Framework, :Lot, :Contract|
 |id|String|1|uuid of agreeement|
 |name|String|1|uuid of agreeement|
 |version|String|1|semantic version id of the form X.Y.Z|
+|start_date|Date|1||
+|end_date|Date|1||
 |description|String|1|Describe the agreement|
 |fwk_number|String|1|Framework (RM) number of related framework if required. @Example RM123|
 |sf_typ|String|1|SalesForce data type|
@@ -61,6 +46,8 @@
 |part_of_id|String -> Category::Agreement|1|Agreement this is part of, applicable only to Lots|
 |conforms_to_id|String -> Category::Agreement|1|Agreement this conforms to, such as a Contract conforming to a Framework|
 |item_types|Category::ItemType|*|describe the items that can be offered under the agreement|
+|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
+|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
 ## Item
   Specifices the items that are being offered for an agreement
 
@@ -68,22 +55,18 @@
 |---------|----|------------|-----------|
 |type|String -> Category::ItemType|1|description of the item|
 |value|Object|1|an object of the type matching type->units|
-## Offering extends Category::QualifiedElement
+## Offering
    Supplier offering against an item, given a number of constraints. This may be extended for different agreements 
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
-|start_date|Date|0..1||
-|end_date|Date|0..1||
-|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
-|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
-|sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
-|location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
 |supplier_id|String -> Parties::Supplier|1||
 |offerType|String|1|subclass of the Offering, based on the Agreement|
 |name|String -> Parties::Supplier|1||
 |agreement_id|String -> Category::Agreement|1|The agreement this offering relates to|
 |item|Category::Item|1|description of the item|
+|location_id|String -> Geographic::AreaCode|1..*|Pick list of applicable regions. There must be at least one, even if it is just 'UK'|
+|sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors.|
 ## Catalogue
    A collection of supplier offerings against an item, for an agreement 
 
@@ -121,15 +104,11 @@
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
-|start_date|Date|0..1||
-|end_date|Date|0..1||
-|min_value|Integer|0..1|Minimum value of award, in pounds sterling|
-|max_value|Integer|0..1|Maximum value of award, in pounds sterling|
-|sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors. TO DO: is this a nested or more complex list?|
-|location_id|String -> Geographic::AreaCode|*|Pick list of applicable regions. TO DO: is this a nested or more complex list?|
 |supplier_id|String -> Parties::Supplier|1||
 |offerType|String|1|subclass of the Offering, based on the Agreement|
 |name|String -> Parties::Supplier|1||
 |agreement_id|String -> Category::Agreement|1|The agreement this offering relates to|
 |item|Category::Item|1|description of the item|
+|location_id|String -> Geographic::AreaCode|1..*|Pick list of applicable regions. There must be at least one, even if it is just 'UK'|
+|sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors.|
 |sc_cleared|String|1||

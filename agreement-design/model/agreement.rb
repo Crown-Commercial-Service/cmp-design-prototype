@@ -25,20 +25,6 @@ domain :Category do
     attribute :units, Selection(:Area, :Currency), " define the units, if one units matches "
   }
 
-  datatype( :QualifiedElement, description: "common qualifiers for certain elements") {
-    # Qualifications
-    attribute :start_date, Date, ZERO_OR_ONE
-    attribute :end_date, Date, ZERO_OR_ONE
-    attribute :min_value, Integer, ZERO_OR_ONE, "Minimum value of award, in pounds sterling"
-    attribute :max_value, Integer, ZERO_OR_ONE, "Maximum value of award, in pounds sterling"
-    attribute :sector, SECTOR,
-              "Pick list of applicable sectors. TO DO: is this a nested or more complex list?",
-              ZERO_TO_MANY
-    attribute :location_id, String, ZERO_TO_MANY,
-              "Pick list of applicable regions. TO DO: is this a nested or more complex list?",
-              links: Geographic::AreaCode
-  }
-
   datatype(:ItemType,
            description: " Defines the items that can be offered in any given agreement ") {
     attribute :id, String
@@ -49,7 +35,7 @@ domain :Category do
     attribute :unit, Selection(:Area, :Currency), " define the units "
   }
 
-  datatype(:Agreement, extends: :QualifiedElement,
+  datatype(:Agreement,
            description: "General definition of Commercial Agreements") {
 
     # identify the agreement
@@ -59,6 +45,8 @@ domain :Category do
     attribute :id, String, "uuid of agreeement"
     attribute :name, String, "uuid of agreeement"
     attribute :version, String, "semantic version id of the form X.Y.Z"
+    attribute :start_date, Date
+    attribute :end_date, Date
     attribute :description, String, "Describe the agreement"
     attribute :fwk_number, String, "Framework (RM) number of related framework if required. @Example RM123"
     attribute :sf_typ, String, "SalesForce data type"
@@ -70,6 +58,10 @@ domain :Category do
     attribute :item_types, :ItemType, ZERO_TO_MANY,
               "describe the items that can be offered under the agreement"
 
+    # Qualifications
+    attribute :min_value, Integer, ZERO_OR_ONE, "Minimum value of award, in pounds sterling"
+    attribute :max_value, Integer, ZERO_OR_ONE, "Maximum value of award, in pounds sterling"
+
   }
 
   datatype(:Item,
@@ -78,13 +70,19 @@ domain :Category do
     attribute :value, Object, "an object of the type matching type->units"
   }
 
-  datatype(:Offering, extends: :QualifiedElement,
+  datatype(:Offering, 
            description: " Supplier offering against an item, given a number of constraints. This may be extended for different agreements ") {
     attribute :supplier_id, String, links: Parties::Supplier
     attribute :offerType, String, "subclass of the Offering, based on the Agreement"
     attribute :name, String, links: Parties::Supplier
     attribute :agreement_id, String, "The agreement this offering relates to", links: :Agreement
     attribute :item, :Item, "description of the item"
+    # Qualifications
+    attribute :location_id, String, ONE_TO_MANY,
+              "Pick list of applicable regions. There must be at least one, even if it is just 'UK'",
+              links: Geographic::AreaCode
+    attribute :sector, SECTOR, "Pick list of applicable sectors.",
+              ZERO_TO_MANY
   }
 
   datatype(:Catalogue,

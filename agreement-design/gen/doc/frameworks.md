@@ -4,7 +4,7 @@
    - fwk_number RM8330
    - version 0.1.0
    - description This agreement is for the provision of Facilities Management
-   - start_date.1 2018-10-01
+   - start_date 2018-10-01
 ### low-to-mid value Facilities Management Lot FM lot 1 
    - kind Lot
    - id FM lot 1
