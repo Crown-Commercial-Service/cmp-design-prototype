@@ -33,6 +33,10 @@ gulp.task('copy-ccs', function () {
         .pipe(gulp.dest('./temp'));
 });
 
+// as a terrible hack, to prevent having to rewrite root stylesheets,
+// we replace bits of text in the GOV.UK resources. This is just to
+// get the right visiual effect with minimal effort - a better method
+// is of course needed.
 gulp.task('transform-scss-to-ccs', function () {
     return gulp.src('./temp/**/*.scss')
         .pipe(replace(
@@ -46,6 +50,11 @@ gulp.task('transform-scss-to-ccs', function () {
             'CCS_WHITE_SML_AW.png'))
         .pipe(gulp.dest('./temp'));
 });
+
+// as a terrible hack, to prevent having to rewrite root templates,
+// we replace bits of text in the GOV.UK resources. This is just to
+// get the right visiual effect with minimal effort - a better method
+// is of course needed.
 gulp.task('transform-njk-to-ccs', function () {
     return gulp.src('./temp/**/*.njk')
         .pipe(replace(
