@@ -3,13 +3,12 @@ require_relative 'party'
 require_relative 'geographic'
 include DataModel
 
-domain :Category do
+domain :Agreements do
 
   SECTOR = Selection(:ALL, :Education, :CentralGov, :WiderGov, :Etc)
   UNITS = Selection(:Area, :Currency)
   CLASSIFICATION_SCHEMES = Selection(:CPV, :CPVS, :UNSPSC, :CPV, :OKDP, :OKPD, :CCS)
-  comment(CLASSIFICATION_SCHEMES, :CPV,
-         description: "CCS invented schemes")
+  code(:CCS, description: "CCS invented schemes")
 
   datatype(:ItemType,
            description: " Defines the items that can be offered in any selected agreements
@@ -26,11 +25,11 @@ variable facts in their Offer to supplement the description of how they support 
   }
 
   CATEGORY_OF_NEED = Selection(:Budget, :Location, :Service)
-  comment(CATEGORY_OF_NEED, :Budget, description: "What is the budget the buyer has for their need?
+  code(:Budget, description: "What is the budget the buyer has for their need?
 Match the budget to the value range of the agreement, and the value range of supplier offers")
-  comment(CATEGORY_OF_NEED, :Location, description: "Where is the need?
+  code(:Location, description: "Where is the need?
 Match location needs to locations of offers")
-  comment(CATEGORY_OF_NEED, :Service, description: "What sort of things do they need?
+  code(:Service, description: "What sort of things do they need?
 Match the service to item types, their keywords, and offering titles.")
 
   datatype(:Need,

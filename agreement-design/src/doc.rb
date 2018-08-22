@@ -23,6 +23,9 @@ class Document < Output
     File.open(self.docfile, "w") do |file|
       transform_metamodel(
           {
+              before_model: lambda do |model:|
+                file.print %Q!\# Data model: #{model}\n!
+              end,
               before_group: lambda do |group|
                 file.print %Q!\# #{cat.class}: #{cat.name}\n!
                 if (cat.respond_to?(:description))
@@ -38,8 +41,16 @@ class Document < Output
                 file.print "|attribute|type|multiplicity|description|\n"
                 file.print "|---------|----|------------|-----------|\n"
               end,
-              attribute: lambda do |id: , val:, type: , depth:|
+              attribute: lambda do |id:, val:, type:, depth:|
                 file.print "|#{val[:name]}|#{type_and_link(val)}|#{multiplicity(val)}|#{val[:description]}|\n"
+              end,
+              before_codes: lambda do |model:|
+                file.print "# Codes\n"
+              end,
+              code: lambda do |model:, code:|
+                file.print "## #{code[:id]} #{code[:title]}\n"
+                file.print "#{code[:description]}\n"
+                file.print "#{code[:uri]}\n"
               end
           }, *models)
     end

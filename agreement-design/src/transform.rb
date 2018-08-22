@@ -17,6 +17,14 @@ module Transform
     return [model: model, before: before]
   end
 
+  def before_codes_lambda model: nil
+    return [model: model]
+  end
+
+  def code_lambda model: nil, code: nil
+    return [model: model, code: code]
+  end
+
   def before_group_lambda name: nil, depth: 0
     return [name: name, depth: depth]
   end
@@ -30,7 +38,7 @@ module Transform
   end
 
   def after_type_lambda type: nil, before: nil, depth: 0
-    return [ type: type, before: before, depth: depth]
+    return [type: type, before: before, depth: depth]
   end
 
   def before_array_lambda index: 0, decl: nil, depth: 0
@@ -41,7 +49,7 @@ module Transform
     return [index: index, decl: decl, depth: depth, before: before]
   end
 
-  def attribute_lambda id: , val: , depth: 0, type: nil
+  def attribute_lambda id:, val:, depth: 0, type: nil
     return [id: id, val: val, depth: depth, type: type]
   end
 
@@ -77,6 +85,12 @@ module Transform
         cond_call(lambdas, :after_type, *after_type_lambda(type: type, before: before))
       end
       cond_call(lambdas, :after_model, *after_model_lambda(model: model, before: dom))
+      if model.respond_to? :codes
+        cond_call(lambdas, :before_codes, *before_codes_lambda(model: model))
+        for code in model.codes.values
+          cond_call(lambdas, :code, *code_lambda(model: model, code: code))
+        end
+      end
     end
   end
 

@@ -1,6 +1,6 @@
 require_relative 'abstract_agreement'
 
-Category.new :FM do
+Agreements.new :FM do
 
   FM_ID = "FM"
   framework do

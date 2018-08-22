@@ -155,13 +155,14 @@ module DataModel
         end
       end
 
-      def comment( *context,
+      def code( *context,
                  description: nil, title: nil, uri: nil)
-        unless instance_variable_defined? :@comments
-          @comments = {}
-          self.define_singleton_method(:comments) {@comments}
+        unless instance_variable_defined? :@codes
+          @codes = {}
+          self.define_singleton_method(:codes) {@codes}
         end
-        @comments["#{context.join'.'}"] = {:description => description, :title => title, :uri => uri}
+        id = "#{context.join '.'}"
+        @codes[id] = {:id => id, :description => description, :title => title, :uri => uri}
       end
 
     end

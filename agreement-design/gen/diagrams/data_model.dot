@@ -1,7 +1,7 @@
 strict digraph {
-subgraph cluster_Category {
+subgraph cluster_Agreements {
 node [shape=plaintext margin=0];
-label=Category;
+label=Agreements;
 "ItemType" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ItemType</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-scheme_id</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-keyword</TD></TR><TR><TD ALIGN="LEFT">-uri</TD></TR><TR><TD ALIGN="LEFT">-code</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR></table>>];
 "Need" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Need</TD></TH><TR><TD ALIGN="LEFT">-buyer_id</TD></TR><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR></table>>];
 "Agreement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Agreement</TD></TH><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-version</TD></TR><TR><TD ALIGN="LEFT">-start_date</TD></TR><TR><TD ALIGN="LEFT">-end_date</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-fwk_number</TD></TR><TR><TD ALIGN="LEFT">-sf_typ</TD></TR><TR><TD ALIGN="LEFT">-sf_is</TD></TR><TR><TD ALIGN="LEFT">-part_of_id</TD></TR><TR><TD ALIGN="LEFT">-conforms_to_id</TD></TR><TR><TD ALIGN="LEFT">-item_type</TD></TR><TR><TD ALIGN="LEFT">-min_value</TD></TR><TR><TD ALIGN="LEFT">-max_value</TD></TR></table>>];

@@ -1,13 +1,13 @@
 require_relative 'agreement'
 
 domain(:FM) {
-  datatype(:FM_Offering, extends: Category::Offering,
+  datatype(:FM_Offering, extends: Agreements::Offering,
            description: " An offer for FM elements ") {
     attribute :sc_cleared, String
   }
 }
 
-Category.new :FM_Agreements do
+Agreements.new :FM_Agreements do
 
   FM_ID = "FM"
   agreement {

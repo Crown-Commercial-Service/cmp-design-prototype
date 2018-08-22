@@ -1,3 +1,4 @@
+# Data model: Agreements
 ## ItemType
    Defines the items that can be offered in any selected agreements
 Agreements hava a number of items that can have values defining the agreement. The Items should
@@ -38,9 +39,9 @@ schemes, but is not a one-to-one match.
 |fwk_number|String|1|Framework (RM) number of related framework if required. @Example RM123|
 |sf_typ|String|1|SalesForce data type|
 |sf_is|String|1|SalesForce row id|
-|part_of_id|String -> Category::Agreement|1|Agreement this is part of, applicable only to Lots|
-|conforms_to_id|String -> Category::Agreement|1|Agreement this conforms to, such as a Contract conforming to a Framework|
-|item_type|Category::ItemType|*|describe the items that can be offered under the agreement|
+|part_of_id|String -> Agreements::Agreement|1|Agreement this is part of, applicable only to Lots|
+|conforms_to_id|String -> Agreements::Agreement|1|Agreement this conforms to, such as a Contract conforming to a Framework|
+|item_type|Agreements::ItemType|*|describe the items that can be offered under the agreement|
 |min_value|Integer|0..1|Minimum value of award, in pounds sterling|
 |max_value|Integer|0..1|Maximum value of award, in pounds sterling|
 ## Item
@@ -48,7 +49,7 @@ schemes, but is not a one-to-one match.
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
-|type|String -> Category::ItemType|1| type of the item |
+|type|String -> Agreements::ItemType|1| type of the item |
 |unit|(Area,Currency)|1| define the units |
 |value|Object|1|an object of the type matching type->units|
 ## Offering
@@ -58,12 +59,12 @@ variable facts in their Offer to supplement the description of how they support 
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
-|agreement_id|String -> Category::Agreement|1|The agreement this offering relates to|
+|agreement_id|String -> Agreements::Agreement|1|The agreement this offering relates to|
 |supplier_id|String -> Parties::Party|1||
 |offerType|String|1|Name of the subclass of the Offering, supporting the Agreement|
 |name|String|1||
 |description|String|1||
-|item|Category::Item|*|details of the item|
+|item|Agreements::Item|*|details of the item|
 |location_id|String -> Geographic::AreaCode|1..*|Pick list of applicable regions. There must be at least one, even if it is just 'UK'|
 |sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors.|
 ## Catalogue
@@ -71,7 +72,7 @@ variable facts in their Offer to supplement the description of how they support 
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
-|offers|Category::Offering|*|description of the item|
+|offers|Agreements::Offering|*|description of the item|
 ## Involvement
   Involvement relationship between a party and an agreement
 Technology strategy documents call this type 'interest' but perhaps this could
@@ -79,9 +80,26 @@ be confused with the accounting interest
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
-|agreement_id|String -> Category::Agreement|1|The agreement this interest relates to|
+|agreement_id|String -> Agreements::Agreement|1|The agreement this interest relates to|
 |party_id|String -> Parties::Party|1|The party this interest relates to|
 |role|(AwardedSupplier,AwardedBuyer,SupplyingQuote,RequestingQuote,Etc)|1|The role of the party in the involvment|
+# Codes
+## CPV 
+CCS invented schemes
+
+## Budget 
+What is the budget the buyer has for their need?
+Match the budget to the value range of the agreement, and the value range of supplier offers
+
+## Location 
+Where is the need?
+Match location needs to locations of offers
+
+## Service 
+What sort of things do they need?
+Match the service to item types, their keywords, and offering titles.
+
+# Data model: Parties
 ## Party
   
   The party is used to identify buyers and suppliers. Since some organisations act as
@@ -95,6 +113,7 @@ Details still to be added
 |id|String|1|UUID or Salesforce ID?|
 |supplier_registration_completed|Date|1||
 |buyer_registration_completed|Date|1||
+# Data model: Geographic
 ## AreaCode
   
 
@@ -103,17 +122,18 @@ Details still to be added
 |name|String|1||
 |description|String|1||
 |subcode|Geographic::AreaCode|*|UUID or Salesforce ID?|
-## FM_Offering extends Category::Offering
+# Data model: FM
+## FM_Offering extends Agreements::Offering
    An offer for FM elements 
 
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
-|agreement_id|String -> Category::Agreement|1|The agreement this offering relates to|
+|agreement_id|String -> Agreements::Agreement|1|The agreement this offering relates to|
 |supplier_id|String -> Parties::Party|1||
 |offerType|String|1|Name of the subclass of the Offering, supporting the Agreement|
 |name|String|1||
 |description|String|1||
-|item|Category::Item|*|details of the item|
+|item|Agreements::Item|*|details of the item|
 |location_id|String -> Geographic::AreaCode|1..*|Pick list of applicable regions. There must be at least one, even if it is just 'UK'|
 |sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors.|
 |sc_cleared|String|1||
