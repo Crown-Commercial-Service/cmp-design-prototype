@@ -8,17 +8,14 @@ domain :Category do
   SECTOR = Selection(:ALL, :Education, :CentralGov, :WiderGov, :Etc)
   UNITS = Selection(:Area, :Currency)
   CLASSIFICATION_SCHEMES = Selection(:CPV, :CPVS, :UNSPSC, :CPV, :OKDP, :OKPD, :CCS)
-
-  datatype(:ClassificationScheme,
-           description: " Defines the standards schemes for items ") {
-    attribute :id, CLASSIFICATION_SCHEMES, "The classiciation SCHEME id"
-    attribute :title, String
-    attribute :description, String
-    attribute :uri, String, "URL of source. See http://standard.open-contracting.org/latest/en/schema/codelists/#item-classification-scheme"
-  }
+  comment(CLASSIFICATION_SCHEMES, :CPV,
+         description: "CCS invented schemes")
 
   datatype(:ItemType,
-           description: " Defines the items that can be offered in any selected agreements ") {
+           description: " Defines the items that can be offered in any selected agreements
+Agreements hava a number of items that can have values defining the agreement. The Items should
+constrain the key quantifiable elements of an agreement award. A supplier may provide additional
+variable facts in their Offer to supplement the description of how they support the agreement.") {
     attribute :id, String, "The code id, which must be unique across all schemes"
     attribute :scheme_id, CLASSIFICATION_SCHEMES, "The classiciation scheme id"
     attribute :description, String
@@ -26,6 +23,24 @@ domain :Category do
     attribute :uri, String, " URI for the code within the scheme defining this type "
     attribute :code, String, " Code within the scheme defining this type "
     attribute :unit, UNITS, " define the units, if one units matches "
+  }
+
+  CATEGORY_OF_NEED = Selection(:Budget, :Location, :Service)
+  comment(CATEGORY_OF_NEED, :Budget, description: "What is the budget the buyer has for their need?
+Match the budget to the value range of the agreement, and the value range of supplier offers")
+  comment(CATEGORY_OF_NEED, :Location, description: "Where is the need?
+Match location needs to locations of offers")
+  comment(CATEGORY_OF_NEED, :Service, description: "What sort of things do they need?
+Match the service to item types, their keywords, and offering titles.")
+
+  datatype(:Need,
+           description: " Defines a buyer's need which can be matched to agreement items and other details
+The need matches closely to our definitions of agreements under 'items types' and their classification
+schemes, but is not a one-to-one match.") {
+    attribute :buyer_id, String, "The buyer expressing the need"
+    attribute :kind, Selection(:Budget, :Location,)
+    attribute :kind, Selection(:Budget, :Location, :Service)
+    attribute :unit, UNITS, "The units typically used to express the need"
   }
 
   datatype(:Agreement,
@@ -58,30 +73,43 @@ domain :Category do
   }
 
   datatype(:Item,
-           description: "Specifices the items that are being offered for an agreement") {
-    attribute :type, String, ZERO_TO_MANY, " type of the item ", links: :ItemType
+           description: "Specifies the value of an item that is being offered for an agreement") {
+    attribute :type, String, " type of the item ", links: :ItemType
     attribute :unit, UNITS, " define the units "
     attribute :value, Object, "an object of the type matching type->units"
   }
 
-  datatype(:Offering, 
-           description: " Supplier offering against an item, given a number of constraints. This may be extended for different agreements ") {
-    attribute :supplier_id, String, links: Parties::Supplier
-    attribute :offerType, String, "subclass of the Offering, based on the Agreement"
-    attribute :name, String, links: Parties::Supplier
+  datatype(:Offering,
+           description: " Supplier offering against an item or items of an agreement.
+This may be extended for different agreements. A supplier may provide additional
+variable facts in their Offer to supplement the description of how they support the agreement. ") {
     attribute :agreement_id, String, "The agreement this offering relates to", links: :Agreement
-    attribute :item, :Item, "description of the item"
+    attribute :supplier_id, String, links: Parties::Party
+    attribute :offerType, String, "Name of the subclass of the Offering, supporting the Agreement"
+    attribute :name, String
+    attribute :description, String
+    attribute :item, :Item, ZERO_TO_MANY, "details of the item"
     # Qualifications
     attribute :location_id, String, ONE_TO_MANY,
               "Pick list of applicable regions. There must be at least one, even if it is just 'UK'",
               links: Geographic::AreaCode
-    attribute :sector, SECTOR, "Pick list of applicable sectors.",
-              ZERO_TO_MANY
+    attribute :sector, SECTOR, ZERO_TO_MANY,
+              "Pick list of applicable sectors."
   }
 
   datatype(:Catalogue,
            description: " A collection of supplier offerings against an item, for an agreement ") {
     attribute :offers, :Offering, ZERO_TO_MANY, "description of the item"
+  }
+
+  datatype(:Involvement,
+           description: "Involvement relationship between a party and an agreement
+Technology strategy documents call this type 'interest' but perhaps this could
+be confused with the accounting interest") {
+    attribute :agreement_id, String, "The agreement this interest relates to", links: :Agreement
+    attribute :party_id, String, "The party this interest relates to", links: Parties::Party
+    attribute :role, Selection(:AwardedSupplier, :AwardedBuyer, :SupplyingQuote, :RequestingQuote, :Etc),
+              "The role of the party in the involvment"
   }
 
 end

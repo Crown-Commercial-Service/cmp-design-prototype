@@ -128,7 +128,7 @@ module DataModel
           @types = {}
           self.define_singleton_method(:types) {@types}
         end
-        extends= getType(extends)
+        extends = getType(extends)
         type = self.const_set name, Class.new(extends)
         @types[name] = type
         dom = self
@@ -153,6 +153,15 @@ module DataModel
         else
           raise "type refs must be symbol or DataType class"
         end
+      end
+
+      def comment( *context,
+                 description: nil, title: nil, uri: nil)
+        unless instance_variable_defined? :@comments
+          @comments = {}
+          self.define_singleton_method(:comments) {@comments}
+        end
+        @comments["#{context.join'.'}"] = {:description => description, :title => title, :uri => uri}
       end
 
     end
@@ -212,7 +221,7 @@ module DataModel
     selclass = Object.const_set typename, Class.new(Symbol)
     selclass.define_singleton_method(:selection) {args}
     selclass.define_singleton_method(:validate) {|s| selection.member? s.to_sym}
-    selclass.define_singleton_method(:to_s) { "(#{self.selection.join(',')})"}
+    selclass.define_singleton_method(:to_s) {"(#{self.selection.join(',')})"}
     return selclass
   end
 

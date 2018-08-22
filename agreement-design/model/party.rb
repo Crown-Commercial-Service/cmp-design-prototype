@@ -1,18 +1,19 @@
 require_relative '../src/data_model'
 include DataModel
 
-domain :Parties do
+domain(:Parties) {
 
-  # TODO fill in these types - this is just a skeleton
-  datatype :Party, description: "Details still to be added" do
+  datatype(:Party, description: "
+  The party is used to identify buyers and suppliers. Since some organisations act as
+both buyers and suppliers we use the same record for both, but most organisations will
+be one or the other. The onvolvement of the party with an agreement determine  the role in
+that contenxt.
+Details still to be added") {
     attribute :id, String, "UUID or Salesforce ID?"
-  end
-
-  datatype :Supplier, extends: Parties::Party do
-
-  end
-
-  datatype :Buyer, extends: Parties::Party do
-
-  end
-end
+    #TODO add all the usual fields
+    # Supplier registration
+    attribute :supplier_registration_completed, Date
+    # Buyer registration
+    attribute :buyer_registration_completed, Date
+  }
+}

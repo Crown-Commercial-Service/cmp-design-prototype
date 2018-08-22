@@ -2,19 +2,18 @@ strict digraph {
 subgraph cluster_Category {
 node [shape=plaintext margin=0];
 label=Category;
-"ClassificationScheme" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ClassificationScheme</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-title</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-uri</TD></TR></table>>];
 "ItemType" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ItemType</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-scheme_id</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-keyword</TD></TR><TR><TD ALIGN="LEFT">-uri</TD></TR><TR><TD ALIGN="LEFT">-code</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR></table>>];
+"Need" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Need</TD></TH><TR><TD ALIGN="LEFT">-buyer_id</TD></TR><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR></table>>];
 "Agreement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Agreement</TD></TH><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-version</TD></TR><TR><TD ALIGN="LEFT">-start_date</TD></TR><TR><TD ALIGN="LEFT">-end_date</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-fwk_number</TD></TR><TR><TD ALIGN="LEFT">-sf_typ</TD></TR><TR><TD ALIGN="LEFT">-sf_is</TD></TR><TR><TD ALIGN="LEFT">-part_of_id</TD></TR><TR><TD ALIGN="LEFT">-conforms_to_id</TD></TR><TR><TD ALIGN="LEFT">-item_type</TD></TR><TR><TD ALIGN="LEFT">-min_value</TD></TR><TR><TD ALIGN="LEFT">-max_value</TD></TR></table>>];
 "Item" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Item</TD></TH><TR><TD ALIGN="LEFT">-type</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR><TR><TD ALIGN="LEFT">-value</TD></TR></table>>];
-"Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Offering</TD></TH><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-offerType</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector</TD></TR></table>>];
+"Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Offering</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-offerType</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector</TD></TR></table>>];
 "Catalogue" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Catalogue</TD></TH><TR><TD ALIGN="LEFT">-offers</TD></TR></table>>];
+"Involvement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Involvement</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-party_id</TD></TR><TR><TD ALIGN="LEFT">-role</TD></TR></table>>];
 }
 subgraph cluster_Parties {
 node [shape=plaintext margin=0];
 label=Parties;
-"Party" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Party</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR></table>>];
-"Supplier" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Supplier</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR></table>>];
-"Buyer" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Buyer</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR></table>>];
+"Party" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Party</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-supplier_registration_completed</TD></TR><TR><TD ALIGN="LEFT">-buyer_registration_completed</TD></TR></table>>];
 }
 subgraph cluster_Geographic {
 node [shape=plaintext margin=0];
@@ -25,13 +24,12 @@ label=Geographic;
 "Agreement" -> "Agreement" [label="conforms_to_id" arrowhead = "open" arrowtail = "none" ];
 "Agreement" -> "ItemType" [label="{contains} item_type" arrowhead = "none" arrowtail = "diamond" ];
 "Item" -> "ItemType" [label="type" arrowhead = "open" arrowtail = "none" ];
-"Offering" -> "Supplier" [label="supplier_id" arrowhead = "open" arrowtail = "none" ];
-"Offering" -> "Supplier" [label="name" arrowhead = "open" arrowtail = "none" ];
 "Offering" -> "Agreement" [label="agreement_id" arrowhead = "open" arrowtail = "none" ];
+"Offering" -> "Party" [label="supplier_id" arrowhead = "open" arrowtail = "none" ];
 "Offering" -> "Item" [label="{contains} item" arrowhead = "none" arrowtail = "diamond" ];
 "Offering" -> "AreaCode" [label="location_id" arrowhead = "open" arrowtail = "none" ];
 "Catalogue" -> "Offering" [label="{contains} offers" arrowhead = "none" arrowtail = "diamond" ];
-"Supplier" -> "Party" [label="extends" arrowhead = "none" arrowtail = "normal" ];
-"Buyer" -> "Party" [label="extends" arrowhead = "none" arrowtail = "normal" ];
+"Involvement" -> "Agreement" [label="agreement_id" arrowhead = "open" arrowtail = "none" ];
+"Involvement" -> "Party" [label="party_id" arrowhead = "open" arrowtail = "none" ];
 "AreaCode" -> "AreaCode" [label="{contains} subcode" arrowhead = "none" arrowtail = "diamond" ];
 }
