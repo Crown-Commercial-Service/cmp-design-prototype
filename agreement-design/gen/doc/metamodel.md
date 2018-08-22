@@ -84,7 +84,7 @@ be confused with the accounting interest
 |party_id|String -> Parties::Party|1|The party this interest relates to|
 |role|(AwardedSupplier,AwardedBuyer,SupplyingQuote,RequestingQuote,Etc)|1|The role of the party in the involvment|
 # Codes
-## CPV 
+## CCS 
 CCS invented schemes
 
 ## Budget 
