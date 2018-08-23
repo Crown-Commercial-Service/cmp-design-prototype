@@ -13,21 +13,21 @@ class DocTest < Test::Unit::TestCase
 
   def setup
     @d = Document.new(PATH, NAME)
-    if File.file?(@d.docfile)
-      File.delete(@d.docfile)
+    if File.file?(@d.filepath)
+      File.delete(@d.filepath)
     end
     @m = Document.new(PATH, META)
-    if File.file?(@d.docfile)
-      File.delete(@d.docfile)
+    if File.file?(@d.filepath)
+      File.delete(@d.filepath)
     end
   end
 
   def test_dot
-    assert_equal("#{PATH}doc/#{NAME}.md", @d.docfile, "file name")
-    assert(!File.file?(@d.docfile), "no dotfile")
+    assert_equal("#{PATH}doc/#{NAME}.md", @d.filepath, "file name")
+    assert(!File.file?(@d.filepath), "no dotfile")
     @d.document( TestModel::TESTMODEL)
-    assert(File.file?(@d.docfile), "file created")
+    assert(File.file?(@d.filepath), "file created")
     @m.document_metamodel( TestModel)
-    assert(File.file?(@m.docfile), "file created")
+    assert(File.file?(@m.filepath), "file created")
   end
 end

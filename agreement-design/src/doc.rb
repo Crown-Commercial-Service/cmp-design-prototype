@@ -3,15 +3,18 @@ include Transform
 
 class Document < Output
 
+  def initialize dir, name
+    super File.join( dir, "doc"), name, "md"
+  end
+
   def document *models
-    FileUtils.mkpath doc_path
-    File.open(self.docfile, "w") do |file|
+    file do |file|
       transform_datamodel(
           {
-              :before_type => lambda do |type:, depth: 0|
+              :before_type => lambda do |type:, depth: 0, index:,total:|
                 file.print %Q!####{'#' * depth} #{type.name} #{type.attributes[:id] || ""} \n!
               end,
-              :attribute => lambda do |id:, val:, depth: 0, type: nil|
+              :attribute => lambda do |id:, val:, depth: 0, type: nil, index:, total:|
                 file.print %Q!#{"  " * depth} - #{id} #{val}\n!
               end
           }, *models)
@@ -19,8 +22,7 @@ class Document < Output
   end
 
   def document_metamodel *models
-    FileUtils.mkpath doc_path
-    File.open(self.docfile, "w") do |file|
+    file do |file|
       transform_metamodel(
           {
               before_model: lambda do |model:|
@@ -32,7 +34,7 @@ class Document < Output
                   file.print %Q! #{cat.description}\n!
                 end
               end,
-              before_type: lambda do |type:, depth:|
+              before_type: lambda do |type:, depth:, index:, total:|
                 file.print "## #{type.typename}"
                 if type.extends
                   file.print " extends #{type.extends}"
@@ -41,7 +43,7 @@ class Document < Output
                 file.print "|attribute|type|multiplicity|description|\n"
                 file.print "|---------|----|------------|-----------|\n"
               end,
-              attribute: lambda do |id:, val:, type:, depth:|
+              attribute: lambda do |id:, val:, type:, depth:, index:, total:|
                 file.print "|#{val[:name]}|#{type_and_link(val)}|#{multiplicity(val)}|#{val[:description]}|\n"
               end,
               before_codes: lambda do |model:|
@@ -54,14 +56,6 @@ class Document < Output
               end
           }, *models)
     end
-  end
-
-  def docfile
-    File.join(doc_path, "#{self.name}.md")
-  end
-
-  def doc_path
-    File.join(self.path, "doc")
   end
 
   def multiplicity m

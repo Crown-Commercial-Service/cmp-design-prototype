@@ -4,6 +4,10 @@ include Transform
 
 class Diagram < Output
 
+  def initialize dir, name
+    super dir, name, ".dot"
+  end
+
   def dotfile
     File.join(diagram_path, "#{self.name}.dot")
   end
@@ -30,14 +34,14 @@ class Diagram < Output
               after_model: lambda do |model:, before:|
                 file.print "}\n"
               end,
-              before_type: lambda do |type:, depth:|
+              before_type: lambda do |type:, depth:, index:, total:|
                 file.print %Q("#{type.typename}" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>#{type.typename}</TD></TH>)
               end,
               after_type: lambda do |type:, depth:, before:|
                 file.print "</table>"
                 file.print ">];\n"
               end,
-              attribute: lambda do |id:, val:, depth:, type:|
+              attribute: lambda do |id:, val:, depth:, type:, index:, total:|
                 file.print %Q(<TR><TD ALIGN="LEFT">-#{id}</TD></TR>)
               end,
           },
@@ -46,7 +50,7 @@ class Diagram < Output
       #  links
       transform_metamodel(
           {
-              before_type: lambda do | type:, depth: |
+              before_type: lambda do |type:, depth:, index:, total:|
                 if type.superclass < DataType
                   link(file, type.typename, type.superclass.typename,
                        label: "extends",
@@ -54,10 +58,10 @@ class Diagram < Output
                        arrowtail: "normal")
                 end
               end,
-              :attribute => lambda do |id:, val: , depth: 0, type:|
+              :attribute => lambda do |id:, val:, depth: 0, type:, index:, total:|
                 if val[:links] || val[:type] < DataType
                   contains = (val[:type] < DataType)
-                  link(file, type.typename, val[:links]? val[:links].typename : val[:type].typename,
+                  link(file, type.typename, val[:links] ? val[:links].typename : val[:type].typename,
                        label: %Q!#{contains ? "{contains} " : ""}#{val[:name]}!,
                        arrowhead: contains ? "none" : "open",
                        arrowtail: contains ? "diamond" : "none")
@@ -92,11 +96,11 @@ class Diagram < Output
   private
 
   def image_path
-    File.join(self.path, "images")
+    File.join(self.dir, "images")
   end
 
   def diagram_path
-    File.join(self.path, "diagrams")
+    File.join(self.dir, "diagrams")
   end
 
   def link file, el1, el2, label: el2, arrowhead: nil, arrowtail: nil

@@ -15,10 +15,8 @@ class API < Output
   #     transform_datamodel(
   #         {
   #             :before_type => lambda do |type:, depth: 0|
-  #               file.print %Q!####{'#' * depth} #{type.name} #{type.attributes[:id] || ""} \n!
   #             end,
   #             :attribute => lambda do |id:, val:, depth: 0, type: nil|
-  #               file.print %Q!#{"  " * depth} - #{id} #{val}\n!
   #             end
   #         }, *models)
   #   end

@@ -3,7 +3,7 @@ require_relative '../src/doc'
 require_relative 'test_model'
 include DataModel
 
-class DocTest < Test::Unit::TestCase
+class TransformTest < Test::Unit::TestCase
 
   def test_model
     the_model = TestModel::TESTMODEL
@@ -21,7 +21,7 @@ class DocTest < Test::Unit::TestCase
               puts "after group #{name}, #{depth}"
               assert(before == :group_context)
             end,
-            before_type: lambda do |type:, depth:|
+            before_type: lambda do |type:, depth:, index:, total:|
               puts "before type  #{type}, #{depth}"
               assert(type.class < DataType)
               return :type_context
@@ -30,8 +30,8 @@ class DocTest < Test::Unit::TestCase
               puts "after type  #{type}, #{depth}"
               assert(before == :type_context)
             end,
-            before_array: lambda do |index:, decl:, depth: |
-              puts "before array #{index}, #{decl}, #{depth}"
+            before_array: lambda do |name:, decl:, depth:, total:|
+              puts "before array #{name}, #{decl}, #{depth}"
               assert(decl.class <= Array)
               return :array_context
             end,
@@ -39,7 +39,7 @@ class DocTest < Test::Unit::TestCase
               puts "after array #{index}, #{decl}, #{depth}, #{before}"
               assert(before == :array_context)
             end,
-            attribute: lambda do |id: , val: , depth: 0, type: 0|
+            attribute: lambda do |id:, val:, depth: 0, type: 0, index:, total:|
               puts "attribute #{id}, #{val}, #{depth}, #{type}"
             end,
         },
@@ -56,25 +56,25 @@ class DocTest < Test::Unit::TestCase
             before_group: lambda do |name:, depth:|
               assert(false, "shouldn't be called")
             end,
-            after_group: lambda do |name:, depth: , before:|
+            after_group: lambda do |name:, depth:, before:|
               assert(false, "shouldn't be called")
             end,
-            before_type: lambda do | type:, depth:|
+            before_type: lambda do |type:, depth:, index:, total:|
               puts "before type #{type}, #{depth}"
               assert(type <= DataType)
               return :type_context
             end,
-            after_type: lambda do | type:, depth:, before: nil|
+            after_type: lambda do |type:, depth:, before: nil|
               puts "after type #{type}, #{depth}"
               assert(before == :type_context)
             end,
-            before_array: lambda do |index:, decl:, depth: |
+            before_array: lambda do |index:, decl:, depth:|
               assert(false, "shouldn't be called")
             end,
-            after_array: lambda do |index:, decl:, depth:, before: |
+            after_array: lambda do |index:, decl:, depth:, before:|
               assert(false, "shouldn't be called")
             end,
-            attribute: lambda do |id:, val:, depth:, type: |
+            attribute: lambda do |id:, val:, depth:, type:, index:, total:|
               puts "attribute #{id}, #{val}, #{depth}, #{type}"
             end,
         },
