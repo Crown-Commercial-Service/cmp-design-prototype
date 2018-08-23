@@ -1,16 +1,19 @@
 require_relative 'transform'
 require 'pp'
 require 'json'
+require 'yaml'
 
 include Transform
 
 class DataFile < Output
 
-  def initialize dir, name
-    super File.join(dir, "data"), name, "json"
+  attr_accessor :fmt
+  def initialize dir, name, fmt: :json
+    super File.join(dir, "data"), name, fmt == :json ?  "json" : "yaml"
+    self.fmt= fmt
   end
 
-  def json *models
+  def output *models
 
     map = Hash.new
     stack = [map]
@@ -58,7 +61,12 @@ class DataFile < Output
         }, *models)
 
     file do |file|
-      file.print(JSON.generate(map))
+      puts fmt
+      if fmt == :json
+        file.print(JSON.generate(map))
+      else
+        file.print(map.to_yaml)
+      end
     end
   end
 

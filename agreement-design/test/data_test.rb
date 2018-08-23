@@ -20,7 +20,7 @@ class DataTest < Test::Unit::TestCase
   def test_dot
     assert_equal("#{PATH}data/#{NAME}.json", @d.filepath, "file name")
     assert(!File.file?(@d.filepath), "no dotfile")
-    @d.json( TestModel::TESTMODEL)
+    @d.output( TestModel::TESTMODEL)
     assert(File.file?(@d.filepath), "file created")
   end
 end

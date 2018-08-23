@@ -3,9 +3,9 @@ require 'date'
 module DataModel
 
   SINGLE = 1..1
+  ZERO_OR_ONE = 0..1
   ONE_TO_MANY = 1..-1
   ZERO_TO_MANY = 0..-1
-  ZERO_OR_ONE = 0..1
 
   class DataType
 
@@ -84,7 +84,7 @@ module DataModel
             end
             return @attributes[k]
           end
-          if self.class.attributes[k][:multiplicity] != SINGLE
+          if self.class.attributes[k][:multiplicity].end != 1
             @attributes[k] = [] unless @attributes[k]
             @attributes[k] << valueof(k, *args, &block)
           else
