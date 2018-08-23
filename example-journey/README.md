@@ -18,7 +18,7 @@ This demonstrates we can use the GOV.UK kit with a minimum set of additions.
 
 ## Principles
 
-- use GOV.UK style names -- don't renamce everything 'govuk' to 'ccs' just for the sake of it 
+- use GOV.UK style names -- don't rename everything 'govuk' to 'ccs' just for the sake of it 
 
 ## Build
 
