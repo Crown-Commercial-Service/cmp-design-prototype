@@ -15,3 +15,18 @@ This prototype
 - possibly produces data domain descriptions, e.g. Ruby-on-Rails schema records
 
 
+# Things to see
+
+the [agreements](agreements/) directory defines our [agreements metamodel](model/agreement.rb) and our 
+[reference agreements and catalogues](model/fm.rb) 
+(example for fm given)
+
+the build script generates [outputs](gen) including
+
+- [data files](gen/data) showing the agreements and catalogue entries
+   - for instance, can bulk load [jsonlines](gen/data/fm_catalogue.jsonlines) for FM catalogue into search cluster
+- a [picture](gen/images/metamodel.jpg) of the metamodel
+- documentation for the agreements and metamodel
+
+
+

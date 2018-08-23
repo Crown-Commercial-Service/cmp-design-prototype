@@ -11,10 +11,12 @@ domain :Agreements do
   code(:CCS, description: "CCS invented schemes")
 
   datatype(:ItemType,
-           description: " Defines the items that can be offered in any selected agreements
+           description:
+"Defines the items that can be offered in any selected agreements
 Agreements hava a number of items that can have values defining the agreement. The Items should
 constrain the key quantifiable elements of an agreement award. A supplier may provide additional
 variable facts in their Offer to supplement the description of how they support the agreement.") {
+
     attribute :id, String, "The code id, which must be unique across all schemes"
     attribute :scheme_id, CLASSIFICATION_SCHEMES, "The classiciation scheme id"
     attribute :description, String
@@ -25,15 +27,20 @@ variable facts in their Offer to supplement the description of how they support 
   }
 
   CATEGORY_OF_NEED = Selection(:Budget, :Location, :Service)
-  code(:Budget, description: "What is the budget the buyer has for their need?
-Match the budget to the value range of the agreement, and the value range of supplier offers")
-  code(:Location, description: "Where is the need?
+  code(:Budget, description:
+"What is the budget the buyer has for their need?
+Match the budget to the value range of the agreement, and the value range of supplier offers.
+Matching the budget will probably require evaluation of offer prices.")
+  code(:Location, description:
+"Where is the need?
 Match location needs to locations of offers")
-  code(:Service, description: "What sort of things do they need?
+  code(:Service, description:
+"What sort of things do they need?
 Match the service to item types, their keywords, and offering titles.")
 
   datatype(:Need,
-           description: " Defines a buyer's need which can be matched to agreement items and other details
+           description:
+" Defines a buyer's need which can be matched to agreement items and other details
 The need matches closely to our definitions of agreements under 'items types' and their classification
 schemes, but is not a one-to-one match.") {
     attribute :buyer_id, String, "The buyer expressing the need"

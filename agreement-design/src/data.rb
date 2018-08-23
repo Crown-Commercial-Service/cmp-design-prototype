@@ -8,9 +8,11 @@ include Transform
 class DataFile < Output
 
   attr_accessor :fmt
+
   def initialize dir, name, fmt: :json
-    super File.join(dir, "data"), name, fmt == :json ?  "json" : "yaml"
-    self.fmt= fmt
+    super File.join(dir, "data"), name,
+          (fmt == :json ? "json" : (fmt == :jsonlines ? "jsonlines" : "yaml"))
+    self.fmt = fmt
   end
 
   def output *models
@@ -21,13 +23,13 @@ class DataFile < Output
         {
             :before_group => lambda do |name:, depth:|
               last = stack.last
-              n= Array.new
+              n = Array.new
               last[name] = n
               stack.push(n) # add a new container to the stack to use next
             end,
             :before_type => lambda do |type:, depth:, index:, total:|
               last = stack.last
-              n= Hash.new
+              n = Hash.new
               stack.push(n) # add a new container to the stack to use next
               if last.class <= Hash
                 last[type.name] = n
@@ -37,7 +39,7 @@ class DataFile < Output
             end,
             :before_array => lambda do |name:, decl:, depth:, total:|
               last = stack.last
-              n= Array.new
+              n = Array.new
               last[name] = n
               stack.push(n) # add a new container to the stack to use next
             end,
@@ -61,11 +63,19 @@ class DataFile < Output
         }, *models)
 
     file do |file|
-      puts fmt
-      if fmt == :json
+      if fmt == :jsonlines
+        for type in map.keys
+          for decl in map[type]
+            file.print(JSON.generate(decl))
+            file.print("\n")
+          end
+        end
+      elsif fmt == :json
         file.print(JSON.generate(map))
-      else
+      elsif fmt == :yaml
         file.print(map.to_yaml)
+      else
+        raise "unknown data file format"
       end
     end
   end

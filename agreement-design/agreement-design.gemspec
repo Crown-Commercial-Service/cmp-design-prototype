@@ -2,7 +2,7 @@
 # TODO - split the gem for schema design from the one containing agreement models
 Gem::Specification.new do |spec|
   spec.name          = "agreement-design-prototype"
-  spec.version       = "0.0.3"
+  spec.version       = "0.0.4"
   spec.authors       = ["CCS"]
   spec.homepage      = 'https://github.com/Crown-Commercial-Service/cmp-design-prototype/agreement-design'
   spec.email         = ["rubygems@humphries.tech"]

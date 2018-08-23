@@ -1,6 +1,6 @@
 # Data model: Agreements
 ## ItemType
-   Defines the items that can be offered in any selected agreements
+  Defines the items that can be offered in any selected agreements
 Agreements hava a number of items that can have values defining the agreement. The Items should
 constrain the key quantifiable elements of an agreement award. A supplier may provide additional
 variable facts in their Offer to supplement the description of how they support the agreement.
@@ -89,7 +89,8 @@ CCS invented schemes
 
 ## Budget 
 What is the budget the buyer has for their need?
-Match the budget to the value range of the agreement, and the value range of supplier offers
+Match the budget to the value range of the agreement, and the value range of supplier offers.
+Matching the budget will probably require evaluation of offer prices.
 
 ## Location 
 Where is the need?
