@@ -22,10 +22,14 @@ class DataFile < Output
     transform_datamodel(
         {
             :before_group => lambda do |name:, depth:|
-              last = stack.last
-              n = Array.new
-              last[name] = n
-              stack.push(n) # add a new container to the stack to use next
+              # group all instances of the same type name into the same array in the top level map
+              if map[name]
+                stack.push(map[name])
+              else
+                n = Array.new
+                map[name] = n
+                stack.push(n) # add a new container to the stack to use next
+              end
             end,
             :before_type => lambda do |type:, depth:, index:, total:|
               last = stack.last
