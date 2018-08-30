@@ -77,7 +77,7 @@ module Transform
         t = 0
         # there will be more than one of each type
         for type in model.contents[typename]
-          transform_type(lambdas, decl: type, name: typename, depth: 0, index: 0, total: 1)
+          transform_entry(lambdas, decl: type, name: typename, depth: 0, index: 0, total: 1)
           t = t + 1
         end
         grp = cond_call(lambdas, :after_group, *after_group_lambda(name: typename, before: grp))
@@ -90,7 +90,7 @@ module Transform
     for model in models
       dom = cond_call(lambdas, :before_model, *before_model_lambda(model: model))
       for type in model.types.values
-        before = cond_call(lambdas, :before_type, *before_type_lambda(type: type, index:0, total:1))
+        before = cond_call(lambdas, :before_type, *before_type_lambda(type: type, index: 0, total: 1))
         i = 0
         for ak in type.attributes.keys
           av = type.attributes[ak]
@@ -116,13 +116,13 @@ module Transform
     return 0
   end
 
-  def transform_type(lambdas, index:, name:, decl:, depth:, total:)
+  def transform_entry(lambdas, index:, name:, decl:, depth:, total:)
 
     if decl.class <= Array
       arrctx = cond_call(lambdas, :before_array, *before_array_lambda(name: name, decl: decl, depth: depth, total: decl.length))
       j = 0
       for aa in decl
-        transform_type(lambdas, index: j, decl: aa, name: name, depth: depth, total: decl.length)
+        transform_entry(lambdas, index: j, decl: aa, name: name, depth: depth, total: decl.length)
         j = j + 1
       end
       cond_call(lambdas, :after_array, *after_array_lambda(index: index, decl: decl, depth: depth, before: arrctx))
@@ -131,7 +131,7 @@ module Transform
       i = 0
       for ak in decl.attributes.keys
         av = decl.attributes[ak]
-        transform_type(lambdas, name: ak, decl: av, depth: depth + 1, index: i, total: decl.attributes.keys.length)
+        transform_entry(lambdas, name: ak, decl: av, depth: depth + 1, index: i, total: decl.attributes.keys.length)
         i = i + 1
       end
       cond_call(lambdas, :after_type, *after_type_lambda(type: decl, depth: depth, before: before))

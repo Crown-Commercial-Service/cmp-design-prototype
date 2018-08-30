@@ -22,18 +22,46 @@
     - cleaning
     - washing
     - janitor
-:fm_offering:
-- :supplier_id: XYZ corp
-  :name: XYZ's nifty school cleaning service
-  :agreement_id: FM
-  :location_id:
-  - :UK
-  :sector:
-  - :Education
-  :sc_cleared: 'TRUE'
-  :item:
-  - :type: FM.1a-C.3
-    :value: 3000
+- :kind: :Framework
+  :id: ST
+  :fwk_number: RM1234
+  :version: 0.1.0
+  :description: This agreement is for the provision of Supply Teachers
+  :start_date: 2018-10-01
+- :kind: :Lot
+  :id: ST.AG
+  :name: Hire supply teacher roles from an agency
+  :part_of_id: ST
+  :version: 0.1.0
+  :item_type:
+  - :id: :QT_NonSEN
+    :scheme_id: :CCS
+    :description: 'Qualified Teacher: Non-SEN Roles'
+    :unit: :Currency
+    :code: CCS-ST.AG-QT_NonSEN
+    :keyword:
+    - teacher
+    - non-sen
+  - :id: :QT_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST.AG-QT_SEN
+    :unit: :Currency
+    :keyword:
+    - teacher
+    - sen teacher
+    - Special Education Needs
+    - Special Needs
+- :kind: :Lot
+  :id: ST.MS
+:itemtype:
+- :id: FM.1a-C.3
+  :scheme_id: :CCS
+  :unit: :Currency
+  :code: CCS-building-area-method
+  :keyword:
+  - cleaning
+  - washing
+  - janitor
 :areacode:
 - :name: :UK
   :subcode:

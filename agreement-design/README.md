@@ -29,4 +29,17 @@ the build script generates [outputs](gen) including
 - documentation for the agreements and metamodel
 
 
+# To do
+
+- [ ] add reference data for Teachers
+    - define model for framework
+    - define reference model for offers (and elucidate the model for suppliers, contacts)
+    - load mapping from spreadsheet and generate data file
+    - load into search
+    - map some searches
+    - understand school reference data lookup to find school code and location
+    - understand crow-fly filter
+    - refine expressions of need to support the requirements
+- [ ] add reference data for Facilities Management
+
 

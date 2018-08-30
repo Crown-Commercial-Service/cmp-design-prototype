@@ -87,15 +87,15 @@ module DataModel
           if block
             value = valueof(k, *args, &block)
           else
-            value = args
+            value = args[0]
           end
           if self.class.attributes[k][:multiplicity].end != 1
             @attributes[k] = [] unless @attributes[k]
             @attributes[k] << value
           else
-            @attributes[k] = valueof(k, *args, &block)
-            return @attributes[k]
+            @attributes[k] = value
           end
+          return value
         end
         self.define_singleton_method("#{k}=".to_sym) do |val|
           @attributes[k] = val

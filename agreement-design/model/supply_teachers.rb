@@ -12,7 +12,7 @@ domain(:SupplyTeacherOfferings) {
   }
 }
 
-Agreements.new( :ST_Agrements) {
+Agreements.new( :ST_Agreements) {
   agreement {
     kind :Framework
     id SUPPLY_TEACHER_FRAMEWORK_ID
@@ -21,7 +21,6 @@ Agreements.new( :ST_Agrements) {
     description "This agreement is for the provision of Supply Teachers"
     start_date date(2018, 10, 01) #TODO proper start date for Supply teachers
   }
-
 
   agreement {
     kind :Lot
@@ -49,6 +48,11 @@ Agreements.new( :ST_Agrements) {
       keyword "Special Education Needs"
       keyword "Special Needs"
     }
+  }
+
+  agreement {
+    kind :Lot
+    id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
   }
 #   Qualified Teacher: Non-SEN Roles
 #   Qualified Teacher: SEN Roles

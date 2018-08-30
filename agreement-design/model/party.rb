@@ -16,4 +16,10 @@ Details still to be added") {
     # Buyer registration
     attribute :buyer_registration_completed, Date
   }
+=begin
+
+=end
+
+  # TODO add contact links
+  # TODO add address
 }

@@ -14,7 +14,7 @@ variable facts in their Offer to supplement the description of how they support 
 |uri|String|1| URI for the code within the scheme defining this type |
 |code|String|1| Code within the scheme defining this type |
 |unit|(Area,Currency)|1| define the units, if one units matches |
-## Need
+## ExpressionOfNeed
    Defines a buyer's need which can be matched to agreement items and other details
 The need matches closely to our definitions of agreements under 'items types' and their classification
 schemes, but is not a one-to-one match.
@@ -23,6 +23,7 @@ schemes, but is not a one-to-one match.
 |---------|----|------------|-----------|
 |buyer_id|String|1|The buyer expressing the need|
 |kind|(Budget,Location,Service)|1||
+|value|String|1||
 |unit|(Area,Currency)|1|The units typically used to express the need|
 ## Agreement
   General definition of Commercial Agreements
@@ -123,7 +124,7 @@ Details still to be added
 |name|String|1||
 |description|String|1||
 |subcode|Geographic::AreaCode|*|UUID or Salesforce ID?|
-# Data model: FM
+# Data model: FM_Offerings
 ## FM_Offering extends Agreements::Offering
    An offer for FM elements 
 

@@ -26,7 +26,7 @@ variable facts in their Offer to supplement the description of how they support 
     attribute :unit, UNITS, " define the units, if one units matches "
   }
 
-  CATEGORY_OF_NEED = Selection(:Budget, :Location, :Service)
+  TYPES_OF_EXPRESSION_OF_NEED = Selection(:Budget, :Location, :Service)
   code(:Budget, description:
 "What is the budget the buyer has for their need?
 Match the budget to the value range of the agreement, and the value range of supplier offers.
@@ -38,14 +38,14 @@ Match location needs to locations of offers")
 "What sort of things do they need?
 Match the service to item types, their keywords, and offering titles.")
 
-  datatype(:Need,
+  datatype(:ExpressionOfNeed,
            description:
 " Defines a buyer's need which can be matched to agreement items and other details
 The need matches closely to our definitions of agreements under 'items types' and their classification
 schemes, but is not a one-to-one match.") {
     attribute :buyer_id, String, "The buyer expressing the need"
-    attribute :kind, Selection(:Budget, :Location,)
     attribute :kind, Selection(:Budget, :Location, :Service)
+    attribute :value, String
     attribute :unit, UNITS, "The units typically used to express the need"
   }
 

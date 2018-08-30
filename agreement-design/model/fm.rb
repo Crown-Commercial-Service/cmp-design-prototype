@@ -1,6 +1,6 @@
 require_relative 'agreement'
 
-domain(:FM) {
+domain(:FM_Offerings) {
   datatype(:FM_Offering, extends: Agreements::Offering,
            description: " An offer for FM elements ") {
     attribute :sc_cleared, String
@@ -20,6 +20,17 @@ Agreements.new :FM_Agreements do
   }
 
   ENV_CLEANING = "#{FM_ID}.1a-C.3"
+
+  cleaning = itemtype {
+    id ENV_CLEANING
+    scheme_id :CCS
+    unit :Currency
+    code "CCS-building-area-method"
+    keyword "cleaning"
+    keyword "washing"
+    keyword "janitor"
+  }
+
   agreement {
     kind :Lot
     id "FM lot 1"
@@ -28,20 +39,12 @@ Agreements.new :FM_Agreements do
     min_value 0
     max_value 70000000
     version "0.1.0"
-    item_type {
-      id ENV_CLEANING
-      scheme_id :CCS
-      unit :Currency
-      code "CCS-building-area-method"
-      keyword "cleaning"
-      keyword "washing"
-      keyword "janitor"
-    }
+    cnew = item_type cleaning
   }
 
 end
 
-FM.new(:FM_Catalogue) {
+FM_Offerings.new(:FM_Catalogue) {
   fm_offering {
     supplier_id "XYZ corp"
     name "XYZ's nifty school cleaning service"

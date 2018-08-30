@@ -28,7 +28,7 @@ class DataFile < Output
               else
                 n = Array.new
                 map[name] = n
-                stack.push(n) # add a new container to the stack to use next
+                stack.push(map[name]) # add a new container to the stack to use next
               end
             end,
             :before_type => lambda do |type:, depth:, index:, total:|
@@ -44,7 +44,11 @@ class DataFile < Output
             :before_array => lambda do |name:, decl:, depth:, total:|
               last = stack.last
               n = Array.new
-              last[name] = n
+              if last.class <= Array
+                last<< n
+              else
+                last[name] = n
+              end
               stack.push(n) # add a new container to the stack to use next
             end,
             :attribute => lambda do |id:, val:, depth:, type:, index:, total:|
