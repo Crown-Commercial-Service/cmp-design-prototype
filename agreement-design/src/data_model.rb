@@ -84,10 +84,14 @@ module DataModel
             end
             return @attributes[k]
           end
+          if block
+            value = valueof(k, *args, &block)
+          else
+            value = args
+          end
           if self.class.attributes[k][:multiplicity].end != 1
             @attributes[k] = [] unless @attributes[k]
-            @attributes[k] << valueof(k, *args, &block)
-            return @attributes[k].last
+            @attributes[k] << value
           else
             @attributes[k] = valueof(k, *args, &block)
             return @attributes[k]
@@ -160,8 +164,8 @@ module DataModel
         end
       end
 
-      def code( *context,
-                 description: nil, title: nil, uri: nil)
+      def code(*context,
+               description: nil, title: nil, uri: nil)
         unless instance_variable_defined? :@codes
           @codes = {}
           self.define_singleton_method(:codes) {@codes}
