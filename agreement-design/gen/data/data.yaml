@@ -34,25 +34,88 @@
   :part_of_id: ST
   :version: 0.1.0
   :item_type:
-  - :id: :QT_NonSEN
-    :scheme_id: :CCS
-    :description: 'Qualified Teacher: Non-SEN Roles'
-    :unit: :Currency
-    :code: CCS-ST.AG-QT_NonSEN
+  - :description: 'Qualified Teacher: Non-SEN Roles'
+    :id: :QT_NonSEN
     :keyword:
     - teacher
     - non-sen
-  - :id: :QT_SEN
-    :scheme_id: :CCS
-    :code: CCS-ST.AG-QT_SEN
-    :unit: :Currency
+  - :description: 'Qualified Teacher: SEN Roles'
+    :id: :QT_SEN
     :keyword:
     - teacher
     - sen teacher
     - Special Education Needs
     - Special Needs
+  - :description: 'Unqualified Teacher: Non-SEN Roles'
+    :id: :NQT_NonSEN
+    :keyword:
+    - teacher
+    - non-sen
+  - :description: 'Unqualified Teacher: SEN Roles'
+    :id: :NQT_SEN
+    :keyword:
+    - teaching assistant
+    - Special Education Needs
+    - Special Needs
+  - :description: 'Educational Support Staff: Non-SEN roles (incl. Cover Supervisor
+      and Teaching Assistant)'
+    :id: :EdSup_NonSEN
+  - :description: 'Educational Support Staff: SEN roles (incl. Cover Supervisor and
+      Teaching Assistant)'
+    :id: :EdSup_SEN
+  - :description: 'Other Roles: Headteacher and Senior Leadership positions'
+    :id: :Snr_SEN
+  - :description: 'Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff,
+      Cleaners etc.)'
+    :id: :Src_SEN
+  - :description: Nominated Workers
+    :id: :Nom_SEN
+  - :description: Fixed Term Role (on School Payroll)
+    :id: :FTA_SEN
 - :kind: :Lot
   :id: ST.MS
+  :name: Hire an agency to sort out all your supply teacher needs
+  :part_of_id: ST
+  :version: 0.1.0
+  :item_type:
+  - :description: 'Qualified Teacher: Non-SEN Roles'
+    :id: :QT_NonSEN
+    :keyword:
+    - teacher
+    - non-sen
+  - :description: 'Qualified Teacher: SEN Roles'
+    :id: :QT_SEN
+    :keyword:
+    - teacher
+    - sen teacher
+    - Special Education Needs
+    - Special Needs
+  - :description: 'Unqualified Teacher: Non-SEN Roles'
+    :id: :NQT_NonSEN
+    :keyword:
+    - teacher
+    - non-sen
+  - :description: 'Unqualified Teacher: SEN Roles'
+    :id: :NQT_SEN
+    :keyword:
+    - teaching assistant
+    - Special Education Needs
+    - Special Needs
+  - :description: 'Educational Support Staff: Non-SEN roles (incl. Cover Supervisor
+      and Teaching Assistant)'
+    :id: :EdSup_NonSEN
+  - :description: 'Educational Support Staff: SEN roles (incl. Cover Supervisor and
+      Teaching Assistant)'
+    :id: :EdSup_SEN
+  - :description: 'Other Roles: Headteacher and Senior Leadership positions'
+    :id: :Snr_SEN
+  - :description: 'Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff,
+      Cleaners etc.)'
+    :id: :Src_SEN
+  - :description: Nominated Workers
+    :id: :Nom_SEN
+  - :description: Fixed Term Role (on School Payroll)
+    :id: :FTA_SEN
 :itemtype:
 - :id: FM.1a-C.3
   :scheme_id: :CCS
@@ -62,6 +125,44 @@
   - cleaning
   - washing
   - janitor
+- :description: 'Qualified Teacher: Non-SEN Roles'
+  :id: :QT_NonSEN
+  :keyword:
+  - teacher
+  - non-sen
+- :description: 'Qualified Teacher: SEN Roles'
+  :id: :QT_SEN
+  :keyword:
+  - teacher
+  - sen teacher
+  - Special Education Needs
+  - Special Needs
+- :description: 'Unqualified Teacher: Non-SEN Roles'
+  :id: :NQT_NonSEN
+  :keyword:
+  - teacher
+  - non-sen
+- :description: 'Unqualified Teacher: SEN Roles'
+  :id: :NQT_SEN
+  :keyword:
+  - teaching assistant
+  - Special Education Needs
+  - Special Needs
+- :description: 'Educational Support Staff: Non-SEN roles (incl. Cover Supervisor
+    and Teaching Assistant)'
+  :id: :EdSup_NonSEN
+- :description: 'Educational Support Staff: SEN roles (incl. Cover Supervisor and
+    Teaching Assistant)'
+  :id: :EdSup_SEN
+- :description: 'Other Roles: Headteacher and Senior Leadership positions'
+  :id: :Snr_SEN
+- :description: 'Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners
+    etc.)'
+  :id: :Src_SEN
+- :description: Nominated Workers
+  :id: :Nom_SEN
+- :description: Fixed Term Role (on School Payroll)
+  :id: :FTA_SEN
 :areacode:
 - :name: :UK
   :subcode:

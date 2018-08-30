@@ -42,26 +42,135 @@
    - name Hire supply teacher roles from an agency
    - part_of_id ST
    - version 0.1.0
-#### item_type QT_NonSEN 
-     - id QT_NonSEN
-     - scheme_id CCS
+#### itemtype QT_NonSEN 
      - description Qualified Teacher: Non-SEN Roles
-     - unit Currency
-     - code CCS-ST.AG-QT_NonSEN
+     - id QT_NonSEN
      - keyword teacher
      - keyword non-sen
-#### item_type QT_SEN 
+#### itemtype QT_SEN 
+     - description Qualified Teacher: SEN Roles
      - id QT_SEN
-     - scheme_id CCS
-     - code CCS-ST.AG-QT_SEN
-     - unit Currency
      - keyword teacher
      - keyword sen teacher
      - keyword Special Education Needs
      - keyword Special Needs
-###  ST.MS 
+#### itemtype NQT_NonSEN 
+     - description Unqualified Teacher: Non-SEN Roles
+     - id NQT_NonSEN
+     - keyword teacher
+     - keyword non-sen
+#### itemtype NQT_SEN 
+     - description Unqualified Teacher: SEN Roles
+     - id NQT_SEN
+     - keyword teaching assistant
+     - keyword Special Education Needs
+     - keyword Special Needs
+#### itemtype EdSup_NonSEN 
+     - description Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)
+     - id EdSup_NonSEN
+#### itemtype EdSup_SEN 
+     - description Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)
+     - id EdSup_SEN
+#### itemtype Snr_SEN 
+     - description Other Roles: Headteacher and Senior Leadership positions
+     - id Snr_SEN
+#### itemtype Src_SEN 
+     - description Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)
+     - id Src_SEN
+#### itemtype Nom_SEN 
+     - description Nominated Workers
+     - id Nom_SEN
+#### itemtype FTA_SEN 
+     - description Fixed Term Role (on School Payroll)
+     - id FTA_SEN
+### Hire an agency to sort out all your supply teacher needs ST.MS 
    - kind Lot
    - id ST.MS
+   - name Hire an agency to sort out all your supply teacher needs
+   - part_of_id ST
+   - version 0.1.0
+#### itemtype QT_NonSEN 
+     - description Qualified Teacher: Non-SEN Roles
+     - id QT_NonSEN
+     - keyword teacher
+     - keyword non-sen
+#### itemtype QT_SEN 
+     - description Qualified Teacher: SEN Roles
+     - id QT_SEN
+     - keyword teacher
+     - keyword sen teacher
+     - keyword Special Education Needs
+     - keyword Special Needs
+#### itemtype NQT_NonSEN 
+     - description Unqualified Teacher: Non-SEN Roles
+     - id NQT_NonSEN
+     - keyword teacher
+     - keyword non-sen
+#### itemtype NQT_SEN 
+     - description Unqualified Teacher: SEN Roles
+     - id NQT_SEN
+     - keyword teaching assistant
+     - keyword Special Education Needs
+     - keyword Special Needs
+#### itemtype EdSup_NonSEN 
+     - description Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)
+     - id EdSup_NonSEN
+#### itemtype EdSup_SEN 
+     - description Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)
+     - id EdSup_SEN
+#### itemtype Snr_SEN 
+     - description Other Roles: Headteacher and Senior Leadership positions
+     - id Snr_SEN
+#### itemtype Src_SEN 
+     - description Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)
+     - id Src_SEN
+#### itemtype Nom_SEN 
+     - description Nominated Workers
+     - id Nom_SEN
+#### itemtype FTA_SEN 
+     - description Fixed Term Role (on School Payroll)
+     - id FTA_SEN
+### itemtype QT_NonSEN 
+   - description Qualified Teacher: Non-SEN Roles
+   - id QT_NonSEN
+   - keyword teacher
+   - keyword non-sen
+### itemtype QT_SEN 
+   - description Qualified Teacher: SEN Roles
+   - id QT_SEN
+   - keyword teacher
+   - keyword sen teacher
+   - keyword Special Education Needs
+   - keyword Special Needs
+### itemtype NQT_NonSEN 
+   - description Unqualified Teacher: Non-SEN Roles
+   - id NQT_NonSEN
+   - keyword teacher
+   - keyword non-sen
+### itemtype NQT_SEN 
+   - description Unqualified Teacher: SEN Roles
+   - id NQT_SEN
+   - keyword teaching assistant
+   - keyword Special Education Needs
+   - keyword Special Needs
+### itemtype EdSup_NonSEN 
+   - description Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)
+   - id EdSup_NonSEN
+### itemtype EdSup_SEN 
+   - description Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)
+   - id EdSup_SEN
+### itemtype Snr_SEN 
+   - description Other Roles: Headteacher and Senior Leadership positions
+   - id Snr_SEN
+### itemtype Src_SEN 
+   - description Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)
+   - id Src_SEN
+### itemtype Nom_SEN 
+   - description Nominated Workers
+   - id Nom_SEN
+### itemtype FTA_SEN 
+   - description Fixed Term Role (on School Payroll)
+   - id FTA_SEN
 ### UK  
    - name UK
 #### UKC  
