@@ -5,12 +5,6 @@ SUPPLY_TEACHER_FRAMEWORK_ID = "ST"
 SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID = "#{SUPPLY_TEACHER_FRAMEWORK_ID}.MS"
 SUPPLY_TEACHER_AGENCY_LOT_ID = "#{SUPPLY_TEACHER_FRAMEWORK_ID}.AG"
 
-domain(:SupplyTeacherOfferings) {
-  datatype(:FM_Offering, extends: Agreements::Offering,
-           description: " An offer for FM elements ") {
-    attribute :sc_cleared, String
-  }
-}
 
 Agreements.new(:ST_Agreements) {
   agreement {
@@ -96,6 +90,8 @@ Agreements.new(:ST_Agreements) {
     id SUPPLY_TEACHER_AGENCY_LOT_ID
     name "Hire supply teacher roles from an agency"
     part_of_id SUPPLY_TEACHER_FRAMEWORK_ID
+    offerType "SupplyTeacherOfferings::ST_Offering"
+
     version "0.1.0"
     for item in items
       item_type item
@@ -115,3 +111,14 @@ Agreements.new(:ST_Agreements) {
   }
 }
 
+domain(:SupplyTeacherOfferings) {
+
+  datatype(:ST_Offering, extends: Agreements::Offering,
+           description: " An offer for ST supply
+The offerings look the same for both lots - since they both relate to the same items and data") {
+    attribute :commission, Float, "The percentage the supplier charges for the item"
+    attribute :duration, Selection(:Up_to_1_week, :Between_1_and_12_weeks, :Over_12_weeks)
+    attribute :branch_name, String, "branch name from which the offer is supplied"
+    attribute :branch_contact_id, String, "links to contact at the address", links: Parties::Contact
+  }
+}

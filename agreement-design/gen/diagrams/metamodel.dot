@@ -4,16 +4,18 @@ node [shape=plaintext margin=0];
 label=Agreements;
 "ItemType" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ItemType</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-scheme_id</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-keyword</TD></TR><TR><TD ALIGN="LEFT">-uri</TD></TR><TR><TD ALIGN="LEFT">-code</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR></table>>];
 "ExpressionOfNeed" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ExpressionOfNeed</TD></TH><TR><TD ALIGN="LEFT">-buyer_id</TD></TR><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-value</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR></table>>];
-"Agreement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Agreement</TD></TH><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-version</TD></TR><TR><TD ALIGN="LEFT">-start_date</TD></TR><TR><TD ALIGN="LEFT">-end_date</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-fwk_number</TD></TR><TR><TD ALIGN="LEFT">-sf_typ</TD></TR><TR><TD ALIGN="LEFT">-sf_is</TD></TR><TR><TD ALIGN="LEFT">-part_of_id</TD></TR><TR><TD ALIGN="LEFT">-conforms_to_id</TD></TR><TR><TD ALIGN="LEFT">-item_type</TD></TR><TR><TD ALIGN="LEFT">-min_value</TD></TR><TR><TD ALIGN="LEFT">-max_value</TD></TR></table>>];
+"Agreement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Agreement</TD></TH><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-version</TD></TR><TR><TD ALIGN="LEFT">-start_date</TD></TR><TR><TD ALIGN="LEFT">-end_date</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-fwk_number</TD></TR><TR><TD ALIGN="LEFT">-sf_typ</TD></TR><TR><TD ALIGN="LEFT">-sf_is</TD></TR><TR><TD ALIGN="LEFT">-offerType</TD></TR><TR><TD ALIGN="LEFT">-part_of_id</TD></TR><TR><TD ALIGN="LEFT">-conforms_to_id</TD></TR><TR><TD ALIGN="LEFT">-item_type</TD></TR><TR><TD ALIGN="LEFT">-min_value</TD></TR><TR><TD ALIGN="LEFT">-max_value</TD></TR></table>>];
 "Item" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Item</TD></TH><TR><TD ALIGN="LEFT">-type</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR><TR><TD ALIGN="LEFT">-value</TD></TR></table>>];
-"Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Offering</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-offerType</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector</TD></TR></table>>];
+"Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Offering</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector</TD></TR></table>>];
 "Catalogue" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Catalogue</TD></TH><TR><TD ALIGN="LEFT">-offers</TD></TR></table>>];
 "Involvement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Involvement</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-party_id</TD></TR><TR><TD ALIGN="LEFT">-role</TD></TR></table>>];
 }
 subgraph cluster_Parties {
 node [shape=plaintext margin=0];
 label=Parties;
-"Party" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Party</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-supplier_registration_completed</TD></TR><TR><TD ALIGN="LEFT">-buyer_registration_completed</TD></TR></table>>];
+"Party" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Party</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-org_name</TD></TR><TR><TD ALIGN="LEFT">-supplier_registration_completed</TD></TR><TR><TD ALIGN="LEFT">-buyer_registration_completed</TD></TR></table>>];
+"Address" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Address</TD></TH><TR><TD ALIGN="LEFT">-address_1</TD></TR><TR><TD ALIGN="LEFT">-address_2</TD></TR><TR><TD ALIGN="LEFT">-town</TD></TR><TR><TD ALIGN="LEFT">-county</TD></TR><TR><TD ALIGN="LEFT">-postcode</TD></TR><TR><TD ALIGN="LEFT">-uprn</TD></TR></table>>];
+"Contact" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Contact</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-party_id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-address</TD></TR><TR><TD ALIGN="LEFT">-phone</TD></TR><TR><TD ALIGN="LEFT">-email</TD></TR></table>>];
 }
 subgraph cluster_Geographic {
 node [shape=plaintext margin=0];
@@ -23,7 +25,7 @@ label=Geographic;
 subgraph cluster_FM_Offerings {
 node [shape=plaintext margin=0];
 label=FM_Offerings;
-"FM_Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>FM_Offering</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-offerType</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector</TD></TR><TR><TD ALIGN="LEFT">-sc_cleared</TD></TR></table>>];
+"FM_Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>FM_Offering</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector</TD></TR><TR><TD ALIGN="LEFT">-sc_cleared</TD></TR></table>>];
 }
 "Agreement" -> "Agreement" [label="part_of_id" arrowhead = "open" arrowtail = "none" ];
 "Agreement" -> "Agreement" [label="conforms_to_id" arrowhead = "open" arrowtail = "none" ];
@@ -36,6 +38,8 @@ label=FM_Offerings;
 "Catalogue" -> "Offering" [label="{contains} offers" arrowhead = "none" arrowtail = "diamond" ];
 "Involvement" -> "Agreement" [label="agreement_id" arrowhead = "open" arrowtail = "none" ];
 "Involvement" -> "Party" [label="party_id" arrowhead = "open" arrowtail = "none" ];
+"Contact" -> "Party" [label="party_id" arrowhead = "open" arrowtail = "none" ];
+"Contact" -> "Address" [label="{contains} address" arrowhead = "none" arrowtail = "diamond" ];
 "AreaCode" -> "AreaCode" [label="{contains} subcode" arrowhead = "none" arrowtail = "diamond" ];
 "FM_Offering" -> "Offering" [label="extends" arrowhead = "none" arrowtail = "normal" ];
 "FM_Offering" -> "Agreement" [label="agreement_id" arrowhead = "open" arrowtail = "none" ];

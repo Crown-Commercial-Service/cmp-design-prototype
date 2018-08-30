@@ -65,6 +65,7 @@ schemes, but is not a one-to-one match.") {
     attribute :fwk_number, String, "Framework (RM) number of related framework if required. @Example RM123"
     attribute :sf_typ, String, "SalesForce data type"
     attribute :sf_is, String, "SalesForce row id"
+    attribute :offerType, String, "Name of the subclass of the Offering, supporting the Agreement"
 
     # structure of agreement
     attribute :part_of_id, String, "Agreement this is part of, applicable only to Lots", links: :Agreement
@@ -91,7 +92,6 @@ This may be extended for different agreements. A supplier may provide additional
 variable facts in their Offer to supplement the description of how they support the agreement. ") {
     attribute :agreement_id, String, "The agreement this offering relates to", links: :Agreement
     attribute :supplier_id, String, links: Parties::Party
-    attribute :offerType, String, "Name of the subclass of the Offering, supporting the Agreement"
     attribute :name, String
     attribute :description, String
     attribute :item, :Item, ZERO_TO_MANY, "details of the item"

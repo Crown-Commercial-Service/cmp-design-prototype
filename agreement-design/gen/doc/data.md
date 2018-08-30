@@ -41,6 +41,7 @@
    - id ST.AG
    - name Hire supply teacher roles from an agency
    - part_of_id ST
+   - offerType SupplyTeacherOfferings::ST_Offering
    - version 0.1.0
 #### itemtype QT_NonSEN 
      - description Qualified Teacher: Non-SEN Roles

@@ -40,6 +40,7 @@ schemes, but is not a one-to-one match.
 |fwk_number|String|1|Framework (RM) number of related framework if required. @Example RM123|
 |sf_typ|String|1|SalesForce data type|
 |sf_is|String|1|SalesForce row id|
+|offerType|String|1|Name of the subclass of the Offering, supporting the Agreement|
 |part_of_id|String -> Agreements::Agreement|1|Agreement this is part of, applicable only to Lots|
 |conforms_to_id|String -> Agreements::Agreement|1|Agreement this conforms to, such as a Contract conforming to a Framework|
 |item_type|Agreements::ItemType|*|describe the items that can be offered under the agreement|
@@ -62,7 +63,6 @@ variable facts in their Offer to supplement the description of how they support 
 |---------|----|------------|-----------|
 |agreement_id|String -> Agreements::Agreement|1|The agreement this offering relates to|
 |supplier_id|String -> Parties::Party|1||
-|offerType|String|1|Name of the subclass of the Offering, supporting the Agreement|
 |name|String|1||
 |description|String|1||
 |item|Agreements::Item|*|details of the item|
@@ -113,8 +113,35 @@ Details still to be added
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |id|String|1|UUID or Salesforce ID?|
+|org_name|String|1|UUID or Salesforce ID?|
 |supplier_registration_completed|Date|1||
 |buyer_registration_completed|Date|1||
+## Address
+  Address should include at least addres line 1 and ideally post code.
+will contain UPRN if we have derived it.
+  
+
+|attribute|type|multiplicity|description|
+|---------|----|------------|-----------|
+|address_1|String|1||
+|address_2|String|0..1||
+|town|String|0..1||
+|county|String|*||
+|postcode|String|*||
+|uprn|String|*||
+## Contact
+  
+  A way of contacting a party. Store contacts in a safe identity store. Do not store personal details elsewhere.
+  
+
+|attribute|type|multiplicity|description|
+|---------|----|------------|-----------|
+|id|String|1|a UUID for the person or contact point|
+|party_id|String -> Parties::Party|1|contact is a link for this party|
+|name|String|1|address of the contact point|
+|address|Parties::Address|0..1|address of the contact point|
+|phone|String|*|phone of the contact point|
+|email|String|*|email of the contact point|
 # Data model: Geographic
 ## AreaCode
   
@@ -132,7 +159,6 @@ Details still to be added
 |---------|----|------------|-----------|
 |agreement_id|String -> Agreements::Agreement|1|The agreement this offering relates to|
 |supplier_id|String -> Parties::Party|1||
-|offerType|String|1|Name of the subclass of the Offering, supporting the Agreement|
 |name|String|1||
 |description|String|1||
 |item|Agreements::Item|*|details of the item|
