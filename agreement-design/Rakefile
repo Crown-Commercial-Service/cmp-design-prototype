@@ -9,7 +9,7 @@ Rake::TestTask.new do |t|
 end
 
 task :build do
-  ruby "build/build_models.rb"
+  ruby "generate.rb"
 end
 
 task :deploy do
