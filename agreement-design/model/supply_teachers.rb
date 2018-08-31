@@ -9,6 +9,7 @@ SUPPLY_TEACHER_AGENCY_LOT_ID = "#{SUPPLY_TEACHER_FRAMEWORK_ID}.AG"
 Agreements.new(:ST_Agreements) {
   agreement {
     kind :Framework
+    name "Supply Teachers framework"
     id SUPPLY_TEACHER_FRAMEWORK_ID
     fwk_number "RM1234" #TODO proper fwk number for Supply teachers
     version "0.1.0"

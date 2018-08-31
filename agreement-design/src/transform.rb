@@ -38,8 +38,8 @@ module Transform
     return [model: model, code: code]
   end
 
-  def before_group_lambda name: nil, depth: 0
-    return [name: name, depth: depth]
+  def before_group_lambda name: nil
+    return [name: name]
   end
 
   def after_group_lambda name: nil, before: nil, depth: 0

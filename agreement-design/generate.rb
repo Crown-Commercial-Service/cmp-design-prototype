@@ -6,11 +6,10 @@ require_relative "model/agreement"
 require_relative "model/fm"
 require_relative "model/supply_teachers"
 
-path = File.join(File.dirname(__FILE__), '../', "gen")
+path = File.join(File.dirname(__FILE__), "gen")
 
-metamodels = [Agreements, Parties, Geographic, FM_Offerings]
+metamodels = [Agreements, Parties, Geographic]
 models = [
-    Agreements::FM_Agreements,
     Agreements::ST_Agreements,
     Geographic::NUTS,
 ]
@@ -32,8 +31,8 @@ data.output *models
 # data= DataFile.new( path, "fm_agreements", fmt: :jsonlines)
 # data.output Agreements::FM_Agreements
 
-data = DataFile.new(path, "fm_catalogue", fmt: :jsonlines)
-data.output FM_Offerings::FM_Catalogue
+# data = DataFile.new(path, "fm_catalogue", fmt: :jsonlines)
+# data.output FM_Offerings::FM_Catalogue
 
 # data= DataFile.new( path, "st_agreements", fmt: :jsonlines)
 # data.output Agreements::ST_Agreements

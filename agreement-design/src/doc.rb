@@ -4,14 +4,20 @@ include Transform
 class Document < Output
 
   def initialize dir, name
-    super File.join( dir, "doc"), name, "md"
+    super File.join(dir, "doc"), name, "md"
   end
 
   def document *models
     file do |file|
       transform_datamodel(
           {
-              :before_type => lambda do |type:, depth: 0, index:,total:|
+              :before_model => lambda do |model: |
+                file.print %Q!# Model: #{model.name} \n!
+              end,
+              :before_group => lambda do |name: |
+                file.print %Q!## #{name}\n!
+              end,
+              :before_type => lambda do |type:, depth: 0, index:, total:|
                 file.print %Q!####{'#' * depth} #{type.name} #{type.attributes[:id] || ""} \n!
               end,
               :attribute => lambda do |id:, val:, depth: 0, type: nil, index:, total:|
@@ -29,9 +35,9 @@ class Document < Output
                 file.print %Q!\# Data model: #{model}\n!
               end,
               before_group: lambda do |group|
-                file.print %Q!\# #{cat.class}: #{cat.name}\n!
-                if (cat.respond_to?(:description))
-                  file.print %Q! #{cat.description}\n!
+                file.print %Q!\# #{group.class}: #{group.name}\n!
+                if (group.respond_to?(:description))
+                  file.print %Q! #{group.description}\n!
                 end
               end,
               before_type: lambda do |type:, depth:, index:, total:|

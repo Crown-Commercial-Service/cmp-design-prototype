@@ -28,6 +28,9 @@ the build script generates [outputs](gen) including
 - a [picture](gen/images/metamodel.jpg) of the metamodel
 - documentation for the agreements and metamodel
 
+# Requirements
+
+- graphviz (for diagrams§)
 
 # To do
 

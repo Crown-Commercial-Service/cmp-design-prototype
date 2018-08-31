@@ -151,17 +151,3 @@ will contain UPRN if we have derived it.
 |name|String|1||
 |description|String|1||
 |subcode|Geographic::AreaCode|*|UUID or Salesforce ID?|
-# Data model: FM_Offerings
-## FM_Offering extends Agreements::Offering
-   An offer for FM elements 
-
-|attribute|type|multiplicity|description|
-|---------|----|------------|-----------|
-|agreement_id|String -> Agreements::Agreement|1|The agreement this offering relates to|
-|supplier_id|String -> Parties::Party|1||
-|name|String|1||
-|description|String|1||
-|item|Agreements::Item|*|details of the item|
-|location_id|String -> Geographic::AreaCode|1..*|Pick list of applicable regions. There must be at least one, even if it is just 'UK'|
-|sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors.|
-|sc_cleared|String|1||

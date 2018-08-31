@@ -1,36 +1,8 @@
-###  FM 
+# Model: ST_Agreements 
+## agreement
+### Supply Teachers framework ST 
    - kind Framework
-   - id FM
-   - fwk_number RM8330
-   - version 0.1.0
-   - description This agreement is for the provision of Facilities Management
-   - start_date 2018-10-01
-### low-to-mid value Facilities Management Lot FM lot 1 
-   - kind Lot
-   - id FM lot 1
-   - name low-to-mid value Facilities Management Lot
-   - part_of_id FM
-   - min_value 0
-   - max_value 70000000
-   - version 0.1.0
-#### itemtype FM.1a-C.3 
-     - id FM.1a-C.3
-     - scheme_id CCS
-     - unit Currency
-     - code CCS-building-area-method
-     - keyword cleaning
-     - keyword washing
-     - keyword janitor
-### itemtype FM.1a-C.3 
-   - id FM.1a-C.3
-   - scheme_id CCS
-   - unit Currency
-   - code CCS-building-area-method
-   - keyword cleaning
-   - keyword washing
-   - keyword janitor
-###  ST 
-   - kind Framework
+   - name Supply Teachers framework
    - id ST
    - fwk_number RM1234
    - version 0.1.0
@@ -131,6 +103,7 @@
 #### itemtype FTA_SEN 
      - description Fixed Term Role (on School Payroll)
      - id FTA_SEN
+## itemtype
 ### itemtype QT_NonSEN 
    - description Qualified Teacher: Non-SEN Roles
    - id QT_NonSEN
@@ -172,6 +145,8 @@
 ### itemtype FTA_SEN 
    - description Fixed Term Role (on School Payroll)
    - id FTA_SEN
+# Model: NUTS 
+## areacode
 ### UK  
    - name UK
 #### UKC  

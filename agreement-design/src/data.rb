@@ -21,7 +21,7 @@ class DataFile < Output
     stack = [map]
     transform_datamodel(
         {
-            :before_group => lambda do |name:, depth:|
+            :before_group => lambda do |name:|
               # group all instances of the same type name into the same array in the top level map
               if map[name]
                 stack.push(map[name])
