@@ -16,11 +16,17 @@
   :item_type:
   - :description: 'Qualified Teacher: Non-SEN Roles'
     :id: :QT_NonSEN
+    :scheme_id: :CCS
+    :code: CCS-ST-QT_NonSEN
+    :unit: :Currency
     :keyword:
     - teacher
     - non-sen
   - :description: 'Qualified Teacher: SEN Roles'
     :id: :QT_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-QT_SEN
+    :unit: :Currency
     :keyword:
     - teacher
     - sen teacher
@@ -28,11 +34,17 @@
     - Special Needs
   - :description: 'Unqualified Teacher: Non-SEN Roles'
     :id: :NQT_NonSEN
+    :scheme_id: :CCS
+    :code: CCS-ST-NQT_NonSEN
+    :unit: :Currency
     :keyword:
     - teacher
     - non-sen
   - :description: 'Unqualified Teacher: SEN Roles'
     :id: :NQT_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-NQT_SEN
+    :unit: :Currency
     :keyword:
     - teaching assistant
     - Special Education Needs
@@ -40,18 +52,36 @@
   - :description: 'Educational Support Staff: Non-SEN roles (incl. Cover Supervisor
       and Teaching Assistant)'
     :id: :EdSup_NonSEN
+    :scheme_id: :CCS
+    :code: CCS-ST-EdSup_NonSEN
+    :unit: :Currency
   - :description: 'Educational Support Staff: SEN roles (incl. Cover Supervisor and
       Teaching Assistant)'
     :id: :EdSup_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-EdSup_SEN
+    :unit: :Currency
   - :description: 'Other Roles: Headteacher and Senior Leadership positions'
     :id: :Snr_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-Snr_SEN
+    :unit: :Currency
   - :description: 'Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff,
       Cleaners etc.)'
     :id: :Src_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-Src_SEN
+    :unit: :Currency
   - :description: Nominated Workers
     :id: :Nom_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-Nom_SEN
+    :unit: :Currency
   - :description: Fixed Term Role (on School Payroll)
     :id: :FTA_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-FTA_SEN
+    :unit: :Currency
 - :kind: :Lot
   :id: ST.MS
   :name: Hire an agency to sort out all your supply teacher needs
@@ -60,11 +90,17 @@
   :item_type:
   - :description: 'Qualified Teacher: Non-SEN Roles'
     :id: :QT_NonSEN
+    :scheme_id: :CCS
+    :code: CCS-ST-QT_NonSEN
+    :unit: :Currency
     :keyword:
     - teacher
     - non-sen
   - :description: 'Qualified Teacher: SEN Roles'
     :id: :QT_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-QT_SEN
+    :unit: :Currency
     :keyword:
     - teacher
     - sen teacher
@@ -72,11 +108,17 @@
     - Special Needs
   - :description: 'Unqualified Teacher: Non-SEN Roles'
     :id: :NQT_NonSEN
+    :scheme_id: :CCS
+    :code: CCS-ST-NQT_NonSEN
+    :unit: :Currency
     :keyword:
     - teacher
     - non-sen
   - :description: 'Unqualified Teacher: SEN Roles'
     :id: :NQT_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-NQT_SEN
+    :unit: :Currency
     :keyword:
     - teaching assistant
     - Special Education Needs
@@ -84,26 +126,50 @@
   - :description: 'Educational Support Staff: Non-SEN roles (incl. Cover Supervisor
       and Teaching Assistant)'
     :id: :EdSup_NonSEN
+    :scheme_id: :CCS
+    :code: CCS-ST-EdSup_NonSEN
+    :unit: :Currency
   - :description: 'Educational Support Staff: SEN roles (incl. Cover Supervisor and
       Teaching Assistant)'
     :id: :EdSup_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-EdSup_SEN
+    :unit: :Currency
   - :description: 'Other Roles: Headteacher and Senior Leadership positions'
     :id: :Snr_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-Snr_SEN
+    :unit: :Currency
   - :description: 'Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff,
       Cleaners etc.)'
     :id: :Src_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-Src_SEN
+    :unit: :Currency
   - :description: Nominated Workers
     :id: :Nom_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-Nom_SEN
+    :unit: :Currency
   - :description: Fixed Term Role (on School Payroll)
     :id: :FTA_SEN
+    :scheme_id: :CCS
+    :code: CCS-ST-FTA_SEN
+    :unit: :Currency
 :itemtype:
 - :description: 'Qualified Teacher: Non-SEN Roles'
   :id: :QT_NonSEN
+  :scheme_id: :CCS
+  :code: CCS-ST-QT_NonSEN
+  :unit: :Currency
   :keyword:
   - teacher
   - non-sen
 - :description: 'Qualified Teacher: SEN Roles'
   :id: :QT_SEN
+  :scheme_id: :CCS
+  :code: CCS-ST-QT_SEN
+  :unit: :Currency
   :keyword:
   - teacher
   - sen teacher
@@ -111,11 +177,17 @@
   - Special Needs
 - :description: 'Unqualified Teacher: Non-SEN Roles'
   :id: :NQT_NonSEN
+  :scheme_id: :CCS
+  :code: CCS-ST-NQT_NonSEN
+  :unit: :Currency
   :keyword:
   - teacher
   - non-sen
 - :description: 'Unqualified Teacher: SEN Roles'
   :id: :NQT_SEN
+  :scheme_id: :CCS
+  :code: CCS-ST-NQT_SEN
+  :unit: :Currency
   :keyword:
   - teaching assistant
   - Special Education Needs
@@ -123,18 +195,36 @@
 - :description: 'Educational Support Staff: Non-SEN roles (incl. Cover Supervisor
     and Teaching Assistant)'
   :id: :EdSup_NonSEN
+  :scheme_id: :CCS
+  :code: CCS-ST-EdSup_NonSEN
+  :unit: :Currency
 - :description: 'Educational Support Staff: SEN roles (incl. Cover Supervisor and
     Teaching Assistant)'
   :id: :EdSup_SEN
+  :scheme_id: :CCS
+  :code: CCS-ST-EdSup_SEN
+  :unit: :Currency
 - :description: 'Other Roles: Headteacher and Senior Leadership positions'
   :id: :Snr_SEN
+  :scheme_id: :CCS
+  :code: CCS-ST-Snr_SEN
+  :unit: :Currency
 - :description: 'Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners
     etc.)'
   :id: :Src_SEN
+  :scheme_id: :CCS
+  :code: CCS-ST-Src_SEN
+  :unit: :Currency
 - :description: Nominated Workers
   :id: :Nom_SEN
+  :scheme_id: :CCS
+  :code: CCS-ST-Nom_SEN
+  :unit: :Currency
 - :description: Fixed Term Role (on School Payroll)
   :id: :FTA_SEN
+  :scheme_id: :CCS
+  :code: CCS-ST-FTA_SEN
+  :unit: :Currency
 :areacode:
 - :name: :UK
   :subcode:

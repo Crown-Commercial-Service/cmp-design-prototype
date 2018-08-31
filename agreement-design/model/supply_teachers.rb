@@ -18,7 +18,7 @@ Agreements.new(:ST_Agreements) {
   }
 
   item_coding = lambda do
-    scheme_id = :CCS; code = "CCS-#{SUPPLY_TEACHER_FRAMEWORK_ID}-#{id}"; unit = :Currency;
+    scheme_id :CCS; code "CCS-#{SUPPLY_TEACHER_FRAMEWORK_ID}-#{id}"; unit :Currency;
   end
 
   # Items common to both Lots

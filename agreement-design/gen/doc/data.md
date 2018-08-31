@@ -18,11 +18,17 @@
 #### itemtype QT_NonSEN 
      - description Qualified Teacher: Non-SEN Roles
      - id QT_NonSEN
+     - scheme_id CCS
+     - code CCS-ST-QT_NonSEN
+     - unit Currency
      - keyword teacher
      - keyword non-sen
 #### itemtype QT_SEN 
      - description Qualified Teacher: SEN Roles
      - id QT_SEN
+     - scheme_id CCS
+     - code CCS-ST-QT_SEN
+     - unit Currency
      - keyword teacher
      - keyword sen teacher
      - keyword Special Education Needs
@@ -30,32 +36,56 @@
 #### itemtype NQT_NonSEN 
      - description Unqualified Teacher: Non-SEN Roles
      - id NQT_NonSEN
+     - scheme_id CCS
+     - code CCS-ST-NQT_NonSEN
+     - unit Currency
      - keyword teacher
      - keyword non-sen
 #### itemtype NQT_SEN 
      - description Unqualified Teacher: SEN Roles
      - id NQT_SEN
+     - scheme_id CCS
+     - code CCS-ST-NQT_SEN
+     - unit Currency
      - keyword teaching assistant
      - keyword Special Education Needs
      - keyword Special Needs
 #### itemtype EdSup_NonSEN 
      - description Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)
      - id EdSup_NonSEN
+     - scheme_id CCS
+     - code CCS-ST-EdSup_NonSEN
+     - unit Currency
 #### itemtype EdSup_SEN 
      - description Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)
      - id EdSup_SEN
+     - scheme_id CCS
+     - code CCS-ST-EdSup_SEN
+     - unit Currency
 #### itemtype Snr_SEN 
      - description Other Roles: Headteacher and Senior Leadership positions
      - id Snr_SEN
+     - scheme_id CCS
+     - code CCS-ST-Snr_SEN
+     - unit Currency
 #### itemtype Src_SEN 
      - description Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)
      - id Src_SEN
+     - scheme_id CCS
+     - code CCS-ST-Src_SEN
+     - unit Currency
 #### itemtype Nom_SEN 
      - description Nominated Workers
      - id Nom_SEN
+     - scheme_id CCS
+     - code CCS-ST-Nom_SEN
+     - unit Currency
 #### itemtype FTA_SEN 
      - description Fixed Term Role (on School Payroll)
      - id FTA_SEN
+     - scheme_id CCS
+     - code CCS-ST-FTA_SEN
+     - unit Currency
 ### Hire an agency to sort out all your supply teacher needs ST.MS 
    - kind Lot
    - id ST.MS
@@ -65,11 +95,17 @@
 #### itemtype QT_NonSEN 
      - description Qualified Teacher: Non-SEN Roles
      - id QT_NonSEN
+     - scheme_id CCS
+     - code CCS-ST-QT_NonSEN
+     - unit Currency
      - keyword teacher
      - keyword non-sen
 #### itemtype QT_SEN 
      - description Qualified Teacher: SEN Roles
      - id QT_SEN
+     - scheme_id CCS
+     - code CCS-ST-QT_SEN
+     - unit Currency
      - keyword teacher
      - keyword sen teacher
      - keyword Special Education Needs
@@ -77,41 +113,71 @@
 #### itemtype NQT_NonSEN 
      - description Unqualified Teacher: Non-SEN Roles
      - id NQT_NonSEN
+     - scheme_id CCS
+     - code CCS-ST-NQT_NonSEN
+     - unit Currency
      - keyword teacher
      - keyword non-sen
 #### itemtype NQT_SEN 
      - description Unqualified Teacher: SEN Roles
      - id NQT_SEN
+     - scheme_id CCS
+     - code CCS-ST-NQT_SEN
+     - unit Currency
      - keyword teaching assistant
      - keyword Special Education Needs
      - keyword Special Needs
 #### itemtype EdSup_NonSEN 
      - description Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)
      - id EdSup_NonSEN
+     - scheme_id CCS
+     - code CCS-ST-EdSup_NonSEN
+     - unit Currency
 #### itemtype EdSup_SEN 
      - description Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)
      - id EdSup_SEN
+     - scheme_id CCS
+     - code CCS-ST-EdSup_SEN
+     - unit Currency
 #### itemtype Snr_SEN 
      - description Other Roles: Headteacher and Senior Leadership positions
      - id Snr_SEN
+     - scheme_id CCS
+     - code CCS-ST-Snr_SEN
+     - unit Currency
 #### itemtype Src_SEN 
      - description Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)
      - id Src_SEN
+     - scheme_id CCS
+     - code CCS-ST-Src_SEN
+     - unit Currency
 #### itemtype Nom_SEN 
      - description Nominated Workers
      - id Nom_SEN
+     - scheme_id CCS
+     - code CCS-ST-Nom_SEN
+     - unit Currency
 #### itemtype FTA_SEN 
      - description Fixed Term Role (on School Payroll)
      - id FTA_SEN
+     - scheme_id CCS
+     - code CCS-ST-FTA_SEN
+     - unit Currency
 ## itemtype
 ### itemtype QT_NonSEN 
    - description Qualified Teacher: Non-SEN Roles
    - id QT_NonSEN
+   - scheme_id CCS
+   - code CCS-ST-QT_NonSEN
+   - unit Currency
    - keyword teacher
    - keyword non-sen
 ### itemtype QT_SEN 
    - description Qualified Teacher: SEN Roles
    - id QT_SEN
+   - scheme_id CCS
+   - code CCS-ST-QT_SEN
+   - unit Currency
    - keyword teacher
    - keyword sen teacher
    - keyword Special Education Needs
@@ -119,32 +185,56 @@
 ### itemtype NQT_NonSEN 
    - description Unqualified Teacher: Non-SEN Roles
    - id NQT_NonSEN
+   - scheme_id CCS
+   - code CCS-ST-NQT_NonSEN
+   - unit Currency
    - keyword teacher
    - keyword non-sen
 ### itemtype NQT_SEN 
    - description Unqualified Teacher: SEN Roles
    - id NQT_SEN
+   - scheme_id CCS
+   - code CCS-ST-NQT_SEN
+   - unit Currency
    - keyword teaching assistant
    - keyword Special Education Needs
    - keyword Special Needs
 ### itemtype EdSup_NonSEN 
    - description Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)
    - id EdSup_NonSEN
+   - scheme_id CCS
+   - code CCS-ST-EdSup_NonSEN
+   - unit Currency
 ### itemtype EdSup_SEN 
    - description Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)
    - id EdSup_SEN
+   - scheme_id CCS
+   - code CCS-ST-EdSup_SEN
+   - unit Currency
 ### itemtype Snr_SEN 
    - description Other Roles: Headteacher and Senior Leadership positions
    - id Snr_SEN
+   - scheme_id CCS
+   - code CCS-ST-Snr_SEN
+   - unit Currency
 ### itemtype Src_SEN 
    - description Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)
    - id Src_SEN
+   - scheme_id CCS
+   - code CCS-ST-Src_SEN
+   - unit Currency
 ### itemtype Nom_SEN 
    - description Nominated Workers
    - id Nom_SEN
+   - scheme_id CCS
+   - code CCS-ST-Nom_SEN
+   - unit Currency
 ### itemtype FTA_SEN 
    - description Fixed Term Role (on School Payroll)
    - id FTA_SEN
+   - scheme_id CCS
+   - code CCS-ST-FTA_SEN
+   - unit Currency
 # Model: NUTS 
 ## areacode
 ### UK  
