@@ -149,29 +149,32 @@ def load_managing_suppliers filename, parties
     end
   end
 
+  def time_options(item_type)
+    if (:Nom == item_type.id || :FTA == item_type.id)
+      return [[6, :Over_12_weeks]]
+    else
+      return [[4, :Up_to_1_week], [5, :Between_1_and_12_weeks], [6, :Over_12_weeks]]
+    end
+  end
+
   SupplyTeacherOfferings.new :ST_Offerings do
     lines.each do |row|
       if row[0] != "Vendor type" then
-        for row_dur in [[4, :Up_to_1_week], [5, :Between_1_and_12_weeks], [6, :Over_12_weeks]]
+        item_type = get_st_item (row[2])
+        if (!item_type)
+          puts "Warning can't match item '#{row[2]}"
+          next
+        end
+        for row_dur in time_options(item_type)
           name = row[1]
           st_offering do
-            item_type = get_st_item (row[2])
-            if (item_type)
-              name "#{name}-#{item_type.description}-#{row_dur[1]}"
-              agreement_id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
-              supplier_id name # TODO will actually have to match this to a real supplier id, such as in SF
-              commission row[row_dur[0]]
-              item do
-                type_id item_type.id
-                unit :Currency
-              end
-              if (:Nom == item_type.id || :FTA == item_type.id)
-                break # these types don't have variuable durations
-              else
-                duration row_dur[1]
-              end
-            else
-              puts "Warning can't match item '#{row[2]}"
+            name "#{name}-#{item_type.description}-#{row_dur[1]}"
+            agreement_id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
+            supplier_id name # TODO will actually have to match this to a real supplier id, such as in SF
+            commission row[row_dur[0]]
+            item do
+              type_id item_type.id
+              unit :Currency
             end
           end
         end
