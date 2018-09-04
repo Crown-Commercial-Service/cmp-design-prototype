@@ -2,6 +2,7 @@ require 'date'
 
 module DataModel
 
+
   SINGLE = 1..1
   ZERO_OR_ONE = 0..1
   ONE_TO_MANY = 1..-1
@@ -100,6 +101,9 @@ module DataModel
         self.define_singleton_method("#{k}=".to_sym) do |val|
           @attributes[k] = val
           val
+        end
+        self.define_singleton_method :include do |&block|
+          self.instance_exec &block
         end
       end
 
@@ -216,7 +220,9 @@ module DataModel
 
   def domain(name, &block)
     dom = Object.const_set name, Class.new(Domain)
-    dom.instance_exec &block
+    if block_given?
+      dom.instance_exec &block
+    end
     return dom
   end
 
@@ -234,5 +240,6 @@ module DataModel
     selclass.define_singleton_method(:to_s) {"(#{self.selection.join(',')})"}
     return selclass
   end
+
 
 end # DataModel

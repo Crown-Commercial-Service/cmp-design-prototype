@@ -18,7 +18,7 @@ class Document < Output
                 file.print %Q!## #{name}\n!
               end,
               :before_type => lambda do |type:, depth: 0, index:, total:|
-                file.print %Q!####{'#' * depth} #{type.name} #{type.attributes[:id] || ""} \n!
+                file.print %Q!####{'#' * depth} #{type.class.typename} - #{type.name} \n!
               end,
               :attribute => lambda do |id:, val:, depth: 0, type: nil, index:, total:|
                 file.print %Q!#{"  " * depth} - #{id} #{val}\n!

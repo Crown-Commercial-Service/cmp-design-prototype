@@ -81,7 +81,7 @@ schemes, but is not a one-to-one match.") {
 
   datatype(:Item,
            description: "Specifies the value of an item that is being offered for an agreement") {
-    attribute :type, String, " type of the item ", links: :ItemType
+    attribute :type_id, String, " type of the item ", links: :ItemType
     attribute :unit, UNITS, " define the units "
     attribute :value, Object, "an object of the type matching type->units"
   }

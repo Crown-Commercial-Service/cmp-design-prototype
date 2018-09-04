@@ -53,7 +53,7 @@ FM_Offerings.new(:FM_Catalogue) {
     sector :Education
     sc_cleared "TRUE"
     item {
-      type ENV_CLEANING
+      type_id ENV_CLEANING
       value 3000
     }
   }

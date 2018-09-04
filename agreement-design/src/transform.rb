@@ -141,4 +141,60 @@ module Transform
     self
   end
 
+  def models_to_data(models)
+    map = Hash.new
+    stack = [map]
+    transform_datamodel(
+        {
+            :before_group => lambda do |name:|
+              # group all instances of the same type name into the same array in the top level map
+              if map[name]
+                stack.push(map[name])
+              else
+                n = Array.new
+                map[name] = n
+                stack.push(map[name]) # add a new container to the stack to use next
+              end
+            end,
+            :before_type => lambda do |type:, depth:, index:, total:|
+              last = stack.last
+              n = Hash.new
+              stack.push(n) # add a new container to the stack to use next
+              if last.class <= Hash
+                last[type.name] = n
+              elsif last.class <= Array
+                last.push(n)
+              end
+            end,
+            :before_array => lambda do |name:, decl:, depth:, total:|
+              last = stack.last
+              n = Array.new
+              if last.class <= Array
+                last << n
+              else
+                last[name] = n
+              end
+              stack.push(n) # add a new container to the stack to use next
+            end,
+            :attribute => lambda do |id:, val:, depth:, type:, index:, total:|
+              last = stack.last
+              if last.class <= Hash
+                last[id] = val
+              elsif last.class <= Array
+                last.push val
+              end
+            end,
+            :after_group => lambda do |name:, depth:, before:|
+              stack.pop
+            end,
+            :after_type => lambda do |type:, depth:, before:|
+              stack.pop
+            end,
+            :after_array => lambda do |index:, decl:, depth:, before: nil|
+              stack.pop
+            end,
+        }, *models)
+    map
+  end
+
 end
