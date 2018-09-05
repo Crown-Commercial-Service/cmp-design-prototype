@@ -3,7 +3,7 @@ require 'csv'
 
 SUPPLY_TEACHER_FRAMEWORK_ID = "ST"
 SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID = "#{SUPPLY_TEACHER_FRAMEWORK_ID}.MS"
-SUPPLY_TEACHER_AGENCY_LOT_ID = "#{SUPPLY_TEACHER_FRAMEWORK_ID}.AG"
+SUPPLY_TEACHER_RECRUITMENT_LOT_ID = "#{SUPPLY_TEACHER_FRAMEWORK_ID}.AG"
 
 
 Agreements.new(:Supply_Teacher_Agreements) {
@@ -20,6 +20,9 @@ Agreements.new(:Supply_Teacher_Agreements) {
   item_coding = lambda do
     scheme_id :CPV; code "79610000/#{id}"; unit :Commission;
   end
+
+  ST_ROLES = [:QT_NonSEN, :QT_SEN, :NQT_NonSEN, :NQT_SEN, :EdSup_NonSEN, :EdSup_SEN, :Senior, :Admin, :Nom, :FTA]
+  ST_DURATIONS = [:Up_to_1_week, :Between_1_and_12_weeks, :Over_12_weeks]
 
   # Items common to both Lots
   Common_ST_items = [
@@ -89,7 +92,7 @@ Agreements.new(:Supply_Teacher_Agreements) {
 
   agreement {
     kind :Lot
-    id SUPPLY_TEACHER_AGENCY_LOT_ID
+    id SUPPLY_TEACHER_RECRUITMENT_LOT_ID
     name "Supply Teachers from Agency"
     part_of_id SUPPLY_TEACHER_FRAMEWORK_ID
     offerType "SupplyTeacherOfferings::ST_Offering"
@@ -119,7 +122,7 @@ domain(:SupplyTeacherOfferings) {
            description: " An offer for ST supply
 The offerings look the same for both lots - since they both relate to the same items and data") {
     attribute :commission, String, "The percentage the supplier charges for the item"
-    attribute :duration, Selection(:Up_to_1_week, :Between_1_and_12_weeks, :Over_12_weeks)
+    attribute :duration, Selection(*ST_DURATIONS)
     attribute :branch_name, String, "branch name from which the offer is supplied"
     attribute :branch_contact_id, String, "links to contact at the address", links: Parties::Contact
     attribute :vendor_type, Selection("Master_Vendor", "Neutral_Vendor"), "for managed service offerings", links: Parties::Contact
@@ -178,9 +181,9 @@ def load_managing_suppliers filename, parties
     lines.each do |row|
       col = colmap_managing_suppliers(row)
       if row[0] != "Vendor type" then
-        item_type = get_st_item (row[2])
+        item_type = get_st_item (col[:Item_ID])
         if (!item_type)
-          puts "Warning can't match item '#{row[2]}"
+          puts "Warning can't match item '#{col[:Item_ID]}"
           next
         end
         for row_dur in time_options(item_type, col)
@@ -189,7 +192,6 @@ def load_managing_suppliers filename, parties
             name "#{name}-#{item_type.description}-#{row_dur}"
             agreement_id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
             supplier_id name # TODO will actually have to match this to a real supplier id, such as in SF
-            commission col[row_dur]
             item do
               type_id item_type.id
               unit :Commission
@@ -253,24 +255,22 @@ end
 def load_recruitment_suppliers filename, parties
 
   SupplyTeacherOfferings.new :ST_RecruitmentOfferings do
+    lines = CSV.foreach(filename)
     lines.each do |row|
-      cols = col_for_supplier row
+      col = col_for_supplier row
       if col[:Col_Supplier_Name] != "0 Supplier Name" then
-        item_type = get_st_item (row[2])
-        if (!item_type)
-          puts "Warning can't match item '#{row[2]}"
-          next
-        end
-        for type_time in type_times.keys
-          supplier = col[:Col_Supplier_Name]
-          st_offering do
-            name "#{supplier}-#{item_type.description}-#{row_dur[1]}"
-            agreement_id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
-            supplier_id supplier # TODO will actually have to match this to a real supplier id, such as in SF
-            commission col[type_time]
-            item do
-              type_id item_type.id
-              unit :Commission
+        for dur in ST_DURATIONS
+          for role in ST_ROLES
+            supplier = col[:Col_Supplier_Name]
+            st_offering do
+              name "#{supplier}-#{role}-#{dur}"
+              agreement_id SUPPLY_TEACHER_RECRUITMENT_LOT_ID
+              supplier_id supplier # TODO will actually have to match this to a real supplier id, such as in SF
+              item do
+                type_id role
+                unit :Commission
+                value col[[role, dur]]
+              end
             end
           end
         end

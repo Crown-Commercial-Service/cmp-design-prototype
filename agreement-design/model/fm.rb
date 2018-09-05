@@ -7,7 +7,7 @@ domain(:FM_Offerings) {
   }
 }
 
-Agreements.new :FM_Agreements do
+Agreements.new(:FM_Agreements) {
 
   FM_ID = "FM"
   agreement {
@@ -42,7 +42,7 @@ Agreements.new :FM_Agreements do
     cnew = item_type cleaning
   }
 
-end
+}
 
 FM_Offerings.new(:FM_Catalogue) {
   fm_offering {

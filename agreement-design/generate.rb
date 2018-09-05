@@ -6,26 +6,27 @@ require_relative "model/agreement"
 require_relative "model/fm"
 require_relative "model/supply_teachers"
 
-path = File.join(File.dirname(__FILE__), "gen")
+output_path = File.join(File.dirname(__FILE__), "gen")
 
 metamodels = [Agreements, Parties, Geographic, SupplyTeacherOfferings]
+
+diagram = Diagram.new(output_path, "metamodel")
+diagram.describe *metamodels
+
+doc = Document.new(output_path, "metamodel")
+doc.document_metamodel *metamodels
+
 models = [
     Agreements::Supply_Teacher_Agreements,
     Geographic::NUTS,
 ]
 
-diagram = Diagram.new(path, "metamodel")
-diagram.describe *metamodels
-
-doc = Document.new(path, "metamodel")
-doc.document_metamodel *metamodels
-
-doc = Document.new(path, "supply_teachers")
+doc = Document.new(output_path, "supply_teachers")
 doc.document Agreements::Supply_Teacher_Agreements
 
-data = DataFile.new(path, "data", fmt: :json)
+data = DataFile.new(output_path, "data", fmt: :json)
 data.output *models
-data = DataFile.new(path, "data", fmt: :yaml)
+data = DataFile.new(output_path, "data", fmt: :yaml)
 data.output *models
 
 # create a store for all parties in all models
@@ -35,18 +36,20 @@ parties= Parties.new :AllParties do
   end
 end
 
-def datafile(name)
+# put test catalogues into test output
+def test_data_file(name)
   File.join(File.dirname(__FILE__), "data", name)
 end
 
-st_offers= load_managing_suppliers(datafile("teacher-management-test.csv"), parties)
-puts models_to_data( st_offers).to_yaml
+sm_offers= load_managing_suppliers(test_data_file("teacher-management-test.csv"), parties)
+sr_offers= load_recruitment_suppliers(test_data_file("teacher-recruitment-test.csv"), parties)
 
-# data= DataFile.new( path, "fm_agreements", fmt: :jsonlines)
-# data.output Agreements::FM_Agreements
+# puts models_to_data( sm_offers).to_yaml
+puts models_to_data( sr_offers).to_yaml
 
-# data = DataFile.new(path, "fm_catalogue", fmt: :jsonlines)
-# data.output FM_Offerings::FM_Catalogue
+data= DataFile.new( output_path, "teacher-management-test-offers", fmt: :jsonlines)
+data.output sm_offers
 
-# data= DataFile.new( path, "Supply_Teacher_Agreements", fmt: :jsonlines)
-# data.output Agreements::Supply_Teacher_Agreements
+data= DataFile.new( output_path, "teacher-recruitment-test-offers", fmt: :jsonlines)
+data.output sm_offers
+
