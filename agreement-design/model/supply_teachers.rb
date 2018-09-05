@@ -18,7 +18,7 @@ Agreements.new(:Supply_Teacher_Agreements) {
   }
 
   item_coding = lambda do
-    scheme_id :CPV; code "79610000/#{id}"; unit :Currency;
+    scheme_id :CPV; code "79610000/#{id}"; unit :Commission;
   end
 
   # Items common to both Lots
@@ -126,18 +126,34 @@ The offerings look the same for both lots - since they both relate to the same i
   }
 }
 
-#expects CSV of the form
+def colmap_managing_suppliers(row)
+  {
+      :Vendor_type => row[0],
+      :Supplier => row[1],
+      :Item_ID => row[2],
+      :Job_Type => row[3],
+      :Up_to_1_week => row[4],
+      :Between_1_and_12_weeks => row[5],
+      :Over_12_weeks => row[6],
+      :Contact_information => row[7]
+  }
+end
+
+# expects CSV of the form
 # 0          ,1        ,2      ,3       , 4          , 5                    , 6           , 7
 # Vendor type,Supplier ,Item ID,Job Type,Up_to_1_week,Between_1_and_12_weeks,Over_12_weeks,Contact information
 # @param [Domain] parties - all the parties involved; method adds new suppliers if not present by namne
 # @param [Object] filename - name of CSV file
 def load_managing_suppliers filename, parties
 
+
   # Load the suppliers from the file
   lines = CSV.foreach(filename)
   lines.each do |row|
-    if row[0] != "Vendor type" then
-      name = row[1]
+    col = colmap_managing_suppliers(row)
+
+    if col[:Vendor_type] != "Vendor type" then
+      name = col[:Supplier]
       unless parties.contents[:party].find {|p| p.name == [name]}
         parties.instance_exec do
           party {
@@ -149,32 +165,35 @@ def load_managing_suppliers filename, parties
     end
   end
 
-  def time_options(item_type)
+  def time_options(item_type, colmap)
     if (:Nom == item_type.id || :FTA == item_type.id)
-      return [[6, :Over_12_weeks]]
+      return [:Over_12_weeks]
     else
-      return [[4, :Up_to_1_week], [5, :Between_1_and_12_weeks], [6, :Over_12_weeks]]
+      return [:Up_to_1_week, :Between_1_and_12_weeks, :Over_12_weeks]
     end
   end
 
-  SupplyTeacherOfferings.new :ST_Offerings do
+
+  SupplyTeacherOfferings.new :ST_ManagementOfferings do
     lines.each do |row|
+      col = colmap_managing_suppliers(row)
       if row[0] != "Vendor type" then
         item_type = get_st_item (row[2])
         if (!item_type)
           puts "Warning can't match item '#{row[2]}"
           next
         end
-        for row_dur in time_options(item_type)
+        for row_dur in time_options(item_type, col)
           name = row[1]
           st_offering do
-            name "#{name}-#{item_type.description}-#{row_dur[1]}"
+            name "#{name}-#{item_type.description}-#{row_dur}"
             agreement_id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
             supplier_id name # TODO will actually have to match this to a real supplier id, such as in SF
-            commission row[row_dur[0]]
+            commission col[row_dur]
             item do
               type_id item_type.id
-              unit :Currency
+              unit :Commission
+              value col[row_dur]
             end
           end
         end
@@ -182,9 +201,87 @@ def load_managing_suppliers filename, parties
     end
   end
 
-  return SupplyTeacherOfferings::ST_Offerings
+  return SupplyTeacherOfferings::ST_ManagementOfferings
 end
 
-def get_st_item desc
-  return Common_ST_items.find {|i| i.id.to_s == desc}
+def col_for_supplier row
+  {
+      :Col_Supplier_Name => row[0],
+      :Col_Branch_Name => row[1],
+      :Col_Branch_Contact_name => row[2],
+      :Col_Address_1 => row[3],
+      :Col_Address_2 => row[4],
+      :Col_Town => row[5],
+      :Col_County => row[6],
+      :Col_Post_Code => row[7],
+      :Col_Branch_Contact_Name_Email_Address => row[8],
+      :Col_Branch_Telephone_Number => row[9],
+      :Col_Region => row[10],
+      [:QT_NonSEN, :Up_to_1_week] => row[11],
+      [:QT_NonSEN, :Between_1_and_12_weeks] => row[12],
+      [:QT_NonSEN, :Over_12_weeks] => row[13],
+      [:QT_SEN, :Up_to_1_week] => row[14],
+      [:QT_SEN, :Between_1_and_12_weeks] => row[15],
+      [:QT_SEN, :Over_12_weeks] => row[16],
+      [:NQT_NonSEN, :Up_to_1_week] => row[17],
+      [:NQT_NonSEN, :Between_1_and_12_weeks] => row[18],
+      [:NQT_NonSEN, :Over_12_weeks] => row[19],
+      [:NQT_SEN, :Up_to_1_week] => row[20],
+      [:NQT_SEN, :Between_1_and_12_weeks] => row[21],
+      [:NQT_SEN, :Over_12_weeks] => row[22],
+      [:EdSup_NonSEN, :Up_to_1_week] => row[23],
+      [:EdSup_NonSEN, :Between_1_and_12_weeks] => row[24],
+      [:EdSup_NonSEN, :Over_12_weeks] => row[25],
+      [:EdSup_SEN, :Up_to_1_week] => row[26],
+      [:EdSup_SEN, :Between_1_and_12_weeks] => row[27],
+      [:EdSup_SEN, :Over_12_weeks] => row[28],
+      [:Senior, :Up_to_1_week] => row[29],
+      [:Senior, :Between_1_and_12_weeks] => row[30],
+      [:Senior, :Over_12_weeks] => row[31],
+      [:Admin, :Up_to_1_week] => row[32],
+      [:Admin, :Between_1_and_12_weeks] => row[33],
+      [:Admin, :Over_12_weeks] => row[34],
+      [:Nom, :Nominated_workers] => row[35],
+      [:FTA, :Fixed_Term_Contract] => row[36]
+  }
+end
+
+# expects CSV of the form
+# 0 Supplier Name,1 Branch Name/No.,2 Branch Contact name,3 Address 1,4 Address 2,5 Town,6 County,7 Post Code,8 Branch Contact Name Email Address,9 Branch Telephone Number,10 Region,11 QT_NonSEN/Up to 1 week,12 QT_NonSEN/Between 1 and 12 weeks,13 QT_NonSEN/Over 12 weeks,14 QT_SEN/Up to 1 week,15 QT_SEN/Between 1 and 12 weeks,16 QT_SEN/Over 12 weeks,17 NQT_NonSEN/Up to 1 week,18 NQT_NonSEN/Between 1 and 12 weeks,NQT_NonSEN/Over 12 weeks,NQT_SEN/Up to 1 week,NQT_SEN/Between 1 and 12 weeks,NQT_SEN/Over 12 weeks,EdSup_NonSEN/Up to 1 week,EdSup_NonSEN/Between 1 and 12 weeks,EdSup_NonSEN/Over 12 weeks,EdSup_SEN/Up to 1 week,EdSup_SEN/Between 1 and 12 weeks,EdSup_SEN/Over 12 weeks,Senior/Up to 1 week,Senior/Between 1 and 12 weeks,Senior/Over 12 weeks,Admin/Up to 1 week,Admin/Between 1 and 12 weeks,Over 12 weeks,Nom/Nominated workers,FTA/Fixed Term Contract (school payroll worker)
+# @param [Domain] parties - all the parties involved; method adds new suppliers if not present by namne
+# @param [Object] filename - name of CSV file
+def load_recruitment_suppliers filename, parties
+
+  SupplyTeacherOfferings.new :ST_RecruitmentOfferings do
+    lines.each do |row|
+      cols = col_for_supplier row
+      if col[:Col_Supplier_Name] != "0 Supplier Name" then
+        item_type = get_st_item (row[2])
+        if (!item_type)
+          puts "Warning can't match item '#{row[2]}"
+          next
+        end
+        for type_time in type_times.keys
+          supplier = col[:Col_Supplier_Name]
+          st_offering do
+            name "#{supplier}-#{item_type.description}-#{row_dur[1]}"
+            agreement_id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
+            supplier_id supplier # TODO will actually have to match this to a real supplier id, such as in SF
+            commission col[type_time]
+            item do
+              type_id item_type.id
+              unit :Commission
+            end
+          end
+        end
+      end
+    end
+  end
+
+  return SupplyTeacherOfferings::ST_RecruitmentOfferings
+end
+
+
+def get_st_item item_id
+  return Common_ST_items.find {|i| i.id.to_s == item_id}
 end

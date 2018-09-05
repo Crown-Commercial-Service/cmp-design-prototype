@@ -20,7 +20,7 @@
      - id QT_NonSEN
      - scheme_id CPV
      - code 79610000/QT_NonSEN
-     - unit Currency
+     - unit Commission
      - keyword teacher
      - keyword non-sen
 #### ItemType - itemtype 
@@ -28,7 +28,7 @@
      - id QT_SEN
      - scheme_id CPV
      - code 79610000/QT_SEN
-     - unit Currency
+     - unit Commission
      - keyword teacher
      - keyword sen teacher
      - keyword Special Education Needs
@@ -38,7 +38,7 @@
      - id NQT_NonSEN
      - scheme_id CPV
      - code 79610000/NQT_NonSEN
-     - unit Currency
+     - unit Commission
      - keyword teacher
      - keyword non-sen
 #### ItemType - itemtype 
@@ -46,7 +46,7 @@
      - id NQT_SEN
      - scheme_id CPV
      - code 79610000/NQT_SEN
-     - unit Currency
+     - unit Commission
      - keyword teaching assistant
      - keyword Special Education Needs
      - keyword Special Needs
@@ -55,37 +55,37 @@
      - id EdSup_NonSEN
      - scheme_id CPV
      - code 79610000/EdSup_NonSEN
-     - unit Currency
+     - unit Commission
 #### ItemType - itemtype 
      - description Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)
      - id EdSup_SEN
      - scheme_id CPV
      - code 79610000/EdSup_SEN
-     - unit Currency
+     - unit Commission
 #### ItemType - itemtype 
      - description Other Roles: Headteacher and Senior Leadership positions
      - id Senior
      - scheme_id CPV
      - code 79610000/Senior
-     - unit Currency
+     - unit Commission
 #### ItemType - itemtype 
      - description Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)
      - id Admin
      - scheme_id CPV
      - code 79610000/Admin
-     - unit Currency
+     - unit Commission
 #### ItemType - itemtype 
      - description Nominated Workers
      - id Nom
      - scheme_id CPV
      - code 79610000/Nom
-     - unit Currency
+     - unit Commission
 #### ItemType - itemtype 
      - description Fixed Term Role (on School Payroll)
      - id FTA
      - scheme_id CPV
      - code 79610000/FTA
-     - unit Currency
+     - unit Commission
 ### Agreement - Supply Teachers Managed Service 
    - kind Lot
    - id ST.MS
@@ -98,7 +98,7 @@
      - id QT_NonSEN
      - scheme_id CPV
      - code 79610000/QT_NonSEN
-     - unit Currency
+     - unit Commission
      - keyword teacher
      - keyword non-sen
 #### ItemType - itemtype 
@@ -106,7 +106,7 @@
      - id QT_SEN
      - scheme_id CPV
      - code 79610000/QT_SEN
-     - unit Currency
+     - unit Commission
      - keyword teacher
      - keyword sen teacher
      - keyword Special Education Needs
@@ -116,7 +116,7 @@
      - id NQT_NonSEN
      - scheme_id CPV
      - code 79610000/NQT_NonSEN
-     - unit Currency
+     - unit Commission
      - keyword teacher
      - keyword non-sen
 #### ItemType - itemtype 
@@ -124,7 +124,7 @@
      - id NQT_SEN
      - scheme_id CPV
      - code 79610000/NQT_SEN
-     - unit Currency
+     - unit Commission
      - keyword teaching assistant
      - keyword Special Education Needs
      - keyword Special Needs
@@ -133,44 +133,44 @@
      - id EdSup_NonSEN
      - scheme_id CPV
      - code 79610000/EdSup_NonSEN
-     - unit Currency
+     - unit Commission
 #### ItemType - itemtype 
      - description Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)
      - id EdSup_SEN
      - scheme_id CPV
      - code 79610000/EdSup_SEN
-     - unit Currency
+     - unit Commission
 #### ItemType - itemtype 
      - description Other Roles: Headteacher and Senior Leadership positions
      - id Senior
      - scheme_id CPV
      - code 79610000/Senior
-     - unit Currency
+     - unit Commission
 #### ItemType - itemtype 
      - description Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)
      - id Admin
      - scheme_id CPV
      - code 79610000/Admin
-     - unit Currency
+     - unit Commission
 #### ItemType - itemtype 
      - description Nominated Workers
      - id Nom
      - scheme_id CPV
      - code 79610000/Nom
-     - unit Currency
+     - unit Commission
 #### ItemType - itemtype 
      - description Fixed Term Role (on School Payroll)
      - id FTA
      - scheme_id CPV
      - code 79610000/FTA
-     - unit Currency
+     - unit Commission
 ## itemtype
 ### ItemType - itemtype 
    - description Qualified Teacher: Non-SEN Roles
    - id QT_NonSEN
    - scheme_id CPV
    - code 79610000/QT_NonSEN
-   - unit Currency
+   - unit Commission
    - keyword teacher
    - keyword non-sen
 ### ItemType - itemtype 
@@ -178,7 +178,7 @@
    - id QT_SEN
    - scheme_id CPV
    - code 79610000/QT_SEN
-   - unit Currency
+   - unit Commission
    - keyword teacher
    - keyword sen teacher
    - keyword Special Education Needs
@@ -188,7 +188,7 @@
    - id NQT_NonSEN
    - scheme_id CPV
    - code 79610000/NQT_NonSEN
-   - unit Currency
+   - unit Commission
    - keyword teacher
    - keyword non-sen
 ### ItemType - itemtype 
@@ -196,7 +196,7 @@
    - id NQT_SEN
    - scheme_id CPV
    - code 79610000/NQT_SEN
-   - unit Currency
+   - unit Commission
    - keyword teaching assistant
    - keyword Special Education Needs
    - keyword Special Needs
@@ -205,34 +205,34 @@
    - id EdSup_NonSEN
    - scheme_id CPV
    - code 79610000/EdSup_NonSEN
-   - unit Currency
+   - unit Commission
 ### ItemType - itemtype 
    - description Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)
    - id EdSup_SEN
    - scheme_id CPV
    - code 79610000/EdSup_SEN
-   - unit Currency
+   - unit Commission
 ### ItemType - itemtype 
    - description Other Roles: Headteacher and Senior Leadership positions
    - id Senior
    - scheme_id CPV
    - code 79610000/Senior
-   - unit Currency
+   - unit Commission
 ### ItemType - itemtype 
    - description Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)
    - id Admin
    - scheme_id CPV
    - code 79610000/Admin
-   - unit Currency
+   - unit Commission
 ### ItemType - itemtype 
    - description Nominated Workers
    - id Nom
    - scheme_id CPV
    - code 79610000/Nom
-   - unit Currency
+   - unit Commission
 ### ItemType - itemtype 
    - description Fixed Term Role (on School Payroll)
    - id FTA
    - scheme_id CPV
    - code 79610000/FTA
-   - unit Currency
+   - unit Commission

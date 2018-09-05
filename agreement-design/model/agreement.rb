@@ -6,7 +6,7 @@ include DataModel
 domain :Agreements do
 
   SECTOR = Selection(:ALL, :Education, :CentralGov, :WiderGov, :Etc)
-  UNITS = Selection(:Area, :Currency)
+  UNITS = Selection(:Area, :Commission, :Commission)
   CLASSIFICATION_SCHEMES = Selection(:CPV, :CPVS, :UNSPSC, :CPV, :OKDP, :OKPD, :CCS)
   code(:CCS, description: "CCS invented schemes")
 

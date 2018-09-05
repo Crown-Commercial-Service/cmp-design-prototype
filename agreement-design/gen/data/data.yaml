@@ -18,7 +18,7 @@
     :id: :QT_NonSEN
     :scheme_id: :CPV
     :code: 79610000/QT_NonSEN
-    :unit: :Currency
+    :unit: :Commission
     :keyword:
     - teacher
     - non-sen
@@ -26,7 +26,7 @@
     :id: :QT_SEN
     :scheme_id: :CPV
     :code: 79610000/QT_SEN
-    :unit: :Currency
+    :unit: :Commission
     :keyword:
     - teacher
     - sen teacher
@@ -36,7 +36,7 @@
     :id: :NQT_NonSEN
     :scheme_id: :CPV
     :code: 79610000/NQT_NonSEN
-    :unit: :Currency
+    :unit: :Commission
     :keyword:
     - teacher
     - non-sen
@@ -44,7 +44,7 @@
     :id: :NQT_SEN
     :scheme_id: :CPV
     :code: 79610000/NQT_SEN
-    :unit: :Currency
+    :unit: :Commission
     :keyword:
     - teaching assistant
     - Special Education Needs
@@ -54,34 +54,34 @@
     :id: :EdSup_NonSEN
     :scheme_id: :CPV
     :code: 79610000/EdSup_NonSEN
-    :unit: :Currency
+    :unit: :Commission
   - :description: 'Educational Support Staff: SEN roles (incl. Cover Supervisor and
       Teaching Assistant)'
     :id: :EdSup_SEN
     :scheme_id: :CPV
     :code: 79610000/EdSup_SEN
-    :unit: :Currency
+    :unit: :Commission
   - :description: 'Other Roles: Headteacher and Senior Leadership positions'
     :id: :Senior
     :scheme_id: :CPV
     :code: 79610000/Senior
-    :unit: :Currency
+    :unit: :Commission
   - :description: 'Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff,
       Cleaners etc.)'
     :id: :Admin
     :scheme_id: :CPV
     :code: 79610000/Admin
-    :unit: :Currency
+    :unit: :Commission
   - :description: Nominated Workers
     :id: :Nom
     :scheme_id: :CPV
     :code: 79610000/Nom
-    :unit: :Currency
+    :unit: :Commission
   - :description: Fixed Term Role (on School Payroll)
     :id: :FTA
     :scheme_id: :CPV
     :code: 79610000/FTA
-    :unit: :Currency
+    :unit: :Commission
 - :kind: :Lot
   :id: ST.MS
   :name: Supply Teachers Managed Service
@@ -93,7 +93,7 @@
     :id: :QT_NonSEN
     :scheme_id: :CPV
     :code: 79610000/QT_NonSEN
-    :unit: :Currency
+    :unit: :Commission
     :keyword:
     - teacher
     - non-sen
@@ -101,7 +101,7 @@
     :id: :QT_SEN
     :scheme_id: :CPV
     :code: 79610000/QT_SEN
-    :unit: :Currency
+    :unit: :Commission
     :keyword:
     - teacher
     - sen teacher
@@ -111,7 +111,7 @@
     :id: :NQT_NonSEN
     :scheme_id: :CPV
     :code: 79610000/NQT_NonSEN
-    :unit: :Currency
+    :unit: :Commission
     :keyword:
     - teacher
     - non-sen
@@ -119,7 +119,7 @@
     :id: :NQT_SEN
     :scheme_id: :CPV
     :code: 79610000/NQT_SEN
-    :unit: :Currency
+    :unit: :Commission
     :keyword:
     - teaching assistant
     - Special Education Needs
@@ -129,40 +129,40 @@
     :id: :EdSup_NonSEN
     :scheme_id: :CPV
     :code: 79610000/EdSup_NonSEN
-    :unit: :Currency
+    :unit: :Commission
   - :description: 'Educational Support Staff: SEN roles (incl. Cover Supervisor and
       Teaching Assistant)'
     :id: :EdSup_SEN
     :scheme_id: :CPV
     :code: 79610000/EdSup_SEN
-    :unit: :Currency
+    :unit: :Commission
   - :description: 'Other Roles: Headteacher and Senior Leadership positions'
     :id: :Senior
     :scheme_id: :CPV
     :code: 79610000/Senior
-    :unit: :Currency
+    :unit: :Commission
   - :description: 'Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff,
       Cleaners etc.)'
     :id: :Admin
     :scheme_id: :CPV
     :code: 79610000/Admin
-    :unit: :Currency
+    :unit: :Commission
   - :description: Nominated Workers
     :id: :Nom
     :scheme_id: :CPV
     :code: 79610000/Nom
-    :unit: :Currency
+    :unit: :Commission
   - :description: Fixed Term Role (on School Payroll)
     :id: :FTA
     :scheme_id: :CPV
     :code: 79610000/FTA
-    :unit: :Currency
+    :unit: :Commission
 :itemtype:
 - :description: 'Qualified Teacher: Non-SEN Roles'
   :id: :QT_NonSEN
   :scheme_id: :CPV
   :code: 79610000/QT_NonSEN
-  :unit: :Currency
+  :unit: :Commission
   :keyword:
   - teacher
   - non-sen
@@ -170,7 +170,7 @@
   :id: :QT_SEN
   :scheme_id: :CPV
   :code: 79610000/QT_SEN
-  :unit: :Currency
+  :unit: :Commission
   :keyword:
   - teacher
   - sen teacher
@@ -180,7 +180,7 @@
   :id: :NQT_NonSEN
   :scheme_id: :CPV
   :code: 79610000/NQT_NonSEN
-  :unit: :Currency
+  :unit: :Commission
   :keyword:
   - teacher
   - non-sen
@@ -188,7 +188,7 @@
   :id: :NQT_SEN
   :scheme_id: :CPV
   :code: 79610000/NQT_SEN
-  :unit: :Currency
+  :unit: :Commission
   :keyword:
   - teaching assistant
   - Special Education Needs
@@ -198,34 +198,34 @@
   :id: :EdSup_NonSEN
   :scheme_id: :CPV
   :code: 79610000/EdSup_NonSEN
-  :unit: :Currency
+  :unit: :Commission
 - :description: 'Educational Support Staff: SEN roles (incl. Cover Supervisor and
     Teaching Assistant)'
   :id: :EdSup_SEN
   :scheme_id: :CPV
   :code: 79610000/EdSup_SEN
-  :unit: :Currency
+  :unit: :Commission
 - :description: 'Other Roles: Headteacher and Senior Leadership positions'
   :id: :Senior
   :scheme_id: :CPV
   :code: 79610000/Senior
-  :unit: :Currency
+  :unit: :Commission
 - :description: 'Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners
     etc.)'
   :id: :Admin
   :scheme_id: :CPV
   :code: 79610000/Admin
-  :unit: :Currency
+  :unit: :Commission
 - :description: Nominated Workers
   :id: :Nom
   :scheme_id: :CPV
   :code: 79610000/Nom
-  :unit: :Currency
+  :unit: :Commission
 - :description: Fixed Term Role (on School Payroll)
   :id: :FTA
   :scheme_id: :CPV
   :code: 79610000/FTA
-  :unit: :Currency
+  :unit: :Commission
 :areacode:
 - :name: :UK
   :subcode:

@@ -24,7 +24,7 @@ Agreements.new :FM_Agreements do
   cleaning = itemtype {
     id ENV_CLEANING
     scheme_id :CCS
-    unit :Currency
+    unit :Commission
     code "CCS-building-area-method"
     keyword "cleaning"
     keyword "washing"
