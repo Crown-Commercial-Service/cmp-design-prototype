@@ -1,0 +1,160 @@
+{"index":{"_id":"Vendor_1-Qualified_Teacher:_Non-SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 1-Qualified Teacher: Non-SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"QT_NonSEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_1-Qualified_Teacher:_Non-SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 1-Qualified Teacher: Non-SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"QT_NonSEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_1-Qualified_Teacher:_Non-SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 1-Qualified Teacher: Non-SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"QT_NonSEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_1-Qualified_Teacher:_SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 1-Qualified Teacher: SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"QT_SEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_1-Qualified_Teacher:_SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 1-Qualified Teacher: SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"QT_SEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_1-Qualified_Teacher:_SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 1-Qualified Teacher: SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"QT_SEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_1-Unqualified_Teacher:_Non-SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 1-Unqualified Teacher: Non-SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"NQT_NonSEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_1-Unqualified_Teacher:_Non-SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 1-Unqualified Teacher: Non-SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"NQT_NonSEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_1-Unqualified_Teacher:_Non-SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 1-Unqualified Teacher: Non-SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"NQT_NonSEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_1-Unqualified_Teacher:_SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 1-Unqualified Teacher: SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"NQT_SEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_1-Unqualified_Teacher:_SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 1-Unqualified Teacher: SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"NQT_SEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_1-Unqualified_Teacher:_SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 1-Unqualified Teacher: SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"NQT_SEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_1-Educational_Support_Staff:_Non-SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Up_to_1_week"}}
+{"name":"Vendor 1-Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"EdSup_NonSEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_1-Educational_Support_Staff:_Non-SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Between_1_and_12_weeks"}}
+{"name":"Vendor 1-Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"EdSup_NonSEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_1-Educational_Support_Staff:_Non-SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Over_12_weeks"}}
+{"name":"Vendor 1-Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"EdSup_NonSEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_1-Educational_Support_Staff:_SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Up_to_1_week"}}
+{"name":"Vendor 1-Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"EdSup_SEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_1-Educational_Support_Staff:_SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Between_1_and_12_weeks"}}
+{"name":"Vendor 1-Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"EdSup_SEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_1-Educational_Support_Staff:_SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Over_12_weeks"}}
+{"name":"Vendor 1-Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"EdSup_SEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_1-Other_Roles:_Headteacher_and_Senior_Leadership_positions-Up_to_1_week"}}
+{"name":"Vendor 1-Other Roles: Headteacher and Senior Leadership positions-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"Senior","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_1-Other_Roles:_Headteacher_and_Senior_Leadership_positions-Between_1_and_12_weeks"}}
+{"name":"Vendor 1-Other Roles: Headteacher and Senior Leadership positions-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"Senior","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_1-Other_Roles:_Headteacher_and_Senior_Leadership_positions-Over_12_weeks"}}
+{"name":"Vendor 1-Other Roles: Headteacher and Senior Leadership positions-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"Senior","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_1-Other_Roles:_(Admin_&_Clerical_Staff,_IT_Staff,_Finance_Staff,_Cleaners_etc.)-Up_to_1_week"}}
+{"name":"Vendor 1-Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"Admin","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_1-Other_Roles:_(Admin_&_Clerical_Staff,_IT_Staff,_Finance_Staff,_Cleaners_etc.)-Between_1_and_12_weeks"}}
+{"name":"Vendor 1-Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"Admin","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_1-Other_Roles:_(Admin_&_Clerical_Staff,_IT_Staff,_Finance_Staff,_Cleaners_etc.)-Over_12_weeks"}}
+{"name":"Vendor 1-Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"Admin","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_1-Nominated_Workers-Over_12_weeks"}}
+{"name":"Vendor 1-Nominated Workers-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"Nom","unit":"Commission","value":null}]}
+{"index":{"_id":"Vendor_1-Fixed_Term_Role_(on_School_Payroll)-Over_12_weeks"}}
+{"name":"Vendor 1-Fixed Term Role (on School Payroll)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 1","item":[{"type_id":"FTA","unit":"Commission","value":null}]}
+{"index":{"_id":"Vendor_2-Qualified_Teacher:_Non-SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 2-Qualified Teacher: Non-SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"QT_NonSEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_2-Qualified_Teacher:_Non-SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 2-Qualified Teacher: Non-SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"QT_NonSEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_2-Qualified_Teacher:_Non-SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 2-Qualified Teacher: Non-SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"QT_NonSEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_2-Qualified_Teacher:_SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 2-Qualified Teacher: SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"QT_SEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_2-Qualified_Teacher:_SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 2-Qualified Teacher: SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"QT_SEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_2-Qualified_Teacher:_SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 2-Qualified Teacher: SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"QT_SEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_2-Unqualified_Teacher:_Non-SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 2-Unqualified Teacher: Non-SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"NQT_NonSEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_2-Unqualified_Teacher:_Non-SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 2-Unqualified Teacher: Non-SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"NQT_NonSEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_2-Unqualified_Teacher:_Non-SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 2-Unqualified Teacher: Non-SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"NQT_NonSEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_2-Unqualified_Teacher:_SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 2-Unqualified Teacher: SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"NQT_SEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_2-Unqualified_Teacher:_SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 2-Unqualified Teacher: SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"NQT_SEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_2-Unqualified_Teacher:_SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 2-Unqualified Teacher: SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"NQT_SEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_2-Educational_Support_Staff:_Non-SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Up_to_1_week"}}
+{"name":"Vendor 2-Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"EdSup_NonSEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_2-Educational_Support_Staff:_Non-SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Between_1_and_12_weeks"}}
+{"name":"Vendor 2-Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"EdSup_NonSEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_2-Educational_Support_Staff:_Non-SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Over_12_weeks"}}
+{"name":"Vendor 2-Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"EdSup_NonSEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_2-Educational_Support_Staff:_SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Up_to_1_week"}}
+{"name":"Vendor 2-Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"EdSup_SEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_2-Educational_Support_Staff:_SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Between_1_and_12_weeks"}}
+{"name":"Vendor 2-Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"EdSup_SEN","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_2-Educational_Support_Staff:_SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Over_12_weeks"}}
+{"name":"Vendor 2-Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"EdSup_SEN","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_2-Other_Roles:_Headteacher_and_Senior_Leadership_positions-Up_to_1_week"}}
+{"name":"Vendor 2-Other Roles: Headteacher and Senior Leadership positions-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"Senior","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_2-Other_Roles:_Headteacher_and_Senior_Leadership_positions-Between_1_and_12_weeks"}}
+{"name":"Vendor 2-Other Roles: Headteacher and Senior Leadership positions-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"Senior","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_2-Other_Roles:_Headteacher_and_Senior_Leadership_positions-Over_12_weeks"}}
+{"name":"Vendor 2-Other Roles: Headteacher and Senior Leadership positions-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"Senior","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_2-Other_Roles:_(Admin_&_Clerical_Staff,_IT_Staff,_Finance_Staff,_Cleaners_etc.)-Up_to_1_week"}}
+{"name":"Vendor 2-Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"Admin","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_2-Other_Roles:_(Admin_&_Clerical_Staff,_IT_Staff,_Finance_Staff,_Cleaners_etc.)-Between_1_and_12_weeks"}}
+{"name":"Vendor 2-Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"Admin","unit":"Commission","value":"15.00%"}]}
+{"index":{"_id":"Vendor_2-Other_Roles:_(Admin_&_Clerical_Staff,_IT_Staff,_Finance_Staff,_Cleaners_etc.)-Over_12_weeks"}}
+{"name":"Vendor 2-Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"Admin","unit":"Commission","value":"12.00%"}]}
+{"index":{"_id":"Vendor_2-Nominated_Workers-Over_12_weeks"}}
+{"name":"Vendor 2-Nominated Workers-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"Nom","unit":"Commission","value":null}]}
+{"index":{"_id":"Vendor_2-Fixed_Term_Role_(on_School_Payroll)-Over_12_weeks"}}
+{"name":"Vendor 2-Fixed Term Role (on School Payroll)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 2","item":[{"type_id":"FTA","unit":"Commission","value":null}]}
+{"index":{"_id":"Vendor_3-Qualified_Teacher:_Non-SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 3-Qualified Teacher: Non-SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"QT_NonSEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_3-Qualified_Teacher:_Non-SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 3-Qualified Teacher: Non-SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"QT_NonSEN","unit":"Commission","value":"13.00%"}]}
+{"index":{"_id":"Vendor_3-Qualified_Teacher:_Non-SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 3-Qualified Teacher: Non-SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"QT_NonSEN","unit":"Commission","value":"19.00%"}]}
+{"index":{"_id":"Vendor_3-Qualified_Teacher:_SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 3-Qualified Teacher: SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"QT_SEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_3-Qualified_Teacher:_SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 3-Qualified Teacher: SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"QT_SEN","unit":"Commission","value":"13.00%"}]}
+{"index":{"_id":"Vendor_3-Qualified_Teacher:_SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 3-Qualified Teacher: SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"QT_SEN","unit":"Commission","value":"19.00%"}]}
+{"index":{"_id":"Vendor_3-Unqualified_Teacher:_Non-SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 3-Unqualified Teacher: Non-SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"NQT_NonSEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_3-Unqualified_Teacher:_Non-SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 3-Unqualified Teacher: Non-SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"NQT_NonSEN","unit":"Commission","value":"13.00%"}]}
+{"index":{"_id":"Vendor_3-Unqualified_Teacher:_Non-SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 3-Unqualified Teacher: Non-SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"NQT_NonSEN","unit":"Commission","value":"19.00%"}]}
+{"index":{"_id":"Vendor_3-Unqualified_Teacher:_SEN_Roles-Up_to_1_week"}}
+{"name":"Vendor 3-Unqualified Teacher: SEN Roles-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"NQT_SEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_3-Unqualified_Teacher:_SEN_Roles-Between_1_and_12_weeks"}}
+{"name":"Vendor 3-Unqualified Teacher: SEN Roles-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"NQT_SEN","unit":"Commission","value":"13.00%"}]}
+{"index":{"_id":"Vendor_3-Unqualified_Teacher:_SEN_Roles-Over_12_weeks"}}
+{"name":"Vendor 3-Unqualified Teacher: SEN Roles-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"NQT_SEN","unit":"Commission","value":"19.00%"}]}
+{"index":{"_id":"Vendor_3-Educational_Support_Staff:_Non-SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Up_to_1_week"}}
+{"name":"Vendor 3-Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"EdSup_NonSEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_3-Educational_Support_Staff:_Non-SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Between_1_and_12_weeks"}}
+{"name":"Vendor 3-Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"EdSup_NonSEN","unit":"Commission","value":"13.00%"}]}
+{"index":{"_id":"Vendor_3-Educational_Support_Staff:_Non-SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Over_12_weeks"}}
+{"name":"Vendor 3-Educational Support Staff: Non-SEN roles (incl. Cover Supervisor and Teaching Assistant)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"EdSup_NonSEN","unit":"Commission","value":"19.00%"}]}
+{"index":{"_id":"Vendor_3-Educational_Support_Staff:_SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Up_to_1_week"}}
+{"name":"Vendor 3-Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"EdSup_SEN","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_3-Educational_Support_Staff:_SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Between_1_and_12_weeks"}}
+{"name":"Vendor 3-Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"EdSup_SEN","unit":"Commission","value":"13.00%"}]}
+{"index":{"_id":"Vendor_3-Educational_Support_Staff:_SEN_roles_(incl._Cover_Supervisor_and_Teaching_Assistant)-Over_12_weeks"}}
+{"name":"Vendor 3-Educational Support Staff: SEN roles (incl. Cover Supervisor and Teaching Assistant)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"EdSup_SEN","unit":"Commission","value":"19.00%"}]}
+{"index":{"_id":"Vendor_3-Other_Roles:_Headteacher_and_Senior_Leadership_positions-Up_to_1_week"}}
+{"name":"Vendor 3-Other Roles: Headteacher and Senior Leadership positions-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"Senior","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_3-Other_Roles:_Headteacher_and_Senior_Leadership_positions-Between_1_and_12_weeks"}}
+{"name":"Vendor 3-Other Roles: Headteacher and Senior Leadership positions-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"Senior","unit":"Commission","value":"13.00%"}]}
+{"index":{"_id":"Vendor_3-Other_Roles:_Headteacher_and_Senior_Leadership_positions-Over_12_weeks"}}
+{"name":"Vendor 3-Other Roles: Headteacher and Senior Leadership positions-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"Senior","unit":"Commission","value":"19.00%"}]}
+{"index":{"_id":"Vendor_3-Other_Roles:_(Admin_&_Clerical_Staff,_IT_Staff,_Finance_Staff,_Cleaners_etc.)-Up_to_1_week"}}
+{"name":"Vendor 3-Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)-Up_to_1_week","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"Admin","unit":"Commission","value":"10.00%"}]}
+{"index":{"_id":"Vendor_3-Other_Roles:_(Admin_&_Clerical_Staff,_IT_Staff,_Finance_Staff,_Cleaners_etc.)-Between_1_and_12_weeks"}}
+{"name":"Vendor 3-Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)-Between_1_and_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"Admin","unit":"Commission","value":"13.00%"}]}
+{"index":{"_id":"Vendor_3-Other_Roles:_(Admin_&_Clerical_Staff,_IT_Staff,_Finance_Staff,_Cleaners_etc.)-Over_12_weeks"}}
+{"name":"Vendor 3-Other Roles: (Admin & Clerical Staff, IT Staff, Finance Staff, Cleaners etc.)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"Admin","unit":"Commission","value":"19.00%"}]}
+{"index":{"_id":"Vendor_3-Nominated_Workers-Over_12_weeks"}}
+{"name":"Vendor 3-Nominated Workers-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"Nom","unit":"Commission","value":null}]}
+{"index":{"_id":"Vendor_3-Fixed_Term_Role_(on_School_Payroll)-Over_12_weeks"}}
+{"name":"Vendor 3-Fixed Term Role (on School Payroll)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"Vendor 3","item":[{"type_id":"FTA","unit":"Commission","value":null}]}
+{"index":{"_id":"NV-Nominated_Workers-Over_12_weeks"}}
+{"name":"NV-Nominated Workers-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"NV","item":[{"type_id":"Nom","unit":"Commission","value":null}]}
+{"index":{"_id":"NV-Fixed_Term_Role_(on_School_Payroll)-Over_12_weeks"}}
+{"name":"NV-Fixed Term Role (on School Payroll)-Over_12_weeks","agreement_id":"ST.MS","supplier_id":"NV","item":[{"type_id":"FTA","unit":"Commission","value":null}]}

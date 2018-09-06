@@ -24,10 +24,12 @@ models = [
 doc = Document.new(output_path, "supply_teachers")
 doc.document Agreements::Supply_Teacher_Agreements
 
-data = DataFile.new(output_path, "data", fmt: :json)
+data = DataFile.new(output_path, "agreements", fmt: :json)
 data.output *models
-data = DataFile.new(output_path, "data", fmt: :yaml)
+data = DataFile.new(output_path, "agreements", fmt: :yaml)
 data.output *models
+data = DataFile.new(output_path, "agreements", fmt: :jsonlines)
+data.output *models, select: :agreement
 
 # create a store for all parties in all models
 parties= Parties.new :AllParties do
@@ -44,12 +46,12 @@ end
 sm_offers= load_managing_suppliers(test_data_file("teacher-management-test.csv"), parties)
 sr_offers= load_recruitment_suppliers(test_data_file("teacher-recruitment-test.csv"), parties)
 
-# puts models_to_data( sm_offers).to_yaml
-puts models_to_data( sr_offers).to_yaml
-
 data= DataFile.new( output_path, "teacher-management-test-offers", fmt: :jsonlines)
-data.output sm_offers
+data.output sm_offers, index: index_offering_for_elasticsearch
 
 data= DataFile.new( output_path, "teacher-recruitment-test-offers", fmt: :jsonlines)
-data.output sm_offers
+data.output sr_offers, index: index_offering_for_elasticsearch
+
+# can now do something like:
+#curl -s -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/offerings/offerings/_bulk --data-binary @teacher-management-test-offers.jsonlines
 

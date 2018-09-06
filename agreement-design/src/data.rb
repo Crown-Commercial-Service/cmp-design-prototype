@@ -15,21 +15,31 @@ class DataFile < Output
     self.fmt = fmt
   end
 
-  def output *models
+  # @param [object] index - if included, and using :jsonlines, will call index on each item (as a hash) and prepend the line.
+  # @param [string] select - if given this will select out the type, eg agreements, and discard the rest
+  def output *models, index: nil, select: nil
 
     map = models_to_data(models)
 
+
     file do |file|
       if fmt == :jsonlines
-        for type in map.keys
+        select ? selection = [select] : selection = map.keys
+        for type in selection
           for decl in map[type]
+            if (index)
+              file.print (JSON.generate(index.call(decl)))
+              file.print("\n")
+            end
             file.print(JSON.generate(decl))
             file.print("\n")
           end
         end
       elsif fmt == :json
+        select ? map = map[select] : map
         file.print(JSON.generate(map))
       elsif fmt == :yaml
+        select ? map = map[select] : map
         file.print(map.to_yaml)
       else
         raise "unknown data file format"
@@ -37,9 +47,15 @@ class DataFile < Output
     end
   end
 
-
-
 end
+
+def index_offering_for_elasticsearch
+  return lambda do |offer|
+    var = offer[:name].gsub(/(\s+)/, '_')
+    return {"index": {"_id": "#{var}"}}
+  end
+end
+
 
 private
 
