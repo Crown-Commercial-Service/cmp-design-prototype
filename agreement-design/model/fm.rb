@@ -50,7 +50,7 @@ FM_Offerings.new(:FM_Catalogue) {
     name "XYZ's nifty school cleaning service"
     agreement_id FM_ID
     location_id UK.name
-    sector :Education
+    sector_id :public_education
     sc_cleared "TRUE"
     item {
       type_id ENV_CLEANING

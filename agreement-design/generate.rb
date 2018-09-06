@@ -19,6 +19,7 @@ doc.document_metamodel *metamodels
 models = [
     Agreements::Supply_Teacher_Agreements,
     Geographic::NUTS,
+    Parties::SECTORS
 ]
 
 doc = Document.new(output_path, "supply_teachers")
@@ -29,7 +30,7 @@ data.output *models
 data = DataFile.new(output_path, "agreements", fmt: :yaml)
 data.output *models
 data = DataFile.new(output_path, "agreements", fmt: :jsonlines)
-data.output *models, select: :agreement
+data.output *models, select: :agreement, index: index_agreement_for_elasticsearch
 
 # create a store for all parties in all models
 parties= Parties.new :AllParties do

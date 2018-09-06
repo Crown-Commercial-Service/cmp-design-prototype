@@ -6,7 +6,7 @@ domain :Geographic do
   datatype :AreaCode do
     attribute :name, String
     attribute :description, String
-    attribute :subcode, :AreaCode, ZERO_TO_MANY, "UUID or Salesforce ID?"
+    attribute :subcode, :AreaCode, ZERO_TO_MANY
   end
 
 end

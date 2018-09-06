@@ -49,9 +49,19 @@ class DataFile < Output
 
 end
 
+# given an offer object return an index object
+# Maybe: turn this into a datatype map, not an object map, so we can access type metadata
+
 def index_offering_for_elasticsearch
   return lambda do |offer|
     var = offer[:name].gsub(/(\s+)/, '_')
+    return {"index": {"_id": "#{var}"}}
+  end
+end
+
+def index_agreement_for_elasticsearch
+  return lambda do |id|
+    var = id[:id].gsub(/(\s+)/, '_')
     return {"index": {"_id": "#{var}"}}
   end
 end

@@ -189,9 +189,11 @@ def load_managing_suppliers filename, parties
         for row_dur in time_options(item_type, col)
           name = row[1]
           st_offering do
+            id "#{name}-#{item_type.description}-#{row_dur}".gsub(/(\s+)/, '_') # TODO proper uuid here
             name "#{name}-#{item_type.description}-#{row_dur}"
             agreement_id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
             supplier_id name # TODO will actually have to match this to a real supplier id, such as in SF
+            sector_id :public_education
             item do
               type_id item_type.id
               unit :Commission
@@ -263,9 +265,11 @@ def load_recruitment_suppliers filename, parties
           for role in ST_ROLES
             supplier = col[:Col_Supplier_Name]
             st_offering do
+              id "#{supplier}-#{role}-#{dur}".gsub(/(\s+)/, '_') # TODO proper uuid here
               name "#{supplier}-#{role}-#{dur}"
               agreement_id SUPPLY_TEACHER_RECRUITMENT_LOT_ID
               supplier_id supplier # TODO will actually have to match this to a real supplier id, such as in SF
+              sector_id :public_education
               item do
                 type_id role
                 unit :Commission

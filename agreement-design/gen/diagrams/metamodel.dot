@@ -6,7 +6,7 @@ label=Agreements;
 "ExpressionOfNeed" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ExpressionOfNeed</TD></TH><TR><TD ALIGN="LEFT">-buyer_id</TD></TR><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-value</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR></table>>];
 "Agreement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Agreement</TD></TH><TR><TD ALIGN="LEFT">-kind</TD></TR><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-version</TD></TR><TR><TD ALIGN="LEFT">-start_date</TD></TR><TR><TD ALIGN="LEFT">-end_date</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-fwk_number</TD></TR><TR><TD ALIGN="LEFT">-sf_typ</TD></TR><TR><TD ALIGN="LEFT">-sf_is</TD></TR><TR><TD ALIGN="LEFT">-offerType</TD></TR><TR><TD ALIGN="LEFT">-part_of_id</TD></TR><TR><TD ALIGN="LEFT">-conforms_to_id</TD></TR><TR><TD ALIGN="LEFT">-item_type</TD></TR><TR><TD ALIGN="LEFT">-min_value</TD></TR><TR><TD ALIGN="LEFT">-max_value</TD></TR></table>>];
 "Item" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Item</TD></TH><TR><TD ALIGN="LEFT">-type_id</TD></TR><TR><TD ALIGN="LEFT">-unit</TD></TR><TR><TD ALIGN="LEFT">-value</TD></TR></table>>];
-"Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Offering</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector</TD></TR></table>>];
+"Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Offering</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector_id</TD></TR></table>>];
 "Catalogue" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Catalogue</TD></TH><TR><TD ALIGN="LEFT">-offers</TD></TR></table>>];
 "Involvement" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Involvement</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-party_id</TD></TR><TR><TD ALIGN="LEFT">-role</TD></TR></table>>];
 }
@@ -16,6 +16,7 @@ label=Parties;
 "Party" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Party</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-org_name</TD></TR><TR><TD ALIGN="LEFT">-supplier_registration_completed</TD></TR><TR><TD ALIGN="LEFT">-buyer_registration_completed</TD></TR></table>>];
 "Address" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Address</TD></TH><TR><TD ALIGN="LEFT">-address_1</TD></TR><TR><TD ALIGN="LEFT">-address_2</TD></TR><TR><TD ALIGN="LEFT">-town</TD></TR><TR><TD ALIGN="LEFT">-county</TD></TR><TR><TD ALIGN="LEFT">-postcode</TD></TR><TR><TD ALIGN="LEFT">-uprn</TD></TR></table>>];
 "Contact" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Contact</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-party_id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-address</TD></TR><TR><TD ALIGN="LEFT">-phone</TD></TR><TR><TD ALIGN="LEFT">-email</TD></TR></table>>];
+"Sector" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Sector</TD></TH><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-subsector</TD></TR></table>>];
 }
 subgraph cluster_Geographic {
 node [shape=plaintext margin=0];
@@ -25,7 +26,7 @@ label=Geographic;
 subgraph cluster_SupplyTeacherOfferings {
 node [shape=plaintext margin=0];
 label=SupplyTeacherOfferings;
-"ST_Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ST_Offering</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector</TD></TR><TR><TD ALIGN="LEFT">-commission</TD></TR><TR><TD ALIGN="LEFT">-duration</TD></TR><TR><TD ALIGN="LEFT">-branch_name</TD></TR><TR><TD ALIGN="LEFT">-branch_contact_id</TD></TR><TR><TD ALIGN="LEFT">-vendor_type</TD></TR></table>>];
+"ST_Offering" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>ST_Offering</TD></TH><TR><TD ALIGN="LEFT">-agreement_id</TD></TR><TR><TD ALIGN="LEFT">-supplier_id</TD></TR><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-item</TD></TR><TR><TD ALIGN="LEFT">-location_id</TD></TR><TR><TD ALIGN="LEFT">-sector_id</TD></TR><TR><TD ALIGN="LEFT">-commission</TD></TR><TR><TD ALIGN="LEFT">-duration</TD></TR><TR><TD ALIGN="LEFT">-branch_name</TD></TR><TR><TD ALIGN="LEFT">-branch_contact_id</TD></TR><TR><TD ALIGN="LEFT">-vendor_type</TD></TR></table>>];
 }
 "Agreement" -> "Agreement" [label="part_of_id" arrowhead = "open" arrowtail = "none" ];
 "Agreement" -> "Agreement" [label="conforms_to_id" arrowhead = "open" arrowtail = "none" ];
@@ -35,17 +36,20 @@ label=SupplyTeacherOfferings;
 "Offering" -> "Party" [label="supplier_id" arrowhead = "open" arrowtail = "none" ];
 "Offering" -> "Item" [label="{contains} item" arrowhead = "none" arrowtail = "diamond" ];
 "Offering" -> "AreaCode" [label="location_id" arrowhead = "open" arrowtail = "none" ];
+"Offering" -> "Sector" [label="sector_id" arrowhead = "open" arrowtail = "none" ];
 "Catalogue" -> "Offering" [label="{contains} offers" arrowhead = "none" arrowtail = "diamond" ];
 "Involvement" -> "Agreement" [label="agreement_id" arrowhead = "open" arrowtail = "none" ];
 "Involvement" -> "Party" [label="party_id" arrowhead = "open" arrowtail = "none" ];
 "Contact" -> "Party" [label="party_id" arrowhead = "open" arrowtail = "none" ];
 "Contact" -> "Address" [label="{contains} address" arrowhead = "none" arrowtail = "diamond" ];
+"Sector" -> "Sector" [label="{contains} subsector" arrowhead = "none" arrowtail = "diamond" ];
 "AreaCode" -> "AreaCode" [label="{contains} subcode" arrowhead = "none" arrowtail = "diamond" ];
 "ST_Offering" -> "Offering" [label="extends" arrowhead = "none" arrowtail = "normal" ];
 "ST_Offering" -> "Agreement" [label="agreement_id" arrowhead = "open" arrowtail = "none" ];
 "ST_Offering" -> "Party" [label="supplier_id" arrowhead = "open" arrowtail = "none" ];
 "ST_Offering" -> "Item" [label="{contains} item" arrowhead = "none" arrowtail = "diamond" ];
 "ST_Offering" -> "AreaCode" [label="location_id" arrowhead = "open" arrowtail = "none" ];
+"ST_Offering" -> "Sector" [label="sector_id" arrowhead = "open" arrowtail = "none" ];
 "ST_Offering" -> "Contact" [label="branch_contact_id" arrowhead = "open" arrowtail = "none" ];
 "ST_Offering" -> "Contact" [label="vendor_type" arrowhead = "open" arrowtail = "none" ];
 }

@@ -5,7 +5,6 @@ include DataModel
 
 domain :Agreements do
 
-  SECTOR = Selection(:ALL, :Education, :CentralGov, :WiderGov, :Etc)
   UNITS = Selection(:Area, :Commission, :Commission)
   CLASSIFICATION_SCHEMES = Selection(:CPV, :CPVS, :UNSPSC, :CPV, :OKDP, :OKPD, :CCS)
   code(:CCS, description: "CCS invented schemes")
@@ -92,6 +91,7 @@ This may be extended for different agreements. A supplier may provide additional
 variable facts in their Offer to supplement the description of how they support the agreement. ") {
     attribute :agreement_id, String, "The agreement this offering relates to", links: :Agreement
     attribute :supplier_id, String, links: Parties::Party
+    attribute :id, String, "unique id for the offering across all offerings, suppliers and frameworks"
     attribute :name, String
     attribute :description, String
     attribute :item, :Item, ZERO_TO_MANY, "details of the item"
@@ -99,8 +99,9 @@ variable facts in their Offer to supplement the description of how they support 
     attribute :location_id, String, ONE_TO_MANY,
               "Pick list of applicable regions. There must be at least one, even if it is just 'UK'",
               links: Geographic::AreaCode
-    attribute :sector, SECTOR, ZERO_TO_MANY,
-              "Pick list of applicable sectors."
+    attribute :sector_id, String, ZERO_TO_MANY,
+              "Pick list of applicable sectors.
+If set offering is only to be shown to users proven to belong to the sectors given", links: Parties::Sector
   }
 
   datatype(:Catalogue,

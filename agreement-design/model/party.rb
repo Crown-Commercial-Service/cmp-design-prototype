@@ -27,7 +27,7 @@ will contain UPRN if we have derived it.
     attribute :postcode, String, ZERO_TO_MANY
     attribute :uprn, String, ZERO_TO_MANY
   }
-  
+
   datatype(:Contact, description: "
   A way of contacting a party. Store contacts in a safe identity store. Do not store personal details elsewhere.
   ") {
@@ -39,6 +39,35 @@ will contain UPRN if we have derived it.
     attribute :email, String, ZERO_TO_MANY, "email of the contact point"
   }
 
-  # TODO add contact links
-  # TODO add address
+  datatype(:Sector, description: "
+  Hierarchy of sector codes delineating the party organisation
+  ") {
+    attribute :name, String
+    attribute :description, String
+    attribute :subsector, :Sector, ZERO_TO_MANY
+  }
 }
+
+Parties.new :SECTORS do
+
+  # made up codes
+  ALL_UK_GOV = sector do
+    name :All_UK_gov
+    description "All UK Government including Central, Wider, and others"
+    CENTRAL = subsector do
+      name :Central_Gov; description "Central Government";
+      subsector do
+        name :example_dept; description "E.g. a dept";
+      end
+    end
+    WIDER = subsector do
+      name :Wider_Gov; description "Wider Government";
+      ED= subsector do
+        name :education; description "All education";
+        PUB_ED = subsector do
+          name :public_education; description "Public education";
+        end
+      end
+    end
+  end
+end

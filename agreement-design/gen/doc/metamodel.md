@@ -63,11 +63,13 @@ variable facts in their Offer to supplement the description of how they support 
 |---------|----|------------|-----------|
 |agreement_id|String -> Agreements::Agreement|1|The agreement this offering relates to|
 |supplier_id|String -> Parties::Party|1||
+|id|String|1|unique id for the offering across all offerings, suppliers and frameworks|
 |name|String|1||
 |description|String|1||
 |item|Agreements::Item|*|details of the item|
 |location_id|String -> Geographic::AreaCode|1..*|Pick list of applicable regions. There must be at least one, even if it is just 'UK'|
-|sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors.|
+|sector_id|String -> Parties::Sector|*|Pick list of applicable sectors.
+If set offering is only to be shown to users proven to belong to the sectors given|
 ## Catalogue
    A collection of supplier offerings against an item, for an agreement 
 
@@ -142,6 +144,16 @@ will contain UPRN if we have derived it.
 |address|Parties::Address|0..1|address of the contact point|
 |phone|String|*|phone of the contact point|
 |email|String|*|email of the contact point|
+## Sector
+  
+  Hierarchy of sector codes delineating the party organisation
+  
+
+|attribute|type|multiplicity|description|
+|---------|----|------------|-----------|
+|name|String|1||
+|description|String|1||
+|subsector|Parties::Sector|*||
 # Data model: Geographic
 ## AreaCode
   
@@ -150,7 +162,7 @@ will contain UPRN if we have derived it.
 |---------|----|------------|-----------|
 |name|String|1||
 |description|String|1||
-|subcode|Geographic::AreaCode|*|UUID or Salesforce ID?|
+|subcode|Geographic::AreaCode|*||
 # Data model: SupplyTeacherOfferings
 ## ST_Offering extends Agreements::Offering
    An offer for ST supply
@@ -160,11 +172,13 @@ The offerings look the same for both lots - since they both relate to the same i
 |---------|----|------------|-----------|
 |agreement_id|String -> Agreements::Agreement|1|The agreement this offering relates to|
 |supplier_id|String -> Parties::Party|1||
+|id|String|1|unique id for the offering across all offerings, suppliers and frameworks|
 |name|String|1||
 |description|String|1||
 |item|Agreements::Item|*|details of the item|
 |location_id|String -> Geographic::AreaCode|1..*|Pick list of applicable regions. There must be at least one, even if it is just 'UK'|
-|sector|(ALL,Education,CentralGov,WiderGov,Etc)|*|Pick list of applicable sectors.|
+|sector_id|String -> Parties::Sector|*|Pick list of applicable sectors.
+If set offering is only to be shown to users proven to belong to the sectors given|
 |commission|String|1|The percentage the supplier charges for the item|
 |duration|(Up_to_1_week,Between_1_and_12_weeks,Over_12_weeks)|1||
 |branch_name|String|1|branch name from which the offer is supplied|

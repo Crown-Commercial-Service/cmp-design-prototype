@@ -236,3 +236,20 @@
       :description: Tees Valley and County Durham
   - :name: :UKL
     :description: London
+:sector:
+- :name: :All_UK_gov
+  :description: All UK Government including Central, Wider, and others
+  :subsector:
+  - :name: :Central_Gov
+    :description: Central Government
+    :subsector:
+    - :name: :example_dept
+      :description: E.g. a dept
+  - :name: :Wider_Gov
+    :description: Wider Government
+    :subsector:
+    - :name: :education
+      :description: All education
+      :subsector:
+      - :name: :public_education
+        :description: Public education
