@@ -17,7 +17,7 @@ This prototype
 
 # Things to see
 
-the [agreements](agreements/) directory defines our [agreements metamodel](model/agreement.rb) and our 
+the [model](model/) directory defines our [agreements metamodel](model/agreement.rb) and our 
 [reference agreements and catalogues](model/fm.rb) 
 (example for fm given)
 
@@ -34,10 +34,11 @@ the build script generates [outputs](gen) including
 
 # To do
 
-- [ ] add reference data for Teachers
+- [X] add reference data for Teachers
     - define model for framework
     - define reference model for offers (and elucidate the model for suppliers, contacts)
     - load mapping from spreadsheet and generate data file
+- [ ] more teachers stuff
     - load into search
     - map some searches
     - understand school reference data lookup to find school code and location
