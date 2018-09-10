@@ -1,7 +1,7 @@
 
 # Example Journey
 
-Prorotype to prove
+Prototype to prove
 
 - CCS Front End Kit
 - Agreement design repository approach
