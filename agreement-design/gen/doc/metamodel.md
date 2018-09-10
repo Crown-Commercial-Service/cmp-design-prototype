@@ -13,7 +13,7 @@ variable facts in their Offer to supplement the description of how they support 
 |keyword|String|*||
 |uri|String|1| URI for the code within the scheme defining this type |
 |code|String|1| Code within the scheme defining this type |
-|unit|(Area,Commission,Commission)|1| define the units, if one units matches |
+|unit|(Area,Commission,Currency)|1| define the units, if one units matches |
 ## ExpressionOfNeed
    Defines a buyer's need which can be matched to agreement items and other details
 The need matches closely to our definitions of agreements under 'items types' and their classification
@@ -24,7 +24,7 @@ schemes, but is not a one-to-one match.
 |buyer_id|String|1|The buyer expressing the need|
 |kind|(Budget,Location,Service)|1||
 |value|String|1||
-|unit|(Area,Commission,Commission)|1|The units typically used to express the need|
+|unit|(Area,Commission,Currency)|1|The units typically used to express the need|
 ## Agreement
   General definition of Commercial Agreements
 
@@ -39,7 +39,7 @@ schemes, but is not a one-to-one match.
 |description|String|1|Describe the agreement|
 |fwk_number|String|1|Framework (RM) number of related framework if required. @Example RM123|
 |sf_typ|String|1|SalesForce data type|
-|sf_is|String|1|SalesForce row id|
+|sf_id|String|1|SalesForce row id|
 |offerType|String|1|Name of the subclass of the Offering, supporting the Agreement|
 |part_of_id|String -> Agreements::Agreement|1|Agreement this is part of, applicable only to Lots|
 |conforms_to_id|String -> Agreements::Agreement|1|Agreement this conforms to, such as a Contract conforming to a Framework|
@@ -52,7 +52,7 @@ schemes, but is not a one-to-one match.
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |type_id|String -> Agreements::ItemType|1| type of the item |
-|unit|(Area,Commission,Commission)|1| define the units |
+|unit|(Area,Commission,Currency)|1| define the units |
 |value|Object|1|an object of the type matching type->units|
 ## Offering
    Supplier offering against an item or items of an agreement.

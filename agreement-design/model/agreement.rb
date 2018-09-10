@@ -5,7 +5,7 @@ include DataModel
 
 domain :Agreements do
 
-  UNITS = Selection(:Area, :Commission, :Commission)
+  UNITS = Selection(:Area, :Commission, :Currency)
   CLASSIFICATION_SCHEMES = Selection(:CPV, :CPVS, :UNSPSC, :CPV, :OKDP, :OKPD, :CCS)
   code(:CCS, description: "CCS invented schemes")
 
@@ -63,7 +63,7 @@ schemes, but is not a one-to-one match.") {
     attribute :description, String, "Describe the agreement"
     attribute :fwk_number, String, "Framework (RM) number of related framework if required. @Example RM123"
     attribute :sf_typ, String, "SalesForce data type"
-    attribute :sf_is, String, "SalesForce row id"
+    attribute :sf_id, String, "SalesForce row id"
     attribute :offerType, String, "Name of the subclass of the Offering, supporting the Agreement"
 
     # structure of agreement
