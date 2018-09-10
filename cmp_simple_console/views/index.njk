@@ -1,0 +1,95 @@
+{% extends "cmp-template.njk" %}
+
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "date-input/macro.njk" import govukDateInput %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-m">Crown Marketplace prototype system</h1>
+
+    <p class="govuk-body">This app is a demonstration for how the CMp architecture will work including:</p>
+
+    <ul class="govuk-list">
+        <li>Common front end toolkit</li>
+        <li>Agreement model register</li>
+    </ul>
+
+    <span id="search">
+        <h2 class="govuk-heading-m">Search</h2>
+        <p class="govuk-body">Search cluster status {{ status.string }} </p>
+
+
+        {% call govukFieldset({
+            legend: {
+                text: "Define your needs",
+                classes: "govuk-fieldset__legend--xl",
+                isPageHeading: true
+            }
+        }) %}
+
+            <form action="/" method="POST">
+
+            {{ govukInput({
+                label: {
+                    text: "What products or services do you require"
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "service_name",
+                name: "service_name",
+                value: "Teacher"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Budget"
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "budget",
+                name: "budget"
+            }) }}
+
+            {{ govukDateInput({
+                label: {
+                    text: "Date"
+                },
+                id: "datefrom",
+                name: "datefrom"
+            }) }}
+
+            {{ govukButton({
+                text: "Search",
+                type: "submit",
+                id: "search_button"
+            }) }}
+
+
+
+        </form>
+
+        {% endcall %}
+
+        <span id="results">
+            <h2 class="govuk-heading-s">results</h2>
+            <span class="govuk-body">
+               <ul class="govuk-list">
+                   <li> Query : {{ query.service }}</li>
+                     <li> hits  : {{ results.hits.total }} </li>
+               </ul>
+
+            <ul class="govuk-list">
+              {% for item in results.hits.hits %}
+                  <li>{{ item._id }}</li>
+              {% endfor %}
+            </ul>
+            </span>
+            <p class="govuk-body">{{ results.string }}</p>
+
+        </span>
+
+    </span>
+
+
+{% endblock %}

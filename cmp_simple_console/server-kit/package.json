@@ -49,14 +49,5 @@
     "url": "git+https://github.com/Crown-Commercial-Service/cmp-design-prototype.git"
   },
   "sass": "all.scss",
-  "version": "0.0.4",
-  "warnings": [
-    {
-      "code": "ENOTSUP",
-      "required": {
-        "node": ">10.8.0"
-      },
-      "pkgid": "ccs-frontend-prototype@0.0.4"
-    }
-  ]
+  "version": "0.0.4"
 }

@@ -6,7 +6,6 @@ const nunjucks = require('nunjucks')
 const request = require('superagent');
 var bodyParser = require('body-parser');
 
-
 // Set up views
 const appViews = [
     "views",
@@ -16,12 +15,25 @@ const appViews = [
     "server-kit/components",
 ];
 
-function search(path = '/', renderfn) {
+function index_post(path = '/', data, renderfn) {
+    request.post("http://localhost:9200/" + path, data).timeout(500)
+        .end((err, res) => {
+            if (err) {
+                console.log(' search error "' + err);
+                renderfn('no result at ' + path + ":" + err);
+            } else if (200 == res.statusCode) {
+                console.log(' search results "' + JSON.stringify(res.body));
+                renderfn(res.body);
+            }
+        });
+}
+
+function index_get(path = '/', renderfn) {
     request.get("http://localhost:9200/" + path).timeout(500)
         .end((err, res) => {
             if (err) {
                 console.log(' search error "' + err);
-                renderfn('no result at ' + '/');
+                renderfn('no result at ' + path + ":" + err);
             } else if (200 == res.statusCode) {
                 console.log(' search results "' + JSON.stringify(res.body));
                 renderfn(res.body);
@@ -51,7 +63,7 @@ module.exports = (options) => {
     // Set up middleware to serve static assets
     app.use('/govuk-frontend', express.static('public'))
     app.use('/', express.static('public'))
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.urlencoded({extended: false}));
 
 
     // Add middleware to resolve local internationalisation values to configure app
@@ -62,25 +74,37 @@ module.exports = (options) => {
         next();
     });
 
-    var status = [], results = [], query= "";
-    search('/', sr => {
-        status = JSON.stringify(sr);
+    var status = {}, results = {}, query = {};
+
+    index_get('/', sr => {
+        query.service = ""
+        status.string = JSON.stringify(sr);
         // Index page - render the component list template
         app.get('/', async function (req, res) {
-            res.render('index', {backlink: false,
-                query: query, results: results, status: status})
+            res.render('index', {
+                backlink: false,
+                query: query, results: results, status: status
+            })
         })
     });
 
     app.post('/', async function (req, res) {
-        query= req.body.search_text
-        // var query = JSON.stringify(req.body.search_text);
-        // console.log(query)
-        search(query, sr => {
-            results = JSON.stringify(sr);
-        });
-        res.redirect('/#search')
+        query.service = req.body.service_name;
+        index_post("offerings/offerings/_search",
+            {
+                "query": {
+                    "match": {
+                        "name": query.service
+                    }
+                }
+            }, sr => {
+                results.response = sr;
+                results.string = JSON.stringify(sr);
+                results.hits= sr.hits;
+                res.redirect('/#search')
+            });
     });
+
 
     return app
 }
