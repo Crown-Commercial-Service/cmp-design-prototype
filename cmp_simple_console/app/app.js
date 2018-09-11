@@ -4,7 +4,14 @@ const express = require('express')
 const app = express()
 const nunjucks = require('nunjucks')
 const request = require('superagent');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const elasticsearch = require('elasticsearch');
+
+var connectionString = process.env.SEARCHBOX_SSL_URL || 'localhost:9200';
+
+var client = new elasticsearch.Client({
+    host: connectionString
+});
 
 // Set up views
 const appViews = [
@@ -15,30 +22,16 @@ const appViews = [
     "server-kit/components",
 ];
 
-function index_post(path = '/', data, renderfn) {
-    request.post("http://localhost:9200/" + path, data).timeout(500)
-        .end((err, res) => {
-            if (err) {
-                console.log(' search error "' + err);
-                renderfn('no result at ' + path + ":" + err);
-            } else if (200 == res.statusCode) {
-                console.log(' search results "' + JSON.stringify(res.body));
-                renderfn(res.body);
-            }
-        });
+function search(index, type, body, resultfn, errfn) {
+    client.search({
+        index: index,
+        type: type,
+        body: body
+    }).then(resultfn, errfn);
 }
 
-function index_get(path = '/', renderfn) {
-    request.get("http://localhost:9200/" + path).timeout(500)
-        .end((err, res) => {
-            if (err) {
-                console.log(' search error "' + err);
-                renderfn('no result at ' + path + ":" + err);
-            } else if (200 == res.statusCode) {
-                console.log(' search results "' + JSON.stringify(res.body));
-                renderfn(res.body);
-            }
-        });
+function health(path = '/', health_callback) {
+    client.cat.health().then(health_callback, health_callback);
 }
 
 module.exports = (options) => {
@@ -76,9 +69,9 @@ module.exports = (options) => {
 
     var status = {}, results = {}, query = {};
 
-    index_get('/', sr => {
+    health('/', sr => {
         query.service = ""
-        status.string = JSON.stringify(sr);
+        status.string = sr;
         // Index page - render the component list template
         app.get('/', async function (req, res) {
             res.render('index', {
@@ -90,7 +83,7 @@ module.exports = (options) => {
 
     app.post('/', async function (req, res) {
         query.service = req.body.service_name;
-        index_post("offerings/offerings/_search",
+        search("offerings", "offerings",
             {
                 "query": {
                     "match": {
@@ -100,7 +93,13 @@ module.exports = (options) => {
             }, sr => {
                 results.response = sr;
                 results.string = JSON.stringify(sr);
-                results.hits= sr.hits;
+                results.hits = sr.hits;
+                res.redirect('/#search')
+            }, er => {
+                results.response = {};
+                results.string = er;
+                results.hits = 0;
+                console.log( err);
                 res.redirect('/#search')
             });
     });

@@ -25,3 +25,14 @@ This demonstrates we can use the GOV.UK kit with a minimum set of additions.
 - npm install
 - gulp
 
+## Deploy
+
+Using Heroku
+
+e.g. with app name fierce-ocean-60910
+``` 
+heroku container:push web -a fierce-ocean-60910
+heroku container:release web -a fierce-ocean-60910 
+heroku open -a fierce-ocean-60910 
+heroku logs -a fierce-ocean-60910 
+```

@@ -30,40 +30,40 @@
             }
         }) %}
 
-            <form action="/" method="POST">
+        <form action="/" method="POST">
 
-            {{ govukInput({
-                label: {
-                    text: "What products or services do you require"
-                },
-                classes: "govuk-!-width-two-thirds",
-                id: "service_name",
-                name: "service_name",
-                value: "Teacher"
-            }) }}
+        {{ govukInput({
+            label: {
+                text: "What products or services do you require"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "service_name",
+            name: "service_name",
+            value: "Teacher"
+        }) }}
 
-            {{ govukInput({
-                label: {
-                    text: "Budget"
-                },
-                classes: "govuk-!-width-two-thirds",
-                id: "budget",
-                name: "budget"
-            }) }}
+        {{ govukInput({
+            label: {
+                text: "Budget"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "budget",
+            name: "budget"
+        }) }}
 
-            {{ govukDateInput({
-                label: {
-                    text: "Date"
-                },
-                id: "datefrom",
-                name: "datefrom"
-            }) }}
+        {{ govukDateInput({
+            label: {
+                text: "Date"
+            },
+            id: "datefrom",
+            name: "datefrom"
+        }) }}
 
-            {{ govukButton({
-                text: "Search",
-                type: "submit",
-                id: "search_button"
-            }) }}
+        {{ govukButton({
+            text: "Search",
+            type: "submit",
+            id: "search_button"
+        }) }}
 
 
 

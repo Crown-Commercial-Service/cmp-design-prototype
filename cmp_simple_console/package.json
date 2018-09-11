@@ -8,6 +8,7 @@
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "elasticsearch": "^15.1.1",
     "express": "~4.16.0",
     "express-nunjucks": "^2.2.3",
     "http-errors": "~1.6.2",
@@ -16,7 +17,7 @@
     "superagent": "^3.8.3"
   },
   "devDependencies": {
-    "ccs-frontend-prototype": "0.0.4",
+    "ccs-frontend-prototype": "0.0.6",
     "govuk-frontend": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.4.0",

@@ -1,27 +1,27 @@
 {
-  "_from": "ccs-frontend-prototype@0.0.4",
-  "_id": "ccs-frontend-prototype@0.0.4",
+  "_from": "ccs-frontend-prototype@0.0.6",
+  "_id": "ccs-frontend-prototype@0.0.6",
   "_inBundle": false,
-  "_integrity": "sha512-hTQ1Q4Eok1RI9BeCsT8Aum7dA0fo0ZG4RMMinW5dI3+6aOB95dyR0ShEYl9wMqTkYApkA0ApryxLNfU1HdfTGg==",
+  "_integrity": "sha512-EWFRNc3D67upxnBbuT29D0A2FE+BxOfc5YHAPdRsZM51NV83piklPGLHgYjXR6Udir4hd24RJK4BBcYrZ4xbaA==",
   "_location": "/ccs-frontend-prototype",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "ccs-frontend-prototype@0.0.4",
+    "raw": "ccs-frontend-prototype@0.0.6",
     "name": "ccs-frontend-prototype",
     "escapedName": "ccs-frontend-prototype",
-    "rawSpec": "0.0.4",
+    "rawSpec": "0.0.6",
     "saveSpec": null,
-    "fetchSpec": "0.0.4"
+    "fetchSpec": "0.0.6"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "https://registry.npmjs.org/ccs-frontend-prototype/-/ccs-frontend-prototype-0.0.4.tgz",
-  "_shasum": "20b8645c1f064879d782ac76b7f7e9a344781b44",
-  "_spec": "ccs-frontend-prototype@0.0.4",
-  "_where": "/Users/kevinh/gitprojects/cmp-design-prototype/example-journey",
+  "_resolved": "https://registry.npmjs.org/ccs-frontend-prototype/-/ccs-frontend-prototype-0.0.6.tgz",
+  "_shasum": "39e6e0a8482c2cb5b5f51d455888f26783465171",
+  "_spec": "ccs-frontend-prototype@0.0.6",
+  "_where": "/Users/kevinh/gitprojects/cmp-design-prototype/cmp_simple_console",
   "author": {
     "name": "CCS design prototype",
     "email": "npm@humphries.tech"
@@ -49,5 +49,5 @@
     "url": "git+https://github.com/Crown-Commercial-Service/cmp-design-prototype.git"
   },
   "sass": "all.scss",
-  "version": "0.0.4"
+  "version": "0.0.6"
 }
