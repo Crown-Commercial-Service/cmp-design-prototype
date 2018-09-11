@@ -5,6 +5,9 @@
 {% from "fieldset/macro.njk" import govukFieldset %}
 {% from "date-input/macro.njk" import govukDateInput %}
 {% from "details/macro.njk" import govukDetails %}
+{% from "details/macro.njk" import govukDetails %}
+{% from "table/macro.njk" import govukTable %}
+{% from "offering.njk" import govukOffering %}
 
 {% block content %}
 
@@ -30,40 +33,83 @@
             }
         }) %}
 
-        <form action="/" method="POST">
+            <form action="/" method="POST">
 
-        {{ govukInput({
-            label: {
-                text: "What products or services do you require"
-            },
-            classes: "govuk-!-width-two-thirds",
-            id: "service_name",
-            name: "service_name",
-            value: "Teacher"
-        }) }}
+            {{ govukInput({
+                label: {
+                    text: "What products or services do you require"
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "service_name",
+                name: "service_name",
+                value: query.service
+            }) }}
 
-        {{ govukInput({
-            label: {
-                text: "Budget"
-            },
-            classes: "govuk-!-width-two-thirds",
-            id: "budget",
-            name: "budget"
-        }) }}
+                {{ govukInput({
+                    label: {
+                        text: "What is your budget range"
+                    },
+                    classes: "govuk-!-width-two-thirds",
+                    id: "budget",
+                    value: "[not used yet]",
+                    name: "budget"
+                }) }}
 
-        {{ govukDateInput({
-            label: {
-                text: "Date"
-            },
-            id: "datefrom",
-            name: "datefrom"
-        }) }}
+                {% call govukFieldset({
+                    legend: {
+                        text: "Timeline",
+                        classes: "govuk-fieldset__legend--s",
+                        isPageHeading: true
+                    }
+                }) %}
 
-        {{ govukButton({
-            text: "Search",
-            type: "submit",
-            id: "search_button"
-        }) }}
+                    {{ govukDateInput({
+                        fieldset: {
+                            legend: {
+                                text: "When do you need the services",
+                                isPageHeading: true,
+                                classes: "govuk-fieldset__legend--xs"
+                            }
+                        },
+                        d: "datefrom",
+                        name: "datefrom"
+                    }) }}
+
+                    {{ govukInput({
+                        label: {
+                            text: "How long will you need the services"
+                        },
+                        classes: "govuk-input--width-20",
+                        id: "duration",
+                        name: "duration"
+                    }) }}
+
+                {% endcall %}
+
+                {% call govukFieldset({
+                    legend: {
+                        text: "Where do you need the services",
+                        classes: "govuk-fieldset__legend--s",
+                        isPageHeading: true
+                    }
+                }) %}
+
+                    {{ govukInput({
+                        label: {
+                            text: "Postcode"
+                        },
+                        classes: "govuk-input--width-10",
+                        id: "postcode",
+                        name: "postcode"
+                    }) }}
+
+                {% endcall %}
+
+                {{ govukButton({
+                    text: "Search",
+                    type: "submit",
+                    id: "search_button"
+                }) }}
 
 
 
@@ -79,10 +125,19 @@
                      <li> hits  : {{ results.hits.total }} </li>
                </ul>
 
-            <ul class="govuk-list">
+            <ul class="govuk-list govuk-!-width-two-thirds">
               {% for item in results.hits.hits %}
-                  <li>{{ item._id }}</li>
+                  <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                {{ item._id }}
+                </span>
+                </summary>
+                      {{ govukOffering(  item ) }}
+
+                </details>
               {% endfor %}
+
             </ul>
             </span>
             <p class="govuk-body">{{ results.string }}</p>

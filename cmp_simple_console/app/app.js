@@ -20,6 +20,7 @@ const appViews = [
     "../ccs-fekit-extension/package/", // this hack allows us to prototype changes in fekit without having to redeploy via npm
     "server-kit",
     "server-kit/components",
+    "views/components",
 ];
 
 function search(index, type, body, resultfn, errfn) {
@@ -67,10 +68,9 @@ module.exports = (options) => {
         next();
     });
 
-    var status = {}, results = {}, query = {};
+    var status = {}, results = {}, query = { "service" : "Teacher"};
 
     health('/', sr => {
-        query.service = ""
         status.string = sr;
         // Index page - render the component list template
         app.get('/', async function (req, res) {

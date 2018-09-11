@@ -1,0 +1,24 @@
+{% macro govukOffering(params) %}
+  <table class="govuk-table ">
+    <caption class="govuk-table__caption"> {{ params._source.name }}</caption>
+    <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row">Match</th>
+      <td class="govuk-table__cell ">{{ params._score }} </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row">Supplier</th>
+      <td class="govuk-table__cell ">{{ params._source.supplier_id }} </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row">Commercial Agreement</th>
+      <td class="govuk-table__cell ">{{ params._source.agreement_id }} </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row">{{ params._source.item[0].unit }}</th>
+      <td class="govuk-table__cell ">{{ params._source.item[0].value }} </td>
+    </tr>
+    </tbody>
+  </table>
+
+{% endmacro %}
