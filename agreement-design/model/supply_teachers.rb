@@ -149,7 +149,6 @@ end
 # @param [Object] filename - name of CSV file
 def load_managing_suppliers filename, parties
 
-
   # Load the suppliers from the file
   lines = CSV.foreach(filename)
   lines.each do |row|
@@ -194,6 +193,7 @@ def load_managing_suppliers filename, parties
             agreement_id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
             supplier_id name # TODO will actually have to match this to a real supplier id, such as in SF
             sector_id :public_education
+            duration row_dur
             item do
               type_id item_type.id
               unit :Commission
@@ -269,6 +269,7 @@ def load_recruitment_suppliers filename, parties
               name "#{supplier}-#{role}-#{dur}"
               agreement_id SUPPLY_TEACHER_RECRUITMENT_LOT_ID
               supplier_id supplier # TODO will actually have to match this to a real supplier id, such as in SF
+              duration dur
               sector_id :public_education
               item do
                 type_id role
