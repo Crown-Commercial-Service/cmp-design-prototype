@@ -176,7 +176,6 @@ def load_managing_suppliers filename, parties
     end
   end
 
-
   SupplyTeacherOfferings.new :ST_ManagementOfferings do
     lines.each do |row|
       col = colmap_managing_suppliers(row)
@@ -190,7 +189,7 @@ def load_managing_suppliers filename, parties
           name = row[1]
           st_offering do
             id "#{name}-#{item_type.description}-#{row_dur}".gsub(/(\s+)/, '_') # TODO proper uuid here
-            name "#{name}-#{item_type.description}-#{row_dur}"
+            name "Managing recruitment : #{item_type.description}-#{row_dur} / #{name}"
             agreement_id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
             supplier_id name # TODO will actually have to match this to a real supplier id, such as in SF
             sector_id :public_education
@@ -267,7 +266,7 @@ def load_recruitment_suppliers filename, parties
             supplier = col[:Col_Supplier_Name]
             st_offering do
               id "#{supplier}-#{role}-#{dur}".gsub(/(\s+)/, '_') # TODO proper uuid here
-              name "#{supplier}-#{role}-#{dur}"
+              name "Recruitment : #{role}-#{dur} / #{supplier}"
               agreement_id SUPPLY_TEACHER_RECRUITMENT_LOT_ID
               supplier_id supplier # TODO will actually have to match this to a real supplier id, such as in SF
               duration dur

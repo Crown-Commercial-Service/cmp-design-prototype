@@ -17,9 +17,9 @@ class DataFile < Output
 
   # @param [object] index - if included, and using :jsonlines, will call index on each item (as a hash) and prepend the line.
   # @param [string] select - if given this will select out the type, eg agreements, and discard the rest
-  def output *models, index: nil, select: nil
+  def output *models, index: nil, select: nil, deeplink: false
 
-    map = models_to_data(models)
+    map = models_to_data(models, deeplink: deeplink)
 
     file do |file|
       if fmt == :jsonlines

@@ -12,6 +12,7 @@ For example, loading more than one agreement's offerings into a single offering 
 ```shell
  curl -s -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/offerings/offerings/_bulk --data-binary @"data/teacher-recruitment-test-offers.jsonlines"
  curl -s -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/offerings/offerings/_bulk --data-binary @"data/teacher-recruitment-test-offers.jsonlines" 
+ curl -s -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/agreements/agreements/_bulk --data-binary @"data/agreements.jsonlines" 
 ```
 
 And adding Supply Teachers to an agreements index

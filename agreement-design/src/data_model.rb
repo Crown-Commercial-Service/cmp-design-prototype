@@ -18,6 +18,7 @@ module DataModel
         @domain = domain
         @extends = extends
         @description = description
+        @instances = []
 
         self.define_singleton_method :domain do
           @domain
@@ -34,6 +35,10 @@ module DataModel
           end
         end
 
+      end
+
+      def instances
+        @instances
       end
 
       def typename
@@ -75,6 +80,8 @@ module DataModel
     def initialize(name, attributes = {}, &block)
       @name = name
       @attributes = attributes
+
+      self.class.instances << self
 
       self.class.attributes.keys.each do |k|
         # add a definition / accessor for each attribute

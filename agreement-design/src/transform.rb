@@ -69,7 +69,7 @@ module Transform
   # @param models - the models to transform
   # @lambdas - set of function callbacks to transform
 
-  def transform_datamodel lambdas, *models
+  def transform_datamodel lambdas, *models, deeplink: false
     for model in models
       dom = cond_call(lambdas, :before_model, *before_model_lambda(model: model))
       for typename in model.contents.keys
@@ -77,7 +77,7 @@ module Transform
         t = 0
         # there will be more than one of each type
         for type in model.contents[typename]
-          transform_entry(lambdas, decl: type, name: typename, depth: 0, index: 0, total: 1)
+          transform_entry(lambdas, decl: type, name: typename, depth: 0, index: 0, total: 1, deeplink: deeplink)
           t = t + 1
         end
         grp = cond_call(lambdas, :after_group, *after_group_lambda(name: typename, before: grp))
@@ -116,13 +116,13 @@ module Transform
     return 0
   end
 
-  def transform_entry(lambdas, index:, name:, decl:, depth:, total:)
+  def transform_entry(lambdas, index:, name:, decl:, depth:, total:, deeplink:)
 
     if decl.class <= Array
       arrctx = cond_call(lambdas, :before_array, *before_array_lambda(name: name, decl: decl, depth: depth, total: decl.length))
       j = 0
       for aa in decl
-        transform_entry(lambdas, index: j, decl: aa, name: name, depth: depth, total: decl.length)
+        transform_entry(lambdas, index: j, decl: aa, name: name, depth: depth, total: decl.length, deeplink: deeplink)
         j = j + 1
       end
       cond_call(lambdas, :after_array, *after_array_lambda(index: index, decl: decl, depth: depth, before: arrctx))
@@ -131,7 +131,15 @@ module Transform
       i = 0
       for ak in decl.attributes.keys
         av = decl.attributes[ak]
-        transform_entry(lambdas, name: ak, decl: av, depth: depth + 1, index: i, total: decl.attributes.keys.length)
+        typeinfo = decl.class.attributes[ak]
+        transform_entry(lambdas, name: ak, decl: av, depth: depth + 1, index: i, total: decl.attributes.keys.length, deeplink: deeplink)
+        if deeplink and nil != typeinfo[:links]
+          for al in typeinfo[:links].instances
+            if av == al.attributes[:id]
+              transform_entry(lambdas, name: ak, decl: al, depth: depth + 1, index: i, total: decl.attributes.keys.length, deeplink: deeplink)
+            end
+          end
+        end
         i = i + 1
       end
       cond_call(lambdas, :after_type, *after_type_lambda(type: decl, depth: depth, before: before))
@@ -141,7 +149,7 @@ module Transform
     self
   end
 
-  def models_to_data(models)
+  def models_to_data(models, deeplink: false)
     map = Hash.new
     stack = [map]
     transform_datamodel(
@@ -193,7 +201,7 @@ module Transform
             :after_array => lambda do |index:, decl:, depth:, before: nil|
               stack.pop
             end,
-        }, *models)
+        }, *models, deeplink: deeplink)
     map
   end
 
