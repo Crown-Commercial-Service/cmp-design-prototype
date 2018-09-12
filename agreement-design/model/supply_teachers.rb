@@ -125,6 +125,7 @@ The offerings look the same for both lots - since they both relate to the same i
     attribute :duration, Selection(*ST_DURATIONS)
     attribute :branch_name, String, "branch name from which the offer is supplied"
     attribute :branch_contact_id, String, "links to contact at the address", links: Parties::Contact
+    attribute :branch_location, String, "postcode of branch"
     attribute :vendor_type, Selection("Master_Vendor", "Neutral_Vendor"), "for managed service offerings", links: Parties::Contact
   }
 }
@@ -271,6 +272,8 @@ def load_recruitment_suppliers filename, parties
               supplier_id supplier # TODO will actually have to match this to a real supplier id, such as in SF
               duration dur
               sector_id :public_education
+              branch_name col[:Col_Branch_Name]
+              branch_location col[:Col_Post_Code]
               item do
                 type_id role
                 unit :Commission

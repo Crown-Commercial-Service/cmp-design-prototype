@@ -183,4 +183,5 @@ If set offering is only to be shown to users proven to belong to the sectors giv
 |duration|(Up_to_1_week,Between_1_and_12_weeks,Over_12_weeks)|1||
 |branch_name|String|1|branch name from which the offer is supplied|
 |branch_contact_id|String -> Parties::Contact|1|links to contact at the address|
+|branch_location|String|1|postcode of branch|
 |vendor_type|(Master_Vendor,Neutral_Vendor) -> Parties::Contact|1|for managed service offerings|

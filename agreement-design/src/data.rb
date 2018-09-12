@@ -21,7 +21,6 @@ class DataFile < Output
 
     map = models_to_data(models)
 
-
     file do |file|
       if fmt == :jsonlines
         select ? selection = [select] : selection = map.keys
