@@ -22,6 +22,10 @@
       <th class="govuk-table__header" scope="row">{{ params.item._source.item[0].unit }}</th>
       <td class="govuk-table__cell ">{{ params.item._source.item[0].value }} </td>
     </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row">For use by sector</th>
+      <td class="govuk-table__cell ">{{ params.item._source.sector_id }} </td>
+    </tr>
 
     {% for attribute in params.type.attribute %}
       <tr class="govuk-table__row">

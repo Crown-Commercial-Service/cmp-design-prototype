@@ -99,7 +99,12 @@ module.exports = (options) => {
             "query": {
                 "multi_match": {
                     "query": needs_expr.service + "  " + needs_expr.postcode,
-                    "fields": ["id", "name", "branch_name", "branch_location"]
+                    "fields": [
+                        "id", "name",
+                        "branch_name", "branch_location", // TODO: these are offering specific - should come from offer type
+                        "item.itemtype.description",
+                        "item.itemtype.keyword",
+                        "item.itemtype.code"]
                 }
             }
         };
