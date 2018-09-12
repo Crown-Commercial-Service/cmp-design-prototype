@@ -68,7 +68,7 @@ module.exports = (options) => {
         next();
     });
 
-    var status = {}, results = {}, query = { "service" : "Teacher"};
+    var status = {}, results = {}, needs_expr = {"service": "Teacher"};
 
     health('/', sr => {
         status.string = sr;
@@ -76,21 +76,36 @@ module.exports = (options) => {
         app.get('/', async function (req, res) {
             res.render('index', {
                 backlink: false,
-                query: query, results: results, status: status
+                needs_expr: needs_expr, results: results, status: status,
+                type: {
+                    // This could be generated from agreement definition
+                    "ST.AG": {
+                        attribute: [
+                            {name: "branch_name"},
+                            {name: "branch_location"}]
+                    },
+                    "ST.MS": {
+                        attribute: []
+                    }
+                }
             })
         })
     });
 
     app.post('/', async function (req, res) {
-        query.service = req.body.service_name;
-        search("offerings", "offerings",
-            {
-                "query": {
-                    "match": {
-                        "name": query.service
-                    }
+        needs_expr.service = req.body.service_name;
+        needs_expr.postcode = req.body.postcode;
+        var qry = {
+            "query": {
+                "multi_match": {
+                    "query": needs_expr.service + "  " + needs_expr.postcode,
+                    "fields": ["id", "name", "branch_name", "branch_location"]
                 }
-            }, sr => {
+            }
+        };
+        search("offerings", "offerings",
+            qry,
+            sr => {
                 results.response = sr;
                 results.string = JSON.stringify(sr);
                 results.hits = sr.hits;
@@ -99,7 +114,7 @@ module.exports = (options) => {
                 results.response = {};
                 results.string = er;
                 results.hits = 0;
-                console.log( err);
+                console.log(err);
                 res.redirect('/#search')
             });
     });

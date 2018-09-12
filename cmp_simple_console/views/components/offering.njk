@@ -1,23 +1,35 @@
 {% macro govukOffering(params) %}
   <table class="govuk-table ">
-    <caption class="govuk-table__caption"> {{ params._source.name }}</caption>
+    <caption class="govuk-table__caption"> {{ params.item._source.name }}</caption>
     <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
       <th class="govuk-table__header" scope="row">Match</th>
-      <td class="govuk-table__cell ">{{ params._score }} </td>
+      <td class="govuk-table__cell ">{{ params.item._score }} </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row">Agreement</th>
+      <td class="govuk-table__cell ">{{ params.item._source.agreement_id }} </td>
     </tr>
     <tr class="govuk-table__row">
       <th class="govuk-table__header" scope="row">Supplier</th>
-      <td class="govuk-table__cell ">{{ params._source.supplier_id }} </td>
+      <td class="govuk-table__cell ">{{ params.item._source.supplier_id }} </td>
     </tr>
     <tr class="govuk-table__row">
       <th class="govuk-table__header" scope="row">Commercial Agreement</th>
-      <td class="govuk-table__cell ">{{ params._source.agreement_id }} </td>
+      <td class="govuk-table__cell ">{{ params.item._source.agreement_id }} </td>
     </tr>
     <tr class="govuk-table__row">
-      <th class="govuk-table__header" scope="row">{{ params._source.item[0].unit }}</th>
-      <td class="govuk-table__cell ">{{ params._source.item[0].value }} </td>
+      <th class="govuk-table__header" scope="row">{{ params.item._source.item[0].unit }}</th>
+      <td class="govuk-table__cell ">{{ params.item._source.item[0].value }} </td>
     </tr>
+
+    {% for attribute in params.type.attribute %}
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="row">{{ attribute.name }}</th>
+        <td class="govuk-table__cell "> {{  params.item._source[attribute.name] }} </td>
+      </tr>
+    {% endfor %}
+
     </tbody>
   </table>
 

@@ -42,7 +42,7 @@
                 classes: "govuk-!-width-two-thirds",
                 id: "service_name",
                 name: "service_name",
-                value: query.service
+                value: needs_expr.service
             }) }}
 
                 {{ govukInput({
@@ -100,7 +100,8 @@
                         },
                         classes: "govuk-input--width-10",
                         id: "postcode",
-                        name: "postcode"
+                        name: "postcode",
+                        value: service.postcode
                     }) }}
 
                 {% endcall %}
@@ -111,8 +112,6 @@
                     id: "search_button"
                 }) }}
 
-
-
         </form>
 
         {% endcall %}
@@ -121,7 +120,7 @@
             <h2 class="govuk-heading-s">results</h2>
             <span class="govuk-body">
                <ul class="govuk-list">
-                   <li> Query : {{ query.service }}</li>
+                   <li> Query : {{ needs_expr.service }}</li>
                      <li> hits  : {{ results.hits.total }} </li>
                </ul>
 
@@ -133,11 +132,9 @@
                 {{ item._id }}
                 </span>
                 </summary>
-                      {{ govukOffering(  item ) }}
-
+                      {{ govukOffering(  {item: item, type: type[item._source.agreement_id]}) }}
                 </details>
               {% endfor %}
-
             </ul>
             </span>
             <p class="govuk-body">{{ results.string }}</p>
