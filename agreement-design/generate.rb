@@ -16,6 +16,11 @@ diagram.describe *metamodels
 doc = Document.new(output_path, "metamodel")
 doc.document_metamodel *metamodels
 
+data = DataFile.new(output_path, "metamodel", fmt: :json)
+data.output_metamodel *metamodels
+data = DataFile.new(output_path, "metamodel", fmt: :yaml)
+data.output_metamodel *metamodels
+
 models = [
     Agreements::Supply_Teacher_Agreements,
     Geographic::NUTS,

@@ -80,4 +80,17 @@ class TransformTest < Test::Unit::TestCase
         },
         the_model)
   end
+
+  def test_models_to_data
+    data= models_to_data( TestModel::TESTMODEL)
+    puts data
+    assert_equal "ID1", data[:complextype][0][:string]
+  end
+
+  def test_metamodels_to_data
+    data= metamodels_to_data( TestModel)
+    # pp TestModel
+    pp data
+    assert_equal :strings,  data[:ComplexType][:strings][:name]
+  end
 end

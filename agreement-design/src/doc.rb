@@ -50,7 +50,7 @@ class Document < Output
                 file.print "|---------|----|------------|-----------|\n"
               end,
               attribute: lambda do |id:, val:, type:, depth:, index:, total:|
-                file.print "|#{val[:name]}|#{type_and_link(val)}|#{multiplicity(val)}|#{val[:description]}|\n"
+                file.print "|#{val[:name]}|#{type_and_link(val)}|#{pretty_multiplicity(val)}|#{val[:description]}|\n"
               end,
               before_codes: lambda do |model:|
                 file.print "# Codes\n"
@@ -64,20 +64,6 @@ class Document < Output
     end
   end
 
-  def multiplicity m
-    m = m[:multiplicity]
-    if m.end == -1
-      if m.begin == 0
-        return "*"
-      else
-        return "#{m.begin}..*"
-      end
-    end
-    if m.end == m.begin
-      return m.end.to_s
-    end
-    return m.to_s
-  end
 
   private
 

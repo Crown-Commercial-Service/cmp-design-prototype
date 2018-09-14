@@ -46,7 +46,28 @@ class DataFile < Output
     end
   end
 
+  def output_metamodel *models
+    map = metamodels_to_data(models)
+
+    file do |file|
+      if fmt == :jsonlines
+        for decl in map
+          file.print (JSON.generate(decl))
+          file.print("\n")
+        end
+      elsif fmt == :json
+        file.print(JSON.generate(map))
+      elsif fmt == :yaml
+        file.print(map.to_yaml)
+      else
+        raise "unknown data file format"
+      end
+    end
+  end
+
+
 end
+
 
 # given an offer object return an index object
 # Maybe: turn this into a datatype map, not an object map, so we can access type metadata

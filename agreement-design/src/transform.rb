@@ -77,7 +77,7 @@ module Transform
         t = 0
         # there will be more than one of each type
         for type in model.contents[typename]
-          transform_entry(lambdas, decl: type, name: typename, depth: 0, index: 0, total: 1, deeplink: deeplink)
+          transform_array_type_or_attribute(lambdas, decl: type, name: typename, depth: 0, index: 0, total: 1, deeplink: deeplink)
           t = t + 1
         end
         grp = cond_call(lambdas, :after_group, *after_group_lambda(name: typename, before: grp))
@@ -107,46 +107,6 @@ module Transform
         end
       end
     end
-  end
-
-  def cond_call(lambdas, lam, *args)
-    if lambdas[lam]
-      return lambdas[lam].(*args)
-    end
-    return 0
-  end
-
-  def transform_entry(lambdas, index:, name:, decl:, depth:, total:, deeplink:)
-
-    if decl.class <= Array
-      arrctx = cond_call(lambdas, :before_array, *before_array_lambda(name: name, decl: decl, depth: depth, total: decl.length))
-      j = 0
-      for aa in decl
-        transform_entry(lambdas, index: j, decl: aa, name: name, depth: depth, total: decl.length, deeplink: deeplink)
-        j = j + 1
-      end
-      cond_call(lambdas, :after_array, *after_array_lambda(index: index, decl: decl, depth: depth, before: arrctx))
-    elsif decl.class <= DataType
-      before = cond_call(lambdas, :before_type, *before_type_lambda(type: decl, depth: depth, index: index, total: total))
-      i = 0
-      for ak in decl.attributes.keys
-        av = decl.attributes[ak]
-        typeinfo = decl.class.attributes[ak]
-        transform_entry(lambdas, name: ak, decl: av, depth: depth + 1, index: i, total: decl.attributes.keys.length, deeplink: deeplink)
-        if deeplink and nil != typeinfo[:links]
-          for al in typeinfo[:links].instances
-            if av == al.attributes[:id]
-              transform_entry(lambdas, name: ak, decl: al, depth: depth + 1, index: i, total: decl.attributes.keys.length, deeplink: deeplink)
-            end
-          end
-        end
-        i = i + 1
-      end
-      cond_call(lambdas, :after_type, *after_type_lambda(type: decl, depth: depth, before: before))
-    else
-      cond_call(lambdas, :attribute, *attribute_lambda(id: name, val: decl, index: index, depth: depth, total: total))
-    end
-    self
   end
 
   def models_to_data(models, deeplink: false)
@@ -205,6 +165,83 @@ module Transform
     map
   end
 
+  def metamodels_to_data(models)
+    map = Hash.new
+    transform_metamodel(
+        {
+            :before_type => lambda do |type:, depth:, index:, total:|
+              map[type.typename] = {}
+            end,
+            :attribute => lambda do |id:, val:, type:, depth:, index:, total:|
+              val = val.clone
+              # puts "-"
+              # pp val
+              val[:multiplicity] = pretty_multiplicity(val)
+              val[:type] = val[:type].to_s
+              map[type.typename][id] = val
+            end,
+        }, *models)
+    map
+  end
+
+  def pretty_multiplicity m
+    m = m[:multiplicity]
+    if m.end == -1
+      if m.begin == 0
+        return "*"
+      else
+        return "#{m.begin}..*"
+      end
+    end
+    if m.end == m.begin
+      return m.end.to_s
+    end
+    return m.to_s
+  end
+
+
+  private
+
+  def cond_call(lambdas, lam, *args)
+    if lambdas[lam]
+      return lambdas[lam].(*args)
+    end
+    return 0
+  end
+
+
+  def transform_array_type_or_attribute(lambdas, index:, name:, decl:, depth:, total:, deeplink:)
+
+    if decl.class <= Array
+      arrctx = cond_call(lambdas, :before_array, *before_array_lambda(name: name, decl: decl, depth: depth, total: decl.length))
+      j = 0
+      for aa in decl
+        transform_array_type_or_attribute(lambdas, index: j, decl: aa, name: name, depth: depth, total: decl.length, deeplink: deeplink)
+        j = j + 1
+      end
+      cond_call(lambdas, :after_array, *after_array_lambda(index: index, decl: decl, depth: depth, before: arrctx))
+    elsif decl.class <= DataType
+      before = cond_call(lambdas, :before_type, *before_type_lambda(type: decl, depth: depth, index: index, total: total))
+      i = 0
+      for ak in decl.attributes.keys
+        av = decl.attributes[ak]
+        typeinfo = decl.class.attributes[ak]
+        transform_array_type_or_attribute(lambdas, name: ak, decl: av, depth: depth + 1, index: i, total: decl.attributes.keys.length, deeplink: deeplink)
+        if deeplink and nil != typeinfo[:links]
+          for al in typeinfo[:links].instances
+            if av == al.attributes[:id]
+              transform_array_type_or_attribute(lambdas, name: ak, decl: al, depth: depth + 1, index: i, total: decl.attributes.keys.length, deeplink: deeplink)
+            end
+          end
+        end
+        i = i + 1
+      end
+      cond_call(lambdas, :after_type, *after_type_lambda(type: decl, depth: depth, before: before))
+    else
+      cond_call(lambdas, :attribute, *attribute_lambda(id: name, val: decl, index: index, depth: depth, total: total))
+    end
+    self
+  end
 
 
 end
