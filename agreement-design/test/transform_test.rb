@@ -91,6 +91,6 @@ class TransformTest < Test::Unit::TestCase
     data= metamodels_to_data( TestModel)
     # pp TestModel
     pp data
-    assert_equal :strings,  data[:ComplexType][:strings][:name]
+    assert_equal :strings,  data[:TestModel][:ComplexType][:strings][:name]
   end
 end

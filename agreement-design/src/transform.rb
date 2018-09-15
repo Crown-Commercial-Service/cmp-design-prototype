@@ -169,16 +169,17 @@ module Transform
     map = Hash.new
     transform_metamodel(
         {
+            :before_model => lambda do |model:|
+              map[model.name.to_sym]= {}
+            end,
             :before_type => lambda do |type:, depth:, index:, total:|
-              map[type.typename] = {}
+              map[type.domain.name.to_sym][type.typename] = {}
             end,
             :attribute => lambda do |id:, val:, type:, depth:, index:, total:|
               val = val.clone
-              # puts "-"
-              # pp val
               val[:multiplicity] = pretty_multiplicity(val)
               val[:type] = val[:type].to_s
-              map[type.typename][id] = val
+              map[type.domain.name.to_sym][type.typename][id] = val
             end,
         }, *models)
     map

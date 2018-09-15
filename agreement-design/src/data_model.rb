@@ -191,8 +191,8 @@ module DataModel
 
     def initialize name, &block
       @contents = {}
-      @name = name
-      self.class.const_set name, self
+      @name = name.to_sym
+      self.class.const_set name.to_sym, self
 
       self.class.types.values.each do |t|
         # add a definition / accessor for each type
@@ -214,10 +214,11 @@ module DataModel
           end
           return decl
         end
-
       end
 
-      self.instance_exec &block
+      if block_given?
+        self.instance_exec &block
+      end
     end
 
   end
@@ -226,7 +227,7 @@ module DataModel
   module_function
 
   def domain(name, &block)
-    dom = Object.const_set name, Class.new(Domain)
+    dom = Object.const_set name.to_sym, Class.new(Domain)
     if block_given?
       dom.instance_exec &block
     end

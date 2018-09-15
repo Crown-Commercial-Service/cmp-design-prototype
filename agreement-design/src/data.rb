@@ -51,9 +51,11 @@ class DataFile < Output
 
     file do |file|
       if fmt == :jsonlines
-        for decl in map
-          file.print (JSON.generate(decl))
-          file.print("\n")
+        for model in map
+          for decl in model
+            file.print (JSON.generate(decl))
+            file.print("\n")
+          end
         end
       elsif fmt == :json
         file.print(JSON.generate(map))
