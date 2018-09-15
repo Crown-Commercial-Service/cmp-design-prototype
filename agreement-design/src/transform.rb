@@ -170,15 +170,17 @@ module Transform
     transform_metamodel(
         {
             :before_model => lambda do |model:|
-              map[model.name.to_sym]= {}
+              map[model.name.to_sym] = {}
             end,
             :before_type => lambda do |type:, depth:, index:, total:|
               map[type.domain.name.to_sym][type.typename] = {}
             end,
             :attribute => lambda do |id:, val:, type:, depth:, index:, total:|
-              val = val.clone
+              val = val.clone.keep_if{|k,v|v}
+              #yaml converter is a bit thick, so we need to convert objects to strings
               val[:multiplicity] = pretty_multiplicity(val)
               val[:type] = val[:type].to_s
+              val[:links] = val[:links].to_s if val.has_key? :links
               map[type.domain.name.to_sym][type.typename][id] = val
             end,
         }, *models)

@@ -6,231 +6,200 @@
       :description: The code id, which must be unique across all schemes
       :name: :id
       :type: String
-      :links: 
     :scheme_id:
       :multiplicity: '1'
       :description: The classiciation scheme id
       :name: :scheme_id
       :type: "(CPV,CPVS,UNSPSC,CPV,OKDP,OKPD,CCS)"
-      :links: 
     :description:
       :multiplicity: '1'
       :description: ''
       :name: :description
       :type: String
-      :links: 
     :keyword:
       :multiplicity: "*"
       :description: ''
       :name: :keyword
       :type: String
-      :links: 
     :uri:
       :multiplicity: '1'
       :description: " URI for the code within the scheme defining this type "
       :name: :uri
       :type: String
-      :links: 
     :code:
       :multiplicity: '1'
       :description: " Code within the scheme defining this type "
       :name: :code
       :type: String
-      :links: 
     :unit:
       :multiplicity: '1'
       :description: " define the units, if one units matches "
       :name: :unit
       :type: "(Area,Commission,Currency)"
-      :links: 
   :ExpressionOfNeed:
     :buyer_id:
       :multiplicity: '1'
       :description: The buyer expressing the need
       :name: :buyer_id
       :type: String
-      :links: 
     :kind:
       :multiplicity: '1'
       :description: ''
       :name: :kind
       :type: "(Budget,Location,Service)"
-      :links: 
     :value:
       :multiplicity: '1'
       :description: ''
       :name: :value
       :type: String
-      :links: 
     :unit:
       :multiplicity: '1'
       :description: The units typically used to express the need
       :name: :unit
       :type: "(Area,Commission,Currency)"
-      :links: 
   :Agreement:
     :kind:
       :multiplicity: '1'
       :description: Kind of agreement, including :Framework, :Lot, :Contract
       :name: :kind
       :type: "(Framework,Lot,Contract)"
-      :links: 
     :id:
       :multiplicity: '1'
       :description: uuid of agreeement
       :name: :id
       :type: String
-      :links: 
     :name:
       :multiplicity: '1'
       :description: uuid of agreeement
       :name: :name
       :type: String
-      :links: 
     :version:
       :multiplicity: '1'
       :description: semantic version id of the form X.Y.Z
       :name: :version
       :type: String
-      :links: 
     :start_date:
       :multiplicity: '1'
       :description: ''
       :name: :start_date
       :type: Date
-      :links: 
     :end_date:
       :multiplicity: '1'
       :description: ''
       :name: :end_date
       :type: Date
-      :links: 
     :description:
       :multiplicity: '1'
       :description: Describe the agreement
       :name: :description
       :type: String
-      :links: 
     :fwk_number:
       :multiplicity: '1'
       :description: Framework (RM) number of related framework if required. @Example
         RM123
       :name: :fwk_number
       :type: String
-      :links: 
     :sf_typ:
       :multiplicity: '1'
       :description: SalesForce data type
       :name: :sf_typ
       :type: String
-      :links: 
     :sf_id:
       :multiplicity: '1'
       :description: SalesForce row id
       :name: :sf_id
       :type: String
-      :links: 
     :offerType:
       :multiplicity: '1'
       :description: Name of the subclass of the Offering, supporting the Agreement
       :name: :offerType
       :type: String
-      :links: 
     :part_of_id:
       :multiplicity: '1'
       :description: Agreement this is part of, applicable only to Lots
       :name: :part_of_id
       :type: String
-      :links: &1 !ruby/class 'Agreements::Agreement'
+      :links: Agreements::Agreement
     :conforms_to_id:
       :multiplicity: '1'
       :description: Agreement this conforms to, such as a Contract conforming to a
         Framework
       :name: :conforms_to_id
       :type: String
-      :links: *1
+      :links: Agreements::Agreement
     :item_type:
       :multiplicity: "*"
       :description: describe the items that can be offered under the agreement
       :name: :item_type
       :type: Agreements::ItemType
-      :links: 
     :min_value:
       :multiplicity: 0..1
       :description: Minimum value of award, in pounds sterling
       :name: :min_value
       :type: Integer
-      :links: 
     :max_value:
       :multiplicity: 0..1
       :description: Maximum value of award, in pounds sterling
       :name: :max_value
       :type: Integer
-      :links: 
   :Item:
     :type_id:
       :multiplicity: '1'
       :description: " type of the item "
       :name: :type_id
       :type: String
-      :links: !ruby/class 'Agreements::ItemType'
+      :links: Agreements::ItemType
     :unit:
       :multiplicity: '1'
       :description: " define the units "
       :name: :unit
       :type: "(Area,Commission,Currency)"
-      :links: 
     :value:
       :multiplicity: '1'
       :description: an object of the type matching type->units
       :name: :value
       :type: Object
-      :links: 
   :Offering:
     :agreement_id:
       :multiplicity: '1'
       :description: The agreement this offering relates to
       :name: :agreement_id
       :type: String
-      :links: *1
+      :links: Agreements::Agreement
     :supplier_id:
       :multiplicity: '1'
       :description: ''
       :name: :supplier_id
       :type: String
-      :links: &2 !ruby/class 'Parties::Party'
+      :links: Parties::Party
     :id:
       :multiplicity: '1'
       :description: unique id for the offering across all offerings, suppliers and
         frameworks
       :name: :id
       :type: String
-      :links: 
     :name:
       :multiplicity: '1'
       :description: ''
       :name: :name
       :type: String
-      :links: 
     :description:
       :multiplicity: '1'
       :description: ''
       :name: :description
       :type: String
-      :links: 
     :item:
       :multiplicity: "*"
       :description: details of the item
       :name: :item
       :type: Agreements::Item
-      :links: 
     :location_id:
       :multiplicity: 1..*
       :description: Pick list of applicable regions. There must be at least one, even
         if it is just 'UK'
       :name: :location_id
       :type: String
-      :links: &3 !ruby/class 'Geographic::AreaCode'
+      :links: Geographic::AreaCode
     :sector_id:
       :multiplicity: "*"
       :description: |-
@@ -238,33 +207,31 @@
         If set offering is only to be shown to users proven to belong to the sectors given
       :name: :sector_id
       :type: String
-      :links: &4 !ruby/class 'Parties::Sector'
+      :links: Parties::Sector
   :Catalogue:
     :offers:
       :multiplicity: "*"
       :description: description of the item
       :name: :offers
       :type: Agreements::Offering
-      :links: 
   :Involvement:
     :agreement_id:
       :multiplicity: '1'
       :description: The agreement this interest relates to
       :name: :agreement_id
       :type: String
-      :links: *1
+      :links: Agreements::Agreement
     :party_id:
       :multiplicity: '1'
       :description: The party this interest relates to
       :name: :party_id
       :type: String
-      :links: *2
+      :links: Parties::Party
     :role:
       :multiplicity: '1'
       :description: The role of the party in the involvment
       :name: :role
       :type: "(AwardedSupplier,AwardedBuyer,SupplyingQuote,RequestingQuote,Etc)"
-      :links: 
 :Parties:
   :Party:
     :id:
@@ -272,118 +239,100 @@
       :description: UUID or Salesforce ID?
       :name: :id
       :type: String
-      :links: 
     :org_name:
       :multiplicity: '1'
       :description: UUID or Salesforce ID?
       :name: :org_name
       :type: String
-      :links: 
     :supplier_registration_completed:
       :multiplicity: '1'
       :description: ''
       :name: :supplier_registration_completed
       :type: Date
-      :links: 
     :buyer_registration_completed:
       :multiplicity: '1'
       :description: ''
       :name: :buyer_registration_completed
       :type: Date
-      :links: 
   :Address:
     :address_1:
       :multiplicity: '1'
       :description: ''
       :name: :address_1
       :type: String
-      :links: 
     :address_2:
       :multiplicity: 0..1
       :description: ''
       :name: :address_2
       :type: String
-      :links: 
     :town:
       :multiplicity: 0..1
       :description: ''
       :name: :town
       :type: String
-      :links: 
     :county:
       :multiplicity: "*"
       :description: ''
       :name: :county
       :type: String
-      :links: 
     :postcode:
       :multiplicity: "*"
       :description: ''
       :name: :postcode
       :type: String
-      :links: 
     :uprn:
       :multiplicity: "*"
       :description: ''
       :name: :uprn
       :type: String
-      :links: 
   :Contact:
     :id:
       :multiplicity: '1'
       :description: a UUID for the person or contact point
       :name: :id
       :type: String
-      :links: 
     :party_id:
       :multiplicity: '1'
       :description: contact is a link for this party
       :name: :party_id
       :type: String
-      :links: *2
+      :links: Parties::Party
     :name:
       :multiplicity: '1'
       :description: address of the contact point
       :name: :name
       :type: String
-      :links: 
     :address:
       :multiplicity: 0..1
       :description: address of the contact point
       :name: :address
       :type: Parties::Address
-      :links: 
     :phone:
       :multiplicity: "*"
       :description: phone of the contact point
       :name: :phone
       :type: String
-      :links: 
     :email:
       :multiplicity: "*"
       :description: email of the contact point
       :name: :email
       :type: String
-      :links: 
   :Sector:
     :name:
       :multiplicity: '1'
       :description: ''
       :name: :name
       :type: String
-      :links: 
     :description:
       :multiplicity: '1'
       :description: ''
       :name: :description
       :type: String
-      :links: 
     :subsector:
       :multiplicity: "*"
       :description: ''
       :name: :subsector
       :type: Parties::Sector
-      :links: 
 :Geographic:
   :AreaCode:
     :name:
@@ -391,19 +340,16 @@
       :description: ''
       :name: :name
       :type: String
-      :links: 
     :description:
       :multiplicity: '1'
       :description: ''
       :name: :description
       :type: String
-      :links: 
     :subcode:
       :multiplicity: "*"
       :description: ''
       :name: :subcode
       :type: Geographic::AreaCode
-      :links: 
 :SupplyTeacherOfferings:
   :ST_Offering:
     :agreement_id:
@@ -411,45 +357,41 @@
       :description: The agreement this offering relates to
       :name: :agreement_id
       :type: String
-      :links: *1
+      :links: Agreements::Agreement
     :supplier_id:
       :multiplicity: '1'
       :description: ''
       :name: :supplier_id
       :type: String
-      :links: *2
+      :links: Parties::Party
     :id:
       :multiplicity: '1'
       :description: unique id for the offering across all offerings, suppliers and
         frameworks
       :name: :id
       :type: String
-      :links: 
     :name:
       :multiplicity: '1'
       :description: ''
       :name: :name
       :type: String
-      :links: 
     :description:
       :multiplicity: '1'
       :description: ''
       :name: :description
       :type: String
-      :links: 
     :item:
       :multiplicity: "*"
       :description: details of the item
       :name: :item
       :type: Agreements::Item
-      :links: 
     :location_id:
       :multiplicity: 1..*
       :description: Pick list of applicable regions. There must be at least one, even
         if it is just 'UK'
       :name: :location_id
       :type: String
-      :links: *3
+      :links: Geographic::AreaCode
     :sector_id:
       :multiplicity: "*"
       :description: |-
@@ -457,40 +399,36 @@
         If set offering is only to be shown to users proven to belong to the sectors given
       :name: :sector_id
       :type: String
-      :links: *4
+      :links: Parties::Sector
     :commission:
       :multiplicity: '1'
       :description: The percentage the supplier charges for the item
       :name: :commission
       :type: String
-      :links: 
     :duration:
       :multiplicity: '1'
       :description: ''
       :name: :duration
       :type: "(Up_to_1_week,Between_1_and_12_weeks,Over_12_weeks)"
-      :links: 
     :branch_name:
       :multiplicity: '1'
       :description: branch name from which the offer is supplied
       :name: :branch_name
       :type: String
-      :links: 
     :branch_contact_id:
       :multiplicity: '1'
       :description: links to contact at the address
       :name: :branch_contact_id
       :type: String
-      :links: &5 !ruby/class 'Parties::Contact'
+      :links: Parties::Contact
     :branch_location:
       :multiplicity: '1'
       :description: postcode of branch
       :name: :branch_location
       :type: String
-      :links: 
     :vendor_type:
       :multiplicity: '1'
       :description: for managed service offerings
       :name: :vendor_type
       :type: "(Master_Vendor,Neutral_Vendor)"
-      :links: *5
+      :links: Parties::Contact
