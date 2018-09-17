@@ -47,6 +47,15 @@
                 name: "service_name",
                 value: needs_expr.service
             }) }}
+                {{ govukInput({
+                    label: {
+                        text: "Do you know what agreement you want to use"
+                    },
+                    classes: "govuk-!-width-two-thirds",
+                    id: "agreement",
+                    name: "agreement",
+                    value: needs_expr.agreement
+                }) }}
 
                 {{ govukInput({
                     label: {

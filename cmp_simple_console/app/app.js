@@ -31,10 +31,6 @@ function search(index, type, body, resultfn, errfn) {
     }).then(resultfn, errfn);
 }
 
-function health(path = '/', health_callback) {
-    client.cat.health().then(health_callback, health_callback);
-}
-
 module.exports = (options) => {
     const nunjucksOptions = options ? options.nunjucks : {}
 
@@ -68,29 +64,25 @@ module.exports = (options) => {
         next();
     });
 
-    var status = {}, results = {}, needs_expr = {"service": "Teacher"};
+    var status = {}, results = {}, needs_expr = {"service": "Teacher"}, agreement = "ST";
 
-    health('/', sr => {
-        status.string = sr;
-        // Index page - render the component list template
-        app.get('/', async function (req, res) {
-            res.render('index', {
-                backlink: false,
-                needs_expr: needs_expr, results: results, status: status,
-                type: {
-                    // This could be generated from agreement definition
-                    "ST.AG": {
-                        attribute: [
-                            {name: "branch_name"},
-                            {name: "branch_location"}]
-                    },
-                    "ST.MS": {
-                        attribute: []
-                    }
+    app.get('/', async function (req, res) {
+        res.render('index', {
+            backlink: false,
+            needs_expr: needs_expr, results: results, status: status, agreement: agreement,
+            type: {
+                // This could be generated from agreement definition
+                "ST.AG": {
+                    attribute: [
+                        {name: "branch_name"},
+                        {name: "branch_location"}]
+                },
+                "ST.MS": {
+                    attribute: []
                 }
-            })
+            }
         })
-    });
+    })
 
     app.post('/', async function (req, res) {
         needs_expr.service = req.body.service_name;
@@ -100,7 +92,7 @@ module.exports = (options) => {
                 "multi_match": {
                     "query": needs_expr.service + "  " + needs_expr.postcode,
                     "fields": [
-                        "id", "name",
+                        "id", "name^2",
                         "branch_name", "branch_location", // TODO: these are offering specific - should come from offer type
                         "item.itemtype.description",
                         "item.itemtype.keyword",
@@ -119,7 +111,7 @@ module.exports = (options) => {
                 results.response = {};
                 results.string = er;
                 results.hits = 0;
-                console.log(err);
+                console.log(er);
                 res.redirect('/#search')
             });
     });
