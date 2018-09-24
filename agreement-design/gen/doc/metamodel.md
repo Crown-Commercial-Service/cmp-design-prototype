@@ -104,46 +104,6 @@ What sort of things do they need?
 Match the service to item types, their keywords, and offering titles.
 
 # Data model: Parties
-## Party
-  
-  The party is used to identify buyers and suppliers. Since some organisations act as
-both buyers and suppliers we use the same record for both, but most organisations will
-be one or the other. The onvolvement of the party with an agreement determine  the role in
-that contenxt.
-Details still to be added
-
-|attribute|type|multiplicity|description|
-|---------|----|------------|-----------|
-|id|String|1|UUID or Salesforce ID?|
-|org_name|String|1|UUID or Salesforce ID?|
-|supplier_registration_completed|Date|1||
-|buyer_registration_completed|Date|1||
-## Address
-  Address should include at least addres line 1 and ideally post code.
-will contain UPRN if we have derived it.
-  
-
-|attribute|type|multiplicity|description|
-|---------|----|------------|-----------|
-|address_1|String|1||
-|address_2|String|0..1||
-|town|String|0..1||
-|county|String|*||
-|postcode|String|*||
-|uprn|String|*||
-## Contact
-  
-  A way of contacting a party. Store contacts in a safe identity store. Do not store personal details elsewhere.
-  
-
-|attribute|type|multiplicity|description|
-|---------|----|------------|-----------|
-|id|String|1|a UUID for the person or contact point|
-|party_id|String -> Parties::Party|1|contact is a link for this party|
-|name|String|1|address of the contact point|
-|address|Parties::Address|0..1|address of the contact point|
-|phone|String|*|phone of the contact point|
-|email|String|*|email of the contact point|
 ## Sector
   
   Hierarchy of sector codes delineating the party organisation
@@ -154,6 +114,69 @@ will contain UPRN if we have derived it.
 |name|String|1||
 |description|String|1||
 |subsector|Parties::Sector|*||
+## Party
+  
+  The party is used to identify buyers and suppliers. Since some organisations act as
+both buyers and suppliers we use the same record for both, but most organisations will
+be one or the other. The onvolvement of the party with an agreement determine  the role in
+that contenxt.
+Details still to be added
+
+|attribute|type|multiplicity|description|
+|---------|----|------------|-----------|
+|id|String|1|URN, should match salesforce ID; master key|
+|parent_org_id|String -> Parties::Party|1|URN, should match salesforce ID|
+|duns|String|0..1|Dunn & Bradstreet number - usually suppleirs only|
+|urn|String|0..1|Government URN, of the form 100001234|
+|company_reg_number|String|0..1||
+|org_name|String|1||
+|sector|Parties::Sector|*||
+|trading_name|String|0..1|Salesforce only stores for supplier|
+|supplier_registration_completed|Date|1|The party is a supplier who has completed registration|
+|buyer_registration_completed|Date|1|The party is a supplier who has completed registration|
+|spend_this_year|String|0..1|Salesforce only stores for buyer|
+|documents_url|String|0..1|Salesforce links to google drive for this supplier; we will move to S3 in due course|
+|account_manager_id|String|0..1|Who manages the account for CCS|
+## Address
+  Address should include at least address line 1 and ideally post code.
+will contain lat/long if we have derived it.
+  
+
+|attribute|type|multiplicity|description|
+|---------|----|------------|-----------|
+|street|String|1||
+|address_2|String|0..1||
+|town|String|0..1||
+|county|String|0..1||
+|country|String|0..1||
+|postcode|String|0..1||
+|latitutde|String|0..1|Location from the address for geo search|
+|longtitude|String|0..1|Location from the address for geo search|
+## Contact
+  
+  A way of contacting a party. Store contacts in a safe identity store. Do not store personal details elsewhere.
+  
+
+|attribute|type|multiplicity|description|
+|---------|----|------------|-----------|
+|id|String|1|a newly minted UUID for CMp|
+|salesforce_id|String|1|a Salesforce Contact_ID column point; of the form CONT-000122663|
+|party_id|String -> Parties::Party|1|contact is a link for this party|
+|role|String|*|role for CMp|
+|first_name|String|1||
+|last_name|String|1||
+|title|String|0..1|Salesforce; not sure what the constrainst are|
+|job_title|String|0..1|Salesforce; free text|
+|department|String|0..1|Salesforce - department within org, rather than gov|
+|address|Parties::Address|0..1|address of the contact point|
+|phone|String|*|phone of the contact point; salesforce only supports one|
+|email|String|*|email of the contact point; salesforce only supports two|
+|origin|String|0..1|from Salesforce - where the data was entered|
+|notes|String|0..1|from Salesforce|
+|status|String|0..1|from Salesforce, 'Active'|
+|user_research_participane|String|0..1|Y/N: from Salesforce|
+|not_to_receive_ccs_emails|String|0..1|Y/N: from Salesforce|
+|contact_owner|String|0..1|from Salesforce|
 # Data model: Geographic
 ## AreaCode
   

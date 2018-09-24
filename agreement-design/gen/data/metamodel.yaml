@@ -233,90 +233,6 @@
       :name: :role
       :type: "(AwardedSupplier,AwardedBuyer,SupplyingQuote,RequestingQuote,Etc)"
 :Parties:
-  :Party:
-    :id:
-      :multiplicity: '1'
-      :description: UUID or Salesforce ID?
-      :name: :id
-      :type: String
-    :org_name:
-      :multiplicity: '1'
-      :description: UUID or Salesforce ID?
-      :name: :org_name
-      :type: String
-    :supplier_registration_completed:
-      :multiplicity: '1'
-      :description: ''
-      :name: :supplier_registration_completed
-      :type: Date
-    :buyer_registration_completed:
-      :multiplicity: '1'
-      :description: ''
-      :name: :buyer_registration_completed
-      :type: Date
-  :Address:
-    :address_1:
-      :multiplicity: '1'
-      :description: ''
-      :name: :address_1
-      :type: String
-    :address_2:
-      :multiplicity: 0..1
-      :description: ''
-      :name: :address_2
-      :type: String
-    :town:
-      :multiplicity: 0..1
-      :description: ''
-      :name: :town
-      :type: String
-    :county:
-      :multiplicity: "*"
-      :description: ''
-      :name: :county
-      :type: String
-    :postcode:
-      :multiplicity: "*"
-      :description: ''
-      :name: :postcode
-      :type: String
-    :uprn:
-      :multiplicity: "*"
-      :description: ''
-      :name: :uprn
-      :type: String
-  :Contact:
-    :id:
-      :multiplicity: '1'
-      :description: a UUID for the person or contact point
-      :name: :id
-      :type: String
-    :party_id:
-      :multiplicity: '1'
-      :description: contact is a link for this party
-      :name: :party_id
-      :type: String
-      :links: Parties::Party
-    :name:
-      :multiplicity: '1'
-      :description: address of the contact point
-      :name: :name
-      :type: String
-    :address:
-      :multiplicity: 0..1
-      :description: address of the contact point
-      :name: :address
-      :type: Parties::Address
-    :phone:
-      :multiplicity: "*"
-      :description: phone of the contact point
-      :name: :phone
-      :type: String
-    :email:
-      :multiplicity: "*"
-      :description: email of the contact point
-      :name: :email
-      :type: String
   :Sector:
     :name:
       :multiplicity: '1'
@@ -333,6 +249,207 @@
       :description: ''
       :name: :subsector
       :type: Parties::Sector
+  :Party:
+    :id:
+      :multiplicity: '1'
+      :description: URN, should match salesforce ID; master key
+      :name: :id
+      :type: String
+    :parent_org_id:
+      :multiplicity: '1'
+      :description: URN, should match salesforce ID
+      :name: :parent_org_id
+      :type: String
+      :links: Parties::Party
+    :duns:
+      :multiplicity: 0..1
+      :description: Dunn & Bradstreet number - usually suppleirs only
+      :name: :duns
+      :type: String
+    :urn:
+      :multiplicity: 0..1
+      :description: Government URN, of the form 100001234
+      :name: :urn
+      :type: String
+    :company_reg_number:
+      :multiplicity: 0..1
+      :description: ''
+      :name: :company_reg_number
+      :type: String
+    :org_name:
+      :multiplicity: '1'
+      :description: ''
+      :name: :org_name
+      :type: String
+    :sector:
+      :multiplicity: "*"
+      :description: ''
+      :name: :sector
+      :type: Parties::Sector
+    :trading_name:
+      :multiplicity: 0..1
+      :description: Salesforce only stores for supplier
+      :name: :trading_name
+      :type: String
+    :supplier_registration_completed:
+      :multiplicity: '1'
+      :description: The party is a supplier who has completed registration
+      :name: :supplier_registration_completed
+      :type: Date
+    :buyer_registration_completed:
+      :multiplicity: '1'
+      :description: The party is a supplier who has completed registration
+      :name: :buyer_registration_completed
+      :type: Date
+    :spend_this_year:
+      :multiplicity: 0..1
+      :description: Salesforce only stores for buyer
+      :name: :spend_this_year
+      :type: String
+    :documents_url:
+      :multiplicity: 0..1
+      :description: Salesforce links to google drive for this supplier; we will move
+        to S3 in due course
+      :name: :documents_url
+      :type: String
+    :account_manager_id:
+      :multiplicity: 0..1
+      :description: Who manages the account for CCS
+      :name: :account_manager_id
+      :type: String
+  :Address:
+    :street:
+      :multiplicity: '1'
+      :description: ''
+      :name: :street
+      :type: String
+    :address_2:
+      :multiplicity: 0..1
+      :description: ''
+      :name: :address_2
+      :type: String
+    :town:
+      :multiplicity: 0..1
+      :description: ''
+      :name: :town
+      :type: String
+    :county:
+      :multiplicity: 0..1
+      :description: ''
+      :name: :county
+      :type: String
+    :country:
+      :multiplicity: 0..1
+      :description: ''
+      :name: :country
+      :type: String
+    :postcode:
+      :multiplicity: 0..1
+      :description: ''
+      :name: :postcode
+      :type: String
+    :latitutde:
+      :multiplicity: 0..1
+      :description: Location from the address for geo search
+      :name: :latitutde
+      :type: String
+    :longtitude:
+      :multiplicity: 0..1
+      :description: Location from the address for geo search
+      :name: :longtitude
+      :type: String
+  :Contact:
+    :id:
+      :multiplicity: '1'
+      :description: a newly minted UUID for CMp
+      :name: :id
+      :type: String
+    :salesforce_id:
+      :multiplicity: '1'
+      :description: a Salesforce Contact_ID column point; of the form CONT-000122663
+      :name: :salesforce_id
+      :type: String
+    :party_id:
+      :multiplicity: '1'
+      :description: contact is a link for this party
+      :name: :party_id
+      :type: String
+      :links: Parties::Party
+    :role:
+      :multiplicity: "*"
+      :description: role for CMp
+      :name: :role
+      :type: String
+    :first_name:
+      :multiplicity: '1'
+      :description: ''
+      :name: :first_name
+      :type: String
+    :last_name:
+      :multiplicity: '1'
+      :description: ''
+      :name: :last_name
+      :type: String
+    :title:
+      :multiplicity: 0..1
+      :description: Salesforce; not sure what the constrainst are
+      :name: :title
+      :type: String
+    :job_title:
+      :multiplicity: 0..1
+      :description: Salesforce; free text
+      :name: :job_title
+      :type: String
+    :department:
+      :multiplicity: 0..1
+      :description: Salesforce - department within org, rather than gov
+      :name: :department
+      :type: String
+    :address:
+      :multiplicity: 0..1
+      :description: address of the contact point
+      :name: :address
+      :type: Parties::Address
+    :phone:
+      :multiplicity: "*"
+      :description: phone of the contact point; salesforce only supports one
+      :name: :phone
+      :type: String
+    :email:
+      :multiplicity: "*"
+      :description: email of the contact point; salesforce only supports two
+      :name: :email
+      :type: String
+    :origin:
+      :multiplicity: 0..1
+      :description: from Salesforce - where the data was entered
+      :name: :origin
+      :type: String
+    :notes:
+      :multiplicity: 0..1
+      :description: from Salesforce
+      :name: :notes
+      :type: String
+    :status:
+      :multiplicity: 0..1
+      :description: from Salesforce, 'Active'
+      :name: :status
+      :type: String
+    :user_research_participane:
+      :multiplicity: 0..1
+      :description: 'Y/N: from Salesforce'
+      :name: :user_research_participane
+      :type: String
+    :not_to_receive_ccs_emails:
+      :multiplicity: 0..1
+      :description: 'Y/N: from Salesforce'
+      :name: :not_to_receive_ccs_emails
+      :type: String
+    :contact_owner:
+      :multiplicity: 0..1
+      :description: from Salesforce
+      :name: :contact_owner
+      :type: String
 :Geographic:
   :AreaCode:
     :name:

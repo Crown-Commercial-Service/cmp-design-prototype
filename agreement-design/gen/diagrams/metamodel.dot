@@ -13,10 +13,10 @@ label=Agreements;
 subgraph cluster_Parties {
 node [shape=plaintext margin=0];
 label=Parties;
-"Party" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Party</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-org_name</TD></TR><TR><TD ALIGN="LEFT">-supplier_registration_completed</TD></TR><TR><TD ALIGN="LEFT">-buyer_registration_completed</TD></TR></table>>];
-"Address" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Address</TD></TH><TR><TD ALIGN="LEFT">-address_1</TD></TR><TR><TD ALIGN="LEFT">-address_2</TD></TR><TR><TD ALIGN="LEFT">-town</TD></TR><TR><TD ALIGN="LEFT">-county</TD></TR><TR><TD ALIGN="LEFT">-postcode</TD></TR><TR><TD ALIGN="LEFT">-uprn</TD></TR></table>>];
-"Contact" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Contact</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-party_id</TD></TR><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-address</TD></TR><TR><TD ALIGN="LEFT">-phone</TD></TR><TR><TD ALIGN="LEFT">-email</TD></TR></table>>];
 "Sector" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Sector</TD></TH><TR><TD ALIGN="LEFT">-name</TD></TR><TR><TD ALIGN="LEFT">-description</TD></TR><TR><TD ALIGN="LEFT">-subsector</TD></TR></table>>];
+"Party" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Party</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-parent_org_id</TD></TR><TR><TD ALIGN="LEFT">-duns</TD></TR><TR><TD ALIGN="LEFT">-urn</TD></TR><TR><TD ALIGN="LEFT">-company_reg_number</TD></TR><TR><TD ALIGN="LEFT">-org_name</TD></TR><TR><TD ALIGN="LEFT">-sector</TD></TR><TR><TD ALIGN="LEFT">-trading_name</TD></TR><TR><TD ALIGN="LEFT">-supplier_registration_completed</TD></TR><TR><TD ALIGN="LEFT">-buyer_registration_completed</TD></TR><TR><TD ALIGN="LEFT">-spend_this_year</TD></TR><TR><TD ALIGN="LEFT">-documents_url</TD></TR><TR><TD ALIGN="LEFT">-account_manager_id</TD></TR></table>>];
+"Address" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Address</TD></TH><TR><TD ALIGN="LEFT">-street</TD></TR><TR><TD ALIGN="LEFT">-address_2</TD></TR><TR><TD ALIGN="LEFT">-town</TD></TR><TR><TD ALIGN="LEFT">-county</TD></TR><TR><TD ALIGN="LEFT">-country</TD></TR><TR><TD ALIGN="LEFT">-postcode</TD></TR><TR><TD ALIGN="LEFT">-latitutde</TD></TR><TR><TD ALIGN="LEFT">-longtitude</TD></TR></table>>];
+"Contact" [label=<<table BORDER="1" CELLBORDER="0" CELLSPACING="0"><TH><TD>Contact</TD></TH><TR><TD ALIGN="LEFT">-id</TD></TR><TR><TD ALIGN="LEFT">-salesforce_id</TD></TR><TR><TD ALIGN="LEFT">-party_id</TD></TR><TR><TD ALIGN="LEFT">-role</TD></TR><TR><TD ALIGN="LEFT">-first_name</TD></TR><TR><TD ALIGN="LEFT">-last_name</TD></TR><TR><TD ALIGN="LEFT">-title</TD></TR><TR><TD ALIGN="LEFT">-job_title</TD></TR><TR><TD ALIGN="LEFT">-department</TD></TR><TR><TD ALIGN="LEFT">-address</TD></TR><TR><TD ALIGN="LEFT">-phone</TD></TR><TR><TD ALIGN="LEFT">-email</TD></TR><TR><TD ALIGN="LEFT">-origin</TD></TR><TR><TD ALIGN="LEFT">-notes</TD></TR><TR><TD ALIGN="LEFT">-status</TD></TR><TR><TD ALIGN="LEFT">-user_research_participane</TD></TR><TR><TD ALIGN="LEFT">-not_to_receive_ccs_emails</TD></TR><TR><TD ALIGN="LEFT">-contact_owner</TD></TR></table>>];
 }
 subgraph cluster_Geographic {
 node [shape=plaintext margin=0];
@@ -40,9 +40,11 @@ label=SupplyTeacherOfferings;
 "Catalogue" -> "Offering" [label="{contains} offers" arrowhead = "none" arrowtail = "diamond" ];
 "Involvement" -> "Agreement" [label="agreement_id" arrowhead = "open" arrowtail = "none" ];
 "Involvement" -> "Party" [label="party_id" arrowhead = "open" arrowtail = "none" ];
+"Sector" -> "Sector" [label="{contains} subsector" arrowhead = "none" arrowtail = "diamond" ];
+"Party" -> "Party" [label="parent_org_id" arrowhead = "open" arrowtail = "none" ];
+"Party" -> "Sector" [label="{contains} sector" arrowhead = "none" arrowtail = "diamond" ];
 "Contact" -> "Party" [label="party_id" arrowhead = "open" arrowtail = "none" ];
 "Contact" -> "Address" [label="{contains} address" arrowhead = "none" arrowtail = "diamond" ];
-"Sector" -> "Sector" [label="{contains} subsector" arrowhead = "none" arrowtail = "diamond" ];
 "AreaCode" -> "AreaCode" [label="{contains} subcode" arrowhead = "none" arrowtail = "diamond" ];
 "ST_Offering" -> "Offering" [label="extends" arrowhead = "none" arrowtail = "normal" ];
 "ST_Offering" -> "Agreement" [label="agreement_id" arrowhead = "open" arrowtail = "none" ];
