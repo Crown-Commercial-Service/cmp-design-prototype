@@ -4,6 +4,7 @@ domain(:FM_Offerings) {
   datatype(:FM_Offering, extends: Agreements::Offering,
            description: " An offer for FM elements ") {
     attribute :sc_cleared, String
+
   }
 }
 
@@ -13,7 +14,6 @@ Agreements.new(:FM_Agreements) {
   agreement {
     kind :Framework
     id FM_ID
-    fwk_number "RM8330"
     version "0.1.0"
     description "This agreement is for the provision of Facilities Management"
     start_date date(2018, 10, 01)

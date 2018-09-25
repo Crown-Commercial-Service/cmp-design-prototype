@@ -65,18 +65,44 @@
       :type: "(Framework,Lot,Contract)"
     :id:
       :multiplicity: '1'
-      :description: uuid of agreeement
+      :description: id of agreeement; This is the RM number for a framework, and {RM.lotnumber}
+        for a lot
       :name: :id
       :type: String
     :name:
       :multiplicity: '1'
-      :description: uuid of agreeement
+      :description: ''
       :name: :name
+      :type: String
+    :long_name:
+      :multiplicity: '1'
+      :description: ''
+      :name: :long_name
       :type: String
     :version:
       :multiplicity: '1'
       :description: semantic version id of the form X.Y.Z
       :name: :version
+      :type: String
+    :status:
+      :multiplicity: '1'
+      :description: semantic version id of the form X.Y.Z
+      :name: :status
+      :type: "(Live,Inactive,Future,Planned,Underway)"
+    :pillar:
+      :multiplicity: '1'
+      :description: ''
+      :name: :pillar
+      :type: String
+    :duration:
+      :multiplicity: '1'
+      :description: Months
+      :name: :duration
+      :type: Integer
+    :category:
+      :multiplicity: '1'
+      :description: ''
+      :name: :category
       :type: String
     :start_date:
       :multiplicity: '1'
@@ -88,26 +114,15 @@
       :description: ''
       :name: :end_date
       :type: Date
+    :original_end_date:
+      :multiplicity: '1'
+      :description: ''
+      :name: :original_end_date
+      :type: Date
     :description:
       :multiplicity: '1'
       :description: Describe the agreement
       :name: :description
-      :type: String
-    :fwk_number:
-      :multiplicity: '1'
-      :description: Framework (RM) number of related framework if required. @Example
-        RM123
-      :name: :fwk_number
-      :type: String
-    :sf_typ:
-      :multiplicity: '1'
-      :description: SalesForce data type
-      :name: :sf_typ
-      :type: String
-    :sf_id:
-      :multiplicity: '1'
-      :description: SalesForce row id
-      :name: :sf_id
       :type: String
     :offerType:
       :multiplicity: '1'

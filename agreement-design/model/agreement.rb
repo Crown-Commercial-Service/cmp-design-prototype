@@ -55,16 +55,20 @@ schemes, but is not a one-to-one match.") {
     attribute :kind, Selection(:Framework, :Lot, :Contract),
               #TODO doc should enumeration selections
               "Kind of agreement, including :Framework, :Lot, :Contract"
-    attribute :id, String, "uuid of agreeement"
-    attribute :name, String, "uuid of agreeement"
+    attribute :id, String, "id of agreeement; This is the RM number for a framework, and {RM.lotnumber} for a lot"
+    attribute :name, String
+    attribute :long_name, String
     attribute :version, String, "semantic version id of the form X.Y.Z"
+    attribute :status, Selection(:Live, :Inactive, :Future, :Planned, :Underway), "semantic version id of the form X.Y.Z"
+    attribute :pillar, String
+    attribute :duration, Integer, "Months"
+    attribute :category, String
     attribute :start_date, Date
     attribute :end_date, Date
+    attribute :original_end_date, Date
     attribute :description, String, "Describe the agreement"
-    attribute :fwk_number, String, "Framework (RM) number of related framework if required. @Example RM123"
-    attribute :sf_typ, String, "SalesForce data type"
-    attribute :sf_id, String, "SalesForce row id"
     attribute :offerType, String, "Name of the subclass of the Offering, supporting the Agreement"
+
 
     # structure of agreement
     attribute :part_of_id, String, "Agreement this is part of, applicable only to Lots", links: :Agreement

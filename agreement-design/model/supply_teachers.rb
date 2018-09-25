@@ -1,20 +1,26 @@
 require_relative 'agreement'
 require 'csv'
 
-SUPPLY_TEACHER_FRAMEWORK_ID = "ST"
-SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID = "#{SUPPLY_TEACHER_FRAMEWORK_ID}.MS"
-SUPPLY_TEACHER_RECRUITMENT_LOT_ID = "#{SUPPLY_TEACHER_FRAMEWORK_ID}.AG"
+SUPPLY_TEACHER_FRAMEWORK_ID = "RM3826"
+SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID = "#{SUPPLY_TEACHER_FRAMEWORK_ID}.2"
+SUPPLY_TEACHER_RECRUITMENT_LOT_ID = "#{SUPPLY_TEACHER_FRAMEWORK_ID}.1"
 
 
 Agreements.new(:Supply_Teacher_Agreements) {
-  agreement {
+  ST= agreement {
     kind :Framework
-    name "Supply Teachers framework"
+    name "Supply Teachers and Temporary Staff in Educational Establishments"
+    long_name name
     id SUPPLY_TEACHER_FRAMEWORK_ID
-    fwk_number "RM1234" #TODO proper fwk number for Supply teachers
+    pillar :People
+    status :Live
+    category :Workforce
     version "0.1.0"
     description "This agreement is for the provision of Supply Teachers"
-    start_date date(2018, 10, 01) #TODO proper start date for Supply teachers
+    start_date date(2018, 8, 30)
+    original_end_date date(2018, 8, 30)
+    end_date original_end_date
+    offerType
   }
 
   item_coding = lambda do
@@ -93,20 +99,22 @@ Agreements.new(:Supply_Teacher_Agreements) {
   agreement {
     kind :Lot
     id SUPPLY_TEACHER_RECRUITMENT_LOT_ID
-    name "Supply Teachers from Agency"
+    name "Preferred Supplier List"
+    long_name name
     part_of_id SUPPLY_TEACHER_FRAMEWORK_ID
+    pillar ST.pillar
+    category ST.category
     offerType "SupplyTeacherOfferings::ST_Offering"
     version "0.1.0"
     for item in Common_ST_items
       item_type item
     end
-
   }
 
   agreement {
     kind :Lot
     id SUPPLY_TEACHER_MANAGED_SERVICE_LOT_ID
-    name "Supply Teachers Managed Service"
+    name "Master Vendor"
     part_of_id SUPPLY_TEACHER_FRAMEWORK_ID
     offerType "SupplyTeacherOfferings::ST_Offering"
     version "0.1.0"
@@ -131,7 +139,7 @@ The offerings look the same for both lots - since they both relate to the same i
 }
 
 def colmap_managing_suppliers(row)
-  {
+  return {
       :Vendor_type => row[0],
       :Supplier => row[1],
       :Item_ID => row[2],

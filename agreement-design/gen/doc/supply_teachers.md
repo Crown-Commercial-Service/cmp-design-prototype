@@ -1,18 +1,26 @@
 # Model: Supply_Teacher_Agreements 
 ## agreement
-### Agreement - Supply Teachers framework 
+### Agreement - Supply Teachers and Temporary Staff in Educational Establishments 
    - kind Framework
-   - name Supply Teachers framework
-   - id ST
-   - fwk_number RM1234
+   - name Supply Teachers and Temporary Staff in Educational Establishments
+   - long_name Supply Teachers and Temporary Staff in Educational Establishments
+   - id RM3826
+   - pillar People
+   - status Live
+   - category Workforce
    - version 0.1.0
    - description This agreement is for the provision of Supply Teachers
-   - start_date 2018-10-01
-### Agreement - Supply Teachers from Agency 
+   - start_date 2018-08-30
+   - original_end_date 2018-08-30
+   - end_date 2018-08-30
+### Agreement - Preferred Supplier List 
    - kind Lot
-   - id ST.AG
-   - name Supply Teachers from Agency
-   - part_of_id ST
+   - id RM3826.1
+   - name Preferred Supplier List
+   - long_name Preferred Supplier List
+   - part_of_id RM3826
+   - pillar People
+   - category Workforce
    - offerType SupplyTeacherOfferings::ST_Offering
    - version 0.1.0
 #### ItemType - itemtype 
@@ -86,11 +94,11 @@
      - scheme_id CPV
      - code 79610000/FTA
      - unit Commission
-### Agreement - Supply Teachers Managed Service 
+### Agreement - Master Vendor 
    - kind Lot
-   - id ST.MS
-   - name Supply Teachers Managed Service
-   - part_of_id ST
+   - id RM3826.2
+   - name Master Vendor
+   - part_of_id RM3826
    - offerType SupplyTeacherOfferings::ST_Offering
    - version 0.1.0
 #### ItemType - itemtype 

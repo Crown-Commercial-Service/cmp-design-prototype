@@ -31,15 +31,18 @@ schemes, but is not a one-to-one match.
 |attribute|type|multiplicity|description|
 |---------|----|------------|-----------|
 |kind|(Framework,Lot,Contract)|1|Kind of agreement, including :Framework, :Lot, :Contract|
-|id|String|1|uuid of agreeement|
-|name|String|1|uuid of agreeement|
+|id|String|1|id of agreeement; This is the RM number for a framework, and {RM.lotnumber} for a lot|
+|name|String|1||
+|long_name|String|1||
 |version|String|1|semantic version id of the form X.Y.Z|
+|status|(Live,Inactive,Future,Planned,Underway)|1|semantic version id of the form X.Y.Z|
+|pillar|String|1||
+|duration|Integer|1|Months|
+|category|String|1||
 |start_date|Date|1||
 |end_date|Date|1||
+|original_end_date|Date|1||
 |description|String|1|Describe the agreement|
-|fwk_number|String|1|Framework (RM) number of related framework if required. @Example RM123|
-|sf_typ|String|1|SalesForce data type|
-|sf_id|String|1|SalesForce row id|
 |offerType|String|1|Name of the subclass of the Offering, supporting the Agreement|
 |part_of_id|String -> Agreements::Agreement|1|Agreement this is part of, applicable only to Lots|
 |conforms_to_id|String -> Agreements::Agreement|1|Agreement this conforms to, such as a Contract conforming to a Framework|
