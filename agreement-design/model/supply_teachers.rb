@@ -138,6 +138,9 @@ The offerings look the same for both lots - since they both relate to the same i
   }
 }
 
+
+# This code loads the offerings from CSV files, such as in the selection tool excel spreadsheet.
+
 def colmap_managing_suppliers(row)
   return {
       :Vendor_type => row[0],

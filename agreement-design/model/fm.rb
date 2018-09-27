@@ -10,17 +10,39 @@ domain(:FM_Offerings) {
 
 Agreements.new(:FM_Agreements) {
 
-  FM_ID = "FM"
-  agreement {
+  FM_ID = "RM3830"
+
+  fm_coding = lambda do
+    pillar :Buildings
+    status :Live
+    category :Workplace
+  end
+
+  FM= agreement {
     kind :Framework
     id FM_ID
+    include &fm_coding
+    version "0.1.0"
+    description "This agreement is for the provision of Facilities Management"
+    start_date date(2018, 10, 01)
+    min_value 0
+    max_value 12000000000
+  }
+
+  FM_LOT1a = "#{FM_ID}.1a"
+
+  agreement {
+    kind :Lot
+    id FM_LOT1a
+    name "low-to-mid value Facilities Management Lot"
+    part_of_id FM_ID
+    include &fm_coding
     version "0.1.0"
     description "This agreement is for the provision of Facilities Management"
     start_date date(2018, 10, 01)
   }
 
-  ENV_CLEANING = "#{FM_ID}.1a-C.3"
-
+  ENV_CLEANING= "cleaning"
   cleaning = itemtype {
     id ENV_CLEANING
     scheme_id :CCS

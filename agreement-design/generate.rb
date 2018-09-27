@@ -55,7 +55,7 @@ sr_offers= load_recruitment_suppliers(test_data_file("teacher-recruitment-test.c
 data= DataFile.new( output_path, "teacher-management-test-offers", fmt: :jsonlines)
 data.output sm_offers, index: index_offering_for_elasticsearch, deeplink: true
 
-data= DataFile.new( output_path, "teacher-recruitment-test-offers", fmt: :json)
+data= DataFile.new( output_path, "teacher-recruitment-test-offers", fmt: :jsonlines)
 data.output sr_offers, index: index_offering_for_elasticsearch, deeplink: true
 
 # can now do something like:
