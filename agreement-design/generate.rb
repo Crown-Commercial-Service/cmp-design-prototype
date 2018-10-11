@@ -5,6 +5,7 @@ require_relative 'model/geographic'
 require_relative "model/agreement"
 require_relative "model/fm"
 require_relative "model/supply_teachers"
+require_relative "model/apprenticeships"
 
 output_path = File.join(File.dirname(__FILE__), "gen")
 
@@ -23,12 +24,16 @@ data.output_metamodel *metamodels
 
 models = [
     Agreements::Supply_Teacher_Agreements,
+    Agreements::Apprenticeships_Agreements,
     Geographic::NUTS,
     Parties::SECTORS
 ]
 
 doc = Document.new(output_path, "supply_teachers")
 doc.document Agreements::Supply_Teacher_Agreements
+
+doc = Document.new(output_path, "apprenticeships")
+doc.document Agreements::Apprenticeships_Agreements
 
 data = DataFile.new(output_path, "agreements", fmt: :json)
 data.output *models

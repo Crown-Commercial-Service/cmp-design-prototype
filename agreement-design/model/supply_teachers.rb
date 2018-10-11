@@ -20,7 +20,6 @@ Agreements.new(:Supply_Teacher_Agreements) {
     start_date date(2018, 8, 30)
     original_end_date date(2018, 8, 30)
     end_date original_end_date
-    offerType
   }
 
   item_coding = lambda do
