@@ -3,7 +3,7 @@ require_relative 'geographic'
 require_relative 'party'
 require 'csv'
 
-APPRENTICESHIPS_FRAMEWORK_ID = "DON'T KNOW YET"
+APPRENTICESHIPS_FRAMEWORK_ID = "RM6102"
 APPRENTICESHIPS_TRAINING_ID = "#{APPRENTICESHIPS_FRAMEWORK_ID}.2"
 
 # Apprenticeships item coding
