@@ -3,10 +3,7 @@
 const gulp = require('gulp');
 const runsequence = require('run-sequence');
 const sass = require('gulp-sass');
-const sassLint = require('gulp-sass-lint');
-const clean = require('gulp-clean');
 
-gulp.task('default', [ 'dev' ]);
 
 gulp.task('dev', cb => {
     runsequence(
@@ -47,3 +44,4 @@ gulp.task('clean', function () {
         .pipe(clean());
 });
 
+// gulp.task('default', gulp.series(  'dev'));
