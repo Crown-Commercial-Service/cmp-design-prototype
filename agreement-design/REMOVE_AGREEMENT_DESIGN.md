@@ -22,7 +22,7 @@ git subtree split --prefix=agreement-design --branch=ccs-data-model
 ```
 git remote remove origin
 git remote add origin git@github.com:Crown-Commercial-Service/ccs-data-model.git
-git push origin ccs-data-model-only
+git push origin ccs-data-model
 ```
 
 

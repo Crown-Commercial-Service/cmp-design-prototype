@@ -1,4 +1,8 @@
 
+*[MOVED TO CCS-DATA REPO](https://github.com/Crown-Commercial-Service/ccs-data-model)*
+
+This project has been removed to its own directory
+
 # Agreement Design
 
 this is a prototype for an agreement design system. In line with 
