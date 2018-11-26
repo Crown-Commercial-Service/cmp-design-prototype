@@ -4,7 +4,7 @@
    - kind Framework
    - name Apprenticeships - get desc from SF
    - long_name Apprenticeships - get desc from SF
-   - id DON'T KNOW YET
+   - id RM6102
    - pillar People
    - status Live
    - category Workforce
@@ -15,13 +15,13 @@
    - end_date 2018-08-30
 ### Agreement - Apprenticeships  
    - kind Lot
-   - id DON'T KNOW YET.2
+   - id RM6102.2
    - name Apprenticeships 
    - long_name Apprenticeships 
-   - part_of_id DON'T KNOW YET
+   - part_of_id RM6102
    - pillar People
    - category Workforce
-   - offerType SupplyTeacherOfferings::ST_Offering
+   - offerType ApprenticeshipsOfferings::AT_Offering
    - version 0.1.0
 #### ItemType - item_type 
      - description Train builders for schools

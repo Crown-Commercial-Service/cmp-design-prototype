@@ -1,6 +1,10 @@
 require_relative 'transform'
 include Transform
 
+# - create a file for each data type
+# - create a file for each end point, referencing files
+#   - link [https://swagger.io/docs/specification/using-ref/]
+# - consier API endpoint config, e.g. AWS - [https://app.swaggerhub.com/help/integrations/amazon-api-gateway]
 class API < Output
 
   # Not implemented yet
