@@ -15,7 +15,7 @@ Change to new project root dir and create a clone of the thing.
 ```
 git clone git@github.com:Crown-Commercial-Service/cmp-design-prototype.git
 cd cmp-design-prototype
-git subtree split --prefix=cmp-design-prototype --branch=ccs-data-model 
+git subtree split --prefix=agreement-design --branch=ccs-data-model 
 ```
 
 ### create new [git@github.com:Crown-Commercial-Service/ccs-data-model.git](repo on github) and push up
